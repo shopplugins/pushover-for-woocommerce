@@ -1,0 +1,8 @@
+*** WooCommerce Pushover Integration ***
+
+2013.02.06   1.0.1
+    * Fixed fatal error from undefined is_woocommerce_active() function call
+
+2013.01.18   1.0.0
+ 
+   * First Version
