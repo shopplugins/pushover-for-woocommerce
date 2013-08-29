@@ -62,9 +62,9 @@ class WC_Pushover extends WC_Integration {
 		if ( $this->notify_backorder )
 			add_action( 'woocommerce_product_on_backorder', array( $this, 'notify_backorder' ) );
 		if ( $this->notify_no_stock )
-			add_action( 'notify_no_stock', array( $this, 'notify_no_stock' ) );
+			add_action( 'woocommerce_notify_no_stock', array( $this, 'notify_no_stock' ) );
 		if ( $this->notify_low_stock )
-			add_action( 'notify_low_stock', array( $this, 'notify_low_stock' ) );
+			add_action( 'woocommerce_notify_low_stock', array( $this, 'notify_low_stock' ) );
 
 	}
 
@@ -182,7 +182,10 @@ class WC_Pushover extends WC_Integration {
 
 		// get order details
 		$title 		= sprintf( __( 'New Order %d', 'wc_pushover'), $order_id );
-		$message 	= sprintf( __( 'You have a new order from %s for $%s ', 'wc_pushover'), $order->billing_first_name . " " . $order->billing_last_name, $order->order_total );
+		$message 	= sprintf( __( 'You have a new order from %s for %s%s ', 'wc_pushover'), 										
+										$order->billing_first_name . " " . $order->billing_last_name, 
+										$this->pushover_get_currency_symbol(),										
+										$order->order_total );
 		$url 		= get_admin_url();
 		
 		$this->send_notification( $title, $message, $url);
@@ -338,6 +341,64 @@ class WC_Pushover extends WC_Integration {
 
 	}
 
+
+    /**
+     * pushover_get_currency_symbol
+     *
+     * @access public
+     * @return string
+     * @since 1.0.2
+     */
+	function pushover_get_currency_symbol() {
+			$currency = get_woocommerce_currency();
 	
+			switch ( $currency ) {
+				case 'BRL' :
+				$currency_symbol = '&#82;&#36;';
+				break;
+			case 'AUD' :
+			case 'CAD' :
+			case 'MXN' :
+			case 'NZD' :
+			case 'HKD' :
+			case 'SGD' :
+			case 'USD' :
+				$currency_symbol = '$';
+				break;
+			case 'EUR' :
+				$currency_symbol = '€';
+				break;
+			case 'CNY' :
+			case 'RMB' :
+			case 'JPY' :
+				$currency_symbol = '¥‎';
+				break;
+			case 'RUB' :
+				$currency_symbol = 'руб.';
+				break;
+			case 'KRW' : $currency_symbol = '₩'; break;
+			case 'TRY' : $currency_symbol = 'TL'; break;
+			case 'NOK' : $currency_symbol = 'kr'; break;
+			case 'ZAR' : $currency_symbol = 'R'; break;
+			case 'CZK' : $currency_symbol = 'Kč'; break;
+			case 'MYR' : $currency_symbol = 'RM'; break;
+			case 'DKK' : $currency_symbol = 'kr'; break;
+			case 'HUF' : $currency_symbol = 'Ft'; break;
+			case 'IDR' : $currency_symbol = 'Rp'; break;
+			case 'INR' : $currency_symbol = '₹'; break;
+			case 'ILS' : $currency_symbol = '₪'; break;
+			case 'PHP' : $currency_symbol = '₱'; break;
+			case 'PLN' : $currency_symbol = 'zł'; break;
+			case 'SEK' : $currency_symbol = 'kr'; break;
+			case 'CHF' : $currency_symbol = 'CHF'; break;
+			case 'TWD' : $currency_symbol = 'NT$'; break;
+			case 'THB' : $currency_symbol = '฿'; break;
+			case 'GBP' : $currency_symbol = '£'; break;
+			case 'RON' : $currency_symbol = 'lei'; break;
+			default    : $currency_symbol = ''; break;
+			}
+	
+			return apply_filters( 'pushover_currency_symbol', $currency_symbol, $currency );
+	}	
 
 } /* class WC_Pushover */

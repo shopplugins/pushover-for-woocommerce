@@ -180,12 +180,13 @@ class Pushover_Api  {
 						'url' 		=> $this->url,
 					);
 
-		$response = wp_remote_post( $this->endpoint,
-			array(
-				'timeout'   => 70,
-				'sslverify' => 0,
-				'body'      => $request
-		    )
+		$response = wp_remote_post( 
+				$this->endpoint,
+				array(
+					'timeout'   => 70,
+					'sslverify' => 0,
+					'body'      => $request
+			    )
 		);
 	
 		return $response; 

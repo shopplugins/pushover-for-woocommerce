@@ -3,7 +3,7 @@
 Plugin Name: WooCommerce Pushover Integration
 Plugin URI: http://www.growdevelopment.com
 Description: Integrates <a href="http://www.woothemes.com/woocommerce" target="_blank" >WooCommerce</a> with the <a href="https://pushover.net/" target="_blank">Pushover</a> notifications app for Android and iOS.
-Version: 1.0.1
+Version: 1.0.2
 Author: Daniel Espinoza
 Author URI: http://www.growdevelopment.com
 */
