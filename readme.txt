@@ -27,7 +27,7 @@ Step 1. Install the extension
 Step 2. Setup Pushover Account
 
 Prerequisites:
- * To receive notifications you will need to purchase the Pushover App for Android (http://pushover.net/clients/android)or iOS (http://pushover.net/clients/ios)
+ * To receive notifications you will need to purchase the Pushover App for Android (http://pushover.net/clients/android) or iOS (http://pushover.net/clients/ios)
  * You will also need to create an account at http://pushover.net
  
 1. Register for an account on pushover.net
