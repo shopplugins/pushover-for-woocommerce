@@ -49,6 +49,7 @@ class WC_Pushover extends WC_Integration {
 
 		// Notices
 		$this->notify_new_order	= isset( $this->settings['notify_new_order'] ) && $this->settings['notify_new_order'] == 'yes' ? true : false;
+		$this->notify_free_order	= isset( $this->settings['notify_free_order'] ) && $this->settings['notify_free_order'] == 'yes' ? true : false;
 		$this->notify_backorder	= isset( $this->settings['notify_backorder'] ) && $this->settings['notify_backorder'] == 'yes' ? true : false;
 		$this->notify_no_stock	= isset( $this->settings['notify_no_stock'] )  && $this->settings['notify_no_stock'] == 'yes' ? true : false;
 		$this->notify_low_stock	= isset( $this->settings['notify_low_stock'] ) && $this->settings['notify_low_stock'] == 'yes' ? true : false;
@@ -118,6 +119,12 @@ class WC_Pushover extends WC_Integration {
     			'type' 				=>  'checkbox',
     			'default' 			=>  'no',
     		),
+    		'notify_free_order' => array(
+    			'title' 			=>  __( 'Free Order', 'wc_pushover' ),
+    			'label'	 			=>  __( 'Send notification when an order totals $0.', 'wc_pushover' ),
+    			'type' 				=>  'checkbox',
+    			'default' 			=>  'no',
+    		),
     		'notify_backorder' => array(
     			'title' 			=>  __( 'Back Order', 'wc_pushover' ),
     			'label'	 			=>  __( 'Send notification when a product is back ordered.', 'wc_pushover' ),
@@ -180,15 +187,18 @@ class WC_Pushover extends WC_Integration {
 
 		$order = new WC_Order( $order_id );
 
-		// get order details
-		$title 		= sprintf( __( 'New Order %d', 'wc_pushover'), $order_id );
-		$message 	= sprintf( __( 'You have a new order from %s for %s%s ', 'wc_pushover'),
-										$order->billing_first_name . " " . $order->billing_last_name,
-										$this->pushover_get_currency_symbol(),
-										$order->order_total );
-		$url 		= get_admin_url();
+		// Send notifications if order total is greater than $0
+		// Or if free order notification is enabled
+		if ( 0 < absint( $order->order_total ) || $this->notify_free_order ) {
+			$title 		= sprintf( __( 'New Order %d', 'wc_pushover'), $order_id );
+			$message 	= sprintf( __( 'You have a new order from %s for %s%s ', 'wc_pushover'),
+											$order->billing_first_name . " " . $order->billing_last_name,
+											$this->pushover_get_currency_symbol(),
+											$order->order_total );
+			$url 		= get_admin_url();
 
-		$this->send_notification( $title, $message, $url);
+			$this->send_notification( $title, $message, $url);
+		}
 
 	}
 
