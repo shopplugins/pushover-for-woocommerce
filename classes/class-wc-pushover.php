@@ -190,12 +190,14 @@ class WC_Pushover extends WC_Integration {
 		// Send notifications if order total is greater than $0
 		// Or if free order notification is enabled
 		if ( 0 < absint( $order->order_total ) || $this->notify_free_order ) {
-			$title 		= sprintf( __( 'New Order %d', 'wc_pushover'), $order_id );
-			$message 	= sprintf( __( 'You have a new order from %s for %s%s ', 'wc_pushover'),
-											$order->billing_first_name . " " . $order->billing_last_name,
-											$this->pushover_get_currency_symbol(),
-											$order->order_total );
-			$url 		= get_admin_url();
+			$title   = sprintf( __( 'New Order %d', 'wc_pushover'), $order_id );
+			$message = sprintf(
+				__( '%1$s ordered %2$s for %3$s ', 'wc_pushover'),
+				$order->billing_first_name . " " . $order->billing_last_name,
+				implode(', ', wp_list_pluck( $order->get_items(), 'name' ) ),
+				$this->pushover_get_currency_symbol() . $order->order_total
+			);
+			$url     = get_admin_url();
 
 			$this->send_notification( $title, $message, $url);
 		}
