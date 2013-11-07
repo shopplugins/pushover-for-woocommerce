@@ -1,36 +1,34 @@
 <?php
 /**
  * WC_Pushover class.
- *
  */
 /*
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License, version 2, as
-    published by the Free Software Foundation.
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License, version 2, as
+ published by the Free Software Foundation.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 class WC_Pushover extends WC_Integration {
 
-   /**
-    * __consturct()
-    *
-    * @access public
-    * @return void
-    */
+	/**
+	 * __consturct()
+	 *
+	 * @access public
+	 * @return void
+	 */
 	public function __construct() {
 
-        $this->id					= 'pushover';
-        $this->method_title     	= __( 'Pushover', 'wc_pushover' );
-        $this->method_description	= __( 'Pushover makes it easy to send real-time notifications to your Android and iOS devices.', 'wc_pushover' );
+		$this->id                 = 'pushover';
+		$this->method_title       = __( 'Pushover', 'wc_pushover' );
+		$this->method_description = __( 'Pushover makes it easy to send real-time notifications to your Android and iOS devices.', 'wc_pushover' );
 
 		// Load the form fields.
 		$this->init_form_fields();
@@ -39,20 +37,19 @@ class WC_Pushover extends WC_Integration {
 		$this->init_settings();
 
 		// Define user set variables
-
-		$this->enabled			= isset( $this->settings['enabled'] ) && $this->settings['enabled'] == 'yes' ? true : false;
-		$this->site_api			= isset( $this->settings['site_api'] ) ? $this->settings['site_api'] : '';
-		$this->user_api			= isset( $this->settings['user_api'] ) ? $this->settings['user_api'] : '';
-		$this->device			= isset( $this->settings['device'] ) ? $this->settings['device'] : '';
-		$this->priority			= isset( $this->settings['priority'] ) ? $this->settings['priority'] : '';
-		$this->debug			= isset( $this->settings['debug'] ) && $this->settings['debug'] == 'yes' ? true : false;
+		$this->enabled           = isset( $this->settings['enabled'] ) && $this->settings['enabled'] == 'yes' ? true : false;
+		$this->site_api          = isset( $this->settings['site_api'] ) ? $this->settings['site_api'] : '';
+		$this->user_api          = isset( $this->settings['user_api'] ) ? $this->settings['user_api'] : '';
+		$this->device            = isset( $this->settings['device'] ) ? $this->settings['device'] : '';
+		$this->priority          = isset( $this->settings['priority'] ) ? $this->settings['priority'] : '';
+		$this->debug             = isset( $this->settings['debug'] ) && $this->settings['debug'] == 'yes' ? true : false;
 
 		// Notices
-		$this->notify_new_order	= isset( $this->settings['notify_new_order'] ) && $this->settings['notify_new_order'] == 'yes' ? true : false;
-		$this->notify_free_order	= isset( $this->settings['notify_free_order'] ) && $this->settings['notify_free_order'] == 'yes' ? true : false;
-		$this->notify_backorder	= isset( $this->settings['notify_backorder'] ) && $this->settings['notify_backorder'] == 'yes' ? true : false;
-		$this->notify_no_stock	= isset( $this->settings['notify_no_stock'] )  && $this->settings['notify_no_stock'] == 'yes' ? true : false;
-		$this->notify_low_stock	= isset( $this->settings['notify_low_stock'] ) && $this->settings['notify_low_stock'] == 'yes' ? true : false;
+		$this->notify_new_order  = isset( $this->settings['notify_new_order'] ) && $this->settings['notify_new_order'] == 'yes' ? true : false;
+		$this->notify_free_order = isset( $this->settings['notify_free_order'] ) && $this->settings['notify_free_order'] == 'yes' ? true : false;
+		$this->notify_backorder  = isset( $this->settings['notify_backorder'] ) && $this->settings['notify_backorder'] == 'yes' ? true : false;
+		$this->notify_no_stock   = isset( $this->settings['notify_no_stock'] )  && $this->settings['notify_no_stock'] == 'yes' ? true : false;
+		$this->notify_low_stock  = isset( $this->settings['notify_low_stock'] ) && $this->settings['notify_low_stock'] == 'yes' ? true : false;
 
 		// Actions
 		add_action( 'woocommerce_update_options_integration_pushover', array( &$this, 'process_admin_options') );
@@ -69,103 +66,102 @@ class WC_Pushover extends WC_Integration {
 
 	}
 
-    /**
-     * Initialise Settings Form Fields
-     *
-     * @access public
-     * @return void
-     */
-    function init_form_fields() {
-	    global $woocommerce;
+	/**
+	 * Initialise Settings Form Fields
+	 *
+	 * @access public
+	 * @return void
+	 */
+	function init_form_fields() {
+		global $woocommerce;
 
-    	$this->form_fields = array(
-    		'enabled' => array(
-    			'title' 			=>  __( 'Enable/Disable', 'wc_pushover' ),
-    			'label'	 			=>  __( 'Enable sending of notifications', 'wc_pushover' ),
-    			'type' 				=>  'checkbox',
-    			'default' 			=>  'no',
-    		),
-    		'site_api' => array(
-    			'title' 			=>  __( 'Site API Token', 'wc_pushover' ),
-    			'description'	 	=>  __( '', 'wc_pushover' ),
-    			'type' 				=>  'text',
-    			'default' 			=>  '',
-    		),
-    		'user_api' => array(
-    			'title' 			=>  __( 'User API Token', 'wc_pushover' ),
-    			'description'	 	=>  __( '', 'wc_pushover' ),
-    			'type' 				=>  'text',
-    			'default' 			=>  '',
-    		),
-    		'device' => array(
-    			'title' 			=>  __( 'Device', 'wc_pushover' ),
-    			'description'	 	=>  __( 'Optional: Name of device to send notifications', 'wc_pushover' ),
-    			'type' 				=>  'text',
-    			'default' 			=>  '',
-    		),
-    		'debug' => array(
-    			'title' 			=>  __( 'Debug', 'wc_pushover' ),
-    			'description'	 	=>  __( 'Enable debug logging', 'wc_pushover' ),
-    			'type' 				=>  'checkbox',
-    			'default' 			=>  'no',
-    		),
-    		'notifications' => array(
-    			'title' 			=>  __( 'Notifications', 'wc_pushover' ),
-    			'type' 				=>  'title',
-    		),
-    		'notify_new_order' => array(
-    			'title' 			=>  __( 'New Order', 'wc_pushover' ),
-    			'label'	 			=>  __( 'Send notification when a new order is received.', 'wc_pushover' ),
-    			'type' 				=>  'checkbox',
-    			'default' 			=>  'no',
-    		),
-    		'notify_free_order' => array(
-    			'title' 			=>  __( 'Free Order', 'wc_pushover' ),
-    			'label'	 			=>  __( 'Send notification when an order totals $0.', 'wc_pushover' ),
-    			'type' 				=>  'checkbox',
-    			'default' 			=>  'no',
-    		),
-    		'notify_backorder' => array(
-    			'title' 			=>  __( 'Back Order', 'wc_pushover' ),
-    			'label'	 			=>  __( 'Send notification when a product is back ordered.', 'wc_pushover' ),
-    			'type' 				=>  'checkbox',
-    			'default' 			=>  'no',
-    		),
-    		'notify_no_stock' => array(
-    			'title' 			=>  __( 'No Stock', 'wc_pushover' ),
-    			'label'	 			=>  __( 'Send notification when a product has no stock.', 'wc_pushover' ),
-    			'type' 				=>  'checkbox',
-    			'default' 			=>  'no',
-    		),
-    		'notify_low_stock' => array(
-    			'title' 			=>  __( 'Low Stock', 'wc_pushover' ),
-    			'label'	 			=>  __( 'Send notification when a product hits the low stock.', 'wc_pushover' ),
-    			'type' 				=>  'checkbox',
-    			'default' 			=>  'no',
-    		),
-    		'test_button' => array(
-    			'type' 				=>  'test_button',
-    		),
+		$this->form_fields = array(
+			'enabled' => array(
+				'title'       => __( 'Enable/Disable', 'wc_pushover' ),
+				'label'       => __( 'Enable sending of notifications', 'wc_pushover' ),
+				'type'        => 'checkbox',
+				'default'     => 'no',
+			),
+			'site_api' => array(
+				'title'       => __( 'Site API Token', 'wc_pushover' ),
+				'description' => __( '', 'wc_pushover' ),
+				'type'        => 'text',
+				'default'     => '',
+			),
+			'user_api' => array(
+				'title'       => __( 'User API Token', 'wc_pushover' ),
+				'description' => __( '', 'wc_pushover' ),
+				'type'        => 'text',
+				'default'     => '',
+			),
+			'device' => array(
+				'title'       => __( 'Device', 'wc_pushover' ),
+				'description' => __( 'Optional: Name of device to send notifications', 'wc_pushover' ),
+				'type'        => 'text',
+				'default'     => '',
+			),
+			'debug' => array(
+				'title'       => __( 'Debug', 'wc_pushover' ),
+				'description' => __( 'Enable debug logging', 'wc_pushover' ),
+				'type'        => 'checkbox',
+				'default'     => 'no',
+			),
+			'notifications' => array(
+				'title'       => __( 'Notifications', 'wc_pushover' ),
+				'type'        => 'title',
+			),
+			'notify_new_order' => array(
+				'title'       => __( 'New Order', 'wc_pushover' ),
+				'label'       => __( 'Send notification when a new order is received.', 'wc_pushover' ),
+				'type'        => 'checkbox',
+				'default'     => 'no',
+			),
+			'notify_free_order' => array(
+				'title'       => __( 'Free Order', 'wc_pushover' ),
+				'label'       => __( 'Send notification when an order totals $0.', 'wc_pushover' ),
+				'type'        => 'checkbox',
+				'default'     => 'no',
+			),
+			'notify_backorder' => array(
+				'title'       => __( 'Back Order', 'wc_pushover' ),
+				'label'       => __( 'Send notification when a product is back ordered.', 'wc_pushover' ),
+				'type'        => 'checkbox',
+				'default'     => 'no',
+			),
+			'notify_no_stock' => array(
+				'title'       => __( 'No Stock', 'wc_pushover' ),
+				'label'       => __( 'Send notification when a product has no stock.', 'wc_pushover' ),
+				'type'        => 'checkbox',
+				'default'     => 'no',
+			),
+			'notify_low_stock' => array(
+				'title'       => __( 'Low Stock', 'wc_pushover' ),
+				'label'       => __( 'Send notification when a product hits the low stock.', 'wc_pushover' ),
+				'type'        => 'checkbox',
+				'default'     => 'no',
+			),
+			'test_button' => array(
+				'type'        => 'test_button',
+			),
 
 		);
 
-    } // End init_form_fields()
+	} // End init_form_fields()
 
-
-    /**
-     * wc_pushover_init
-     *
-     * Send notification when new order is received
-     *
-     * @access public
-     * @return void
-     */
+	/**
+	 * wc_pushover_init
+	 *
+	 * Send notification when new order is received
+	 *
+	 * @access public
+	 * @return void
+	 */
 	function wc_pushover_init() {
 
 		if ( isset($_GET['wc_test']) && ($_GET['wc_test']==1)){
-			$title 		= __( 'Test Notification', 'wc_pushover');
-			$message 	= sprintf(__( 'This is a test notification from %s', 'wc_pushover'), get_bloginfo('name'));
-			$url 		=  get_admin_url();
+			$title   = __( 'Test Notification', 'wc_pushover');
+			$message = sprintf(__( 'This is a test notification from %s', 'wc_pushover'), get_bloginfo('name'));
+			$url     = get_admin_url();
 
 			$this->send_notification( $title, $message, $url);
 
@@ -173,15 +169,14 @@ class WC_Pushover extends WC_Integration {
 		}
 	}
 
-
-    /**
-     * notify_new_order
-     *
-     * Send notification when new order is received
-     *
-     * @access public
-     * @return void
-     */
+	/**
+	 * notify_new_order
+	 *
+	 * Send notification when new order is received
+	 *
+	 * @access public
+	 * @return void
+	 */
 	function notify_new_order( $order_id ) {
 		global $woocommerce;
 
@@ -192,11 +187,11 @@ class WC_Pushover extends WC_Integration {
 		if ( 0 < absint( $order->order_total ) || $this->notify_free_order ) {
 			$title   = sprintf( __( 'New Order %d', 'wc_pushover'), $order_id );
 			$message = sprintf(
-				__( '%1$s ordered %2$s for %3$s ', 'wc_pushover'),
-				$order->billing_first_name . " " . $order->billing_last_name,
-				implode(', ', wp_list_pluck( $order->get_items(), 'name' ) ),
-				$this->pushover_get_currency_symbol() . $order->order_total
-			);
+							__( '%1$s ordered %2$s for %3$s ', 'wc_pushover'),
+							$order->billing_first_name . " " . $order->billing_last_name,
+							implode(', ', wp_list_pluck( $order->get_items(), 'name' ) ),
+							$this->pushover_get_currency_symbol() . $order->order_total
+						);
 			$url     = get_admin_url();
 
 			$this->send_notification( $title, $message, $url);
@@ -204,77 +199,76 @@ class WC_Pushover extends WC_Integration {
 
 	}
 
-    /**
-     * notify_backorder
-     *
-     * Send notification when new order is received
-     *
-     * @access public
-     * @return void
-     */
+	/**
+	 * notify_backorder
+	 *
+	 * Send notification when new order is received
+	 *
+	 * @access public
+	 * @return void
+	 */
 	function notify_backorder( $args ) {
 		global $woocommerce;
 
 		$product = $args['product'];
-		$title 		= sprintf( __( 'Product Backorder', 'wc_pushover'), $order_id );
-		$message 	= sprintf( __( 'Product (#%d %s) is on backorder.', 'wc_pushover'), $product->id, $product->get_title() );
-		$url 		= get_admin_url();
+		$title   = sprintf( __( 'Product Backorder', 'wc_pushover'), $order_id );
+		$message = sprintf( __( 'Product (#%d %s) is on backorder.', 'wc_pushover'), $product->id, $product->get_title() );
+		$url     = get_admin_url();
 
 		$this->send_notification( $title, $message, $url);
 
 	}
 
-    /**
-     * notify_no_stock
-     *
-     * Send notification when new order is received
-     *
-     * @access public
-     * @return void
-     */
+	/**
+	 * notify_no_stock
+	 *
+	 * Send notification when new order is received
+	 *
+	 * @access public
+	 * @return void
+	 */
 	function notify_no_stock( $product ) {
 		global $woocommerce;
 
-		$title 		= __( 'Product Out of Stock', 'wc_pushover');
-		$message 	= sprintf( __( 'Product %s %s is now out of stock.', 'wc_pushover'), $product->id, $product->get_title()  );
-		$url 		= get_admin_url();
+		$title   = __( 'Product Out of Stock', 'wc_pushover');
+		$message = sprintf( __( 'Product %s %s is now out of stock.', 'wc_pushover'), $product->id, $product->get_title()  );
+		$url     = get_admin_url();
 
 		$this->send_notification( $title, $message, $url);
 
 	}
 
-    /**
-     * notify_low_stock
-     *
-     * Send notification when new order is received
-     *
-     * @access public
-     * @return void
-     */
+	/**
+	 * notify_low_stock
+	 *
+	 * Send notification when new order is received
+	 *
+	 * @access public
+	 * @return void
+	 */
 	function notify_low_stock( $product ) {
 		global $woocommerce;
 
 		// get order details
-		$title 		= __( 'Product Low Stock', 'wc_pushover');
-		$message 	= sprintf( __( 'Product %s %s now has low stock.', 'wc_pushover'), $product->id, $product->get_title() );
-		$url 		= get_admin_url();
+		$title   = __( 'Product Low Stock', 'wc_pushover');
+		$message = sprintf( __( 'Product %s %s now has low stock.', 'wc_pushover'), $product->id, $product->get_title() );
+		$url     = get_admin_url();
 
 		$this->send_notification( $title, $message, $url);
 
 	}
 
-
-    /**
-     * send_notification
-     *
-     * Send notification when new order is received
-     *
-     * @access public
-     * @return void
-     */
+	/**
+	 * send_notification
+	 *
+	 * Send notification when new order is received
+	 *
+	 * @access public
+	 * @return void
+	 */
 	function send_notification( $title, $message, $url='' ) {
 
-	  	if ( ! class_exists( 'Pushover_Api' ) )
+		if ( ! class_exists( 'Pushover_Api' ) )
 			include_once( 'class-pushover-api.php' );
 
 		$pushover = new Pushover_Api();
@@ -314,12 +308,12 @@ class WC_Pushover extends WC_Integration {
 
 	}
 
-    /**
-     * generate_test_button_html()
-     *
-     * @access public
-     * @return void
-     */
+	/**
+	 * generate_test_button_html()
+	 *
+	 * @access public
+	 * @return void
+	 */
 	function generate_test_button_html() {
 		ob_start();
 		?>
@@ -333,13 +327,12 @@ class WC_Pushover extends WC_Integration {
 		return ob_get_clean();
 	}
 
-
-    /**
-     * add_log
-     *
-     * @access public
-     * @return void
-     */
+	/**
+	 * add_log
+	 *
+	 * @access public
+	 * @return void
+	 */
 	function add_log( $message ) {
 
 		if ( ! $this->debug ) return;
@@ -353,19 +346,18 @@ class WC_Pushover extends WC_Integration {
 
 	}
 
-
-    /**
-     * pushover_get_currency_symbol
-     *
-     * @access public
-     * @return string
-     * @since 1.0.2
-     */
+	/**
+	 * pushover_get_currency_symbol
+	 *
+	 * @access public
+	 * @return string
+	 * @since 1.0.2
+	 */
 	function pushover_get_currency_symbol() {
-			$currency = get_woocommerce_currency();
+		$currency = get_woocommerce_currency();
 
-			switch ( $currency ) {
-				case 'BRL' :
+		switch ( $currency ) {
+			case 'BRL' :
 				$currency_symbol = '&#82;&#36;';
 				break;
 			case 'AUD' :
@@ -403,6 +395,17 @@ class WC_Pushover extends WC_Integration {
 			case 'PLN' : $currency_symbol = 'zł'; break;
 			case 'SEK' : $currency_symbol = 'kr'; break;
 			case 'CHF' : $currency_symbol = 'CHF'; break;
+			case 'TWD' : $currency_symbol = 'NT$'; break;
+			case 'THB' : $currency_symbol = '฿'; break;
+			case 'GBP' : $currency_symbol = '£'; break;
+			case 'RON' : $currency_symbol = 'lei'; break;
+			default    : $currency_symbol = ''; break;
+		}
+
+		return apply_filters( 'pushover_currency_symbol', $currency_symbol, $currency );
+	}
+
+} /* class WC_Pushover */_symbol = 'CHF'; break;
 			case 'TWD' : $currency_symbol = 'NT$'; break;
 			case 'THB' : $currency_symbol = '฿'; break;
 			case 'GBP' : $currency_symbol = '£'; break;
