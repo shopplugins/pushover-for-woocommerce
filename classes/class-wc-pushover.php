@@ -298,7 +298,7 @@ class WC_Pushover extends WC_Integration {
 			$this->add_log( sprintf(__('Error: Caught exception from send method: %s', 'wc_pushover'), $e->getMessage() ) );
 		}
 		
-		$this->add_log( __('Pushover response', 'wc_pushover') . $response ); 
+		$this->add_log( __('Pushover response', 'wc_pushover') .  "\n" . print_r($response,true) ); 
 
 	}
 
