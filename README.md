@@ -57,7 +57,6 @@ Step 3. Setup WooCommerce Pushover Integration
 == Frequently Asked Questions ==
 
 
-
 Q.  Is there a limit to the number of notifications I receive? 
 A.  The current limit of notifications is 7,500 per month
 

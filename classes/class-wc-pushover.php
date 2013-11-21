@@ -405,15 +405,4 @@ class WC_Pushover extends WC_Integration {
 		return apply_filters( 'pushover_currency_symbol', $currency_symbol, $currency );
 	}
 
-} /* class WC_Pushover */_symbol = 'CHF'; break;
-			case 'TWD' : $currency_symbol = 'NT$'; break;
-			case 'THB' : $currency_symbol = '฿'; break;
-			case 'GBP' : $currency_symbol = '£'; break;
-			case 'RON' : $currency_symbol = 'lei'; break;
-			default    : $currency_symbol = ''; break;
-			}
-
-			return apply_filters( 'pushover_currency_symbol', $currency_symbol, $currency );
-	}
-
 } /* class WC_Pushover */

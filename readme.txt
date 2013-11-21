@@ -77,6 +77,9 @@ A.  Notifications are limited to 512 characters, including a title.  URL's are l
 
 == Changelog ==
 
+2013.11.21   1.0.4
+   * Added notification when an order totals $0.
+
 2013.10.19   1.0.3
    * Updated branding and links
 

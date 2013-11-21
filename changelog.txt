@@ -1,5 +1,8 @@
 *** WooCommerce Pushover Integration ***
 
+2013.11.21   1.0.4
+   * Added notification when an order totals $0.
+
 2013.10.19   1.0.3
    * Updated branding and links
 
