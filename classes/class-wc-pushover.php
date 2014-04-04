@@ -165,7 +165,7 @@ class WC_Pushover extends WC_Integration {
 
 			$this->send_notification( $title, $message, $url);
 
-			wp_safe_redirect( get_admin_url() . 'admin.php?page=woocommerce_settings&tab=integration&section=pushover' );
+			wp_safe_redirect( get_admin_url() . 'admin.php?page=wc-settings&tab=integration&section=pushover' );
 		}
 	}
 
@@ -298,7 +298,7 @@ class WC_Pushover extends WC_Integration {
 
 		try {
 			$response = $pushover->send();
-			$this->add_log( __('Response: ', 'wc_pushover') . "\n" . $response );
+			$this->add_log( __('Response: ', 'wc_pushover') . "\n" . print_r($response,true) );
 
 		} catch ( Exception $e ) {
 			$this->add_log( sprintf(__('Error: Caught exception from send method: %s', 'wc_pushover'), $e->getMessage() ) );
@@ -318,9 +318,9 @@ class WC_Pushover extends WC_Integration {
 		ob_start();
 		?>
 		<tr valign="top" id="service_options">
-			<th scope="row" class="titledesc"><?php _e( 'Send Test', 'wc_ups' ); ?></th>
+			<th scope="row" class="titledesc"><?php _e( 'Send Test', 'wc_pushover' ); ?></th>
 			<td >
-			<p><a href="<?php echo get_admin_url(); ?>admin.php?page=woocommerce_settings&tab=integration&section=pushover&wc_test=1" class="button" ><?php _e('Send Test Notification', 'wc_pushover'); ?></a></p>
+			<p><a href="<?php echo get_admin_url(); ?>admin.php?page=wc-settings&tab=integration&section=pushover&wc_test=1" class="button" ><?php _e('Send Test Notification', 'wc_pushover'); ?></a></p>
 			</td>
 		</tr>
 		<?php

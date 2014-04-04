@@ -1,7 +1,6 @@
 Pushover for WooCommerce
 ========================
 
-
 Pushover for WooCommerce integrates WooCommerce with the Pushover notifications app for Android and iOS.  
 
 == Description ==
