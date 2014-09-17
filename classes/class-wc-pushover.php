@@ -73,7 +73,6 @@ class WC_Pushover extends WC_Integration {
 	 * @return void
 	 */
 	function init_form_fields() {
-		global $woocommerce;
 
 		$this->form_fields = array(
 			'enabled' => array(
@@ -175,10 +174,10 @@ class WC_Pushover extends WC_Integration {
 	 * Send notification when new order is received
 	 *
 	 * @access public
+	 * @param $order_id
 	 * @return void
 	 */
 	function notify_new_order( $order_id ) {
-		global $woocommerce;
 
 		$order = new WC_Order( $order_id );
 
@@ -205,15 +204,16 @@ class WC_Pushover extends WC_Integration {
 	 * Send notification when new order is received
 	 *
 	 * @access public
+	 * @param $args
 	 * @return void
 	 */
 	function notify_backorder( $args ) {
-		global $woocommerce;
 
-		$product = $args['product'];
-		$title   = sprintf( __( 'Product Backorder', 'wc_pushover'), $order_id );
-		$message = sprintf( __( 'Product (#%d %s) is on backorder.', 'wc_pushover'), $product->id, $product->get_title() );
-		$url     = get_admin_url();
+		$product  = $args['product'];
+		$order_id = $args['order_id'];
+		$title    = sprintf( __( 'Product Backorder', 'wc_pushover'), $order_id );
+		$message  = sprintf( __( 'Product (#%d %s) is on backorder.', 'wc_pushover'), $product->id, $product->get_title() );
+		$url      = get_admin_url();
 
 		$this->send_notification( $title, $message, $url );
 
@@ -225,13 +225,13 @@ class WC_Pushover extends WC_Integration {
 	 * Send notification when new order is received
 	 *
 	 * @access public
+	 * @param WC_Product $product
 	 * @return void
 	 */
-	function notify_no_stock( $product ) {
-		global $woocommerce;
+	function notify_no_stock( WC_Product $product ) {
 
 		$title   = __( 'Product Out of Stock', 'wc_pushover');
-		$message = sprintf( __( 'Product %s %s is now out of stock.', 'wc_pushover'), $product->id, $product->get_title()  );
+		$message = sprintf( __( 'Product %s %s is now out of stock.', 'wc_pushover'), $product->id, $product->get_title() );
 		$url     = get_admin_url();
 
 		$this->send_notification( $title, $message, $url );
@@ -244,10 +244,10 @@ class WC_Pushover extends WC_Integration {
 	 * Send notification when new order is received
 	 *
 	 * @access public
+	 * @param WC_Product $product
 	 * @return void
 	 */
-	function notify_low_stock( $product ) {
-		global $woocommerce;
+	function notify_low_stock( WC_Product $product ) {
 
 		// get order details
 		$title   = __( 'Product Low Stock', 'wc_pushover');
@@ -264,6 +264,9 @@ class WC_Pushover extends WC_Integration {
 	 * Send notification when new order is received
 	 *
 	 * @access public
+	 * @param $title
+	 * @param $message
+	 * @param string $url
 	 * @return void
 	 */
 	function send_notification( $title, $message, $url = '' ) {
@@ -290,6 +293,7 @@ class WC_Pushover extends WC_Integration {
 		$pushover->setTitle ( $title );
 		$pushover->setMessage( $message );
 		$pushover->setUrl( $url );
+		$response = '';
 
 		$this->add_log( __('Sending: ', 'wc_pushover') .
 							"\nTitle: ". $title .
@@ -312,12 +316,11 @@ class WC_Pushover extends WC_Integration {
 	 * generate_test_button_html()
 	 *
 	 * @access public
-	 * @return void
 	 */
 	function generate_test_button_html() {
 		ob_start();
 		?>
-		<tr valign="top" id="service_options">
+		<tr id="service_options">
 			<th scope="row" class="titledesc"><?php _e( 'Send Test', 'wc_pushover' ); ?></th>
 			<td >
 			<p><a href="<?php echo get_admin_url(); ?>admin.php?page=wc-settings&tab=integration&section=pushover&wc_test=1" class="button" ><?php _e('Send Test Notification', 'wc_pushover'); ?></a></p>
@@ -331,6 +334,7 @@ class WC_Pushover extends WC_Integration {
 	 * add_log
 	 *
 	 * @access public
+	 * @param $message string
 	 * @return void
 	 */
 	function add_log( $message ) {

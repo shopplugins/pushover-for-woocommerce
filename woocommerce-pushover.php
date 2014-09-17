@@ -3,7 +3,7 @@
 Plugin Name: WooCommerce Pushover Integration
 Plugin URI: http://growdevelopment.com/woocommerce-pushover
 Description: Integrates <a href="http://www.woothemes.com/woocommerce" target="_blank" >WooCommerce</a> with the <a href="https://pushover.net/" target="_blank">Pushover</a> notifications app for Android and iOS.
-Version: 1.0.5
+Version: 1.0.7
 Author: GrowDevelopment 
 Author URI: http://growdevelopment.com
 */
@@ -34,7 +34,6 @@ if ( class_exists( 'WC_Pushover' ) ) return;
  */
 load_plugin_textdomain( 'wc_pushover', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 
-
 define( 'WC_PUSHOVER_DIR', plugin_dir_path(__FILE__) );
 
 /**
@@ -53,16 +52,13 @@ function wc_pushover_activation_check() {
         wp_die( "This plugin requires WooCommerce to be installed and active." );
 	}
 
-
 	// verify that SimpleXML library is available	
 	if ( ! function_exists( 'simplexml_load_string' ) ) {
         deactivate_plugins( basename( __FILE__ ) );
         wp_die( "Sorry, but you can't run this plugin, it requires the SimpleXML library installed on your server/hosting to function." );
 	}
 }
-
 register_activation_hook( __FILE__, 'wc_pushover_activation_check' );
-
 
 /**
  * wc_pushover_init function.
@@ -73,17 +69,13 @@ register_activation_hook( __FILE__, 'wc_pushover_activation_check' );
 function wc_pushover_init() {
 	include_once( 'classes/class-wc-pushover.php' );
 }
-
 add_action( 'woocommerce_integrations_init', 'wc_pushover_init' );
-
 
 function add_pushover_integration( $integrations ) {
 	$integrations[] = 'WC_Pushover';
 	return $integrations;
 }
-
 add_filter('woocommerce_integrations', 'add_pushover_integration' );
-
 
 /**
  * Plugin page links
@@ -97,7 +89,4 @@ function wc_pushover_plugin_links( $links ) {
 
 	return array_merge( $plugin_links, $links );
 }
-
 add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'wc_pushover_plugin_links' );
-
-

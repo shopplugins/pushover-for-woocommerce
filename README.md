@@ -69,6 +69,24 @@ A.  Notifications are limited to 512 characters, including a title.  URL's are l
 
 == Changelog ==
 
+2014.09.17   1.0.6
+* WooCommerce 2.2 compatibility
+
+2014.04.04   1.0.5
+ * Fixed admin settings page link
+ * Fixed send test message redirect page
+ * Fixed text domain
+
+2013.11.21   1.0.4
+ * Added notification when an order totals $0.
+
+2013.10.19   1.0.3
+ * Updated branding and links
+
+2013.08.29   1.0.2
+ * Fixed low and no stock notifications hook.
+ * Fixed currency symbol - now sending symbol for WooCommerce base currency
+
 2013.02.07	 1.0.1
 	* Fixed fatal error from undefined is_woocommerce_active() function call
 
