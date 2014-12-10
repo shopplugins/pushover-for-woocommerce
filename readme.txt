@@ -1,10 +1,10 @@
 === Pushover for WooCommerce ===
 Contributors: growdev
-Donate link: http://www.growdevelopment.com
+Donate link: http://growdevelopment.com
 Tags: woocommerce, pushover, ecommerce. notification, integration, ios, android, growdev, store manager, 
-Requires at least: 3.3
-Tested up to: 3.9.1
-Stable tag: 1.0.6
+Requires at least: 3.5
+Tested up to: 4.0.1
+Stable tag: 1.0.7
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 

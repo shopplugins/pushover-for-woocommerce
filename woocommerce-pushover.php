@@ -23,10 +23,10 @@ Author URI: http://growdevelopment.com
 
 */
 
+
 /**
  * Required functions
  */
- 
 if ( class_exists( 'WC_Pushover' ) ) return;
 
 /**
