@@ -77,6 +77,10 @@ A.  Notifications are limited to 512 characters, including a title.  URL's are l
 
 == Changelog ==
 
+2014.12.10   1.0.7
+* WordPress 4.0.1 testing
+* Added plugin icon
+
 2014.09.17   1.0.6
 * WooCommerce 2.2 compatibility
 
