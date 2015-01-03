@@ -1,5 +1,8 @@
 *** WooCommerce Pushover Integration ***
 
+2015.01.02   1.0.8
+* Added better logging functions.
+
 2014.12.10   1.0.7
 * WordPress 4.0.1 testing
 * Added plugin icon

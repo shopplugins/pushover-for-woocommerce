@@ -1,6 +1,6 @@
 <?php
 /**
- * Pushover_api class.
+ * Pushover_Api class.
  *
  */
 /* 
@@ -18,38 +18,44 @@
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 */
-class Pushover_Api  {
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
 
-	private $endpoint = 'https://api.pushover.net/1/messages.json';
-	private $site_api = '';
-	private $user_api = '';
-	private $device = ''; 
-	private $priority = '';
-	private $title = '';
-	private $message = '';
-	private $url = '';
+class Pushover_Api {
+
+	private $endpoint   = 'https://api.pushover.net/1/messages.json';
+	private $site_api   = '';
+	private $user_api   = '';
+	private $device     = '';
+	private $priority   = '';
+	private $title      = '';
+	private $message    = '';
+	private $url        = '';
 
    /**
-    * __consturct()
+    * Constructor
     *
     * @access public
-    * @return void
     */
 	public function __construct() {
 		
 	}
 	
    /*
-	*  setSiteApi()
+	* Sets the Site API for Pushover
 	*
+    * @param string $site_api
+    *
 	*/
 	public function setSiteApi( $site_api ) {
 		$this->site_api = $site_api;
 	}
 
    /*
-	*  getSiteApi()
-	*
+	*  Getter for Site API
+    *
+	* @return string $site_api
 	*/
 	public function getSiteApi() {
 		return $this->site_api;
@@ -66,13 +72,14 @@ class Pushover_Api  {
    /*
 	* getUserApi() 
 	*
+    * @return string @site_api
 	*/
 	public function getUserApi() {
 		return $this->user_api;
 	}
 
    /*
-	*  setDevice()
+	*  Set Device ID to send to Pushover (optional)
 	*
 	*/
 	public function setDevice( $device ) {
@@ -80,15 +87,16 @@ class Pushover_Api  {
 	}
 
    /*
-	* getDevice() 
+	* Get Device ID to send to Pushover
 	*
+    * @return string device
 	*/
 	public function getDevice() {
 		return $this->device;
 	}
 
    /*
-	*  setPriority()
+	*  Set Priority to send to Pushover (optional)
 	*
 	*/
 	public function setPriority( $priority ) {
@@ -96,8 +104,9 @@ class Pushover_Api  {
 	}
 
    /*
-	*  getPriority()
+	*  Get Priority to send to Pushover (optional)
 	*
+    * @return string $priority
 	*/
 	public function getPriority() {
 		return $this->priority;
@@ -195,4 +204,3 @@ class Pushover_Api  {
 
 
 }
-
