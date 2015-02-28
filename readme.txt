@@ -15,11 +15,15 @@ Pushover for WooCommerce integrates WooCommerce with the Pushover notifications 
 Pushover for WooCommerce integrates WooCommerce with the Pushover notifications app for Android and iOS.  
 After installation and setup automatic notifications can be sent to your device for new orders, low stock, backorder and out of stock notifications.
 
-This plugin is managed on <a href="https://github.com/shopplugins/pushover-for-woocommerce">GitHub</a>.
+Follow this plugin on [GitHub](https://github.com/shopplugins/pushover-for-woocommerce).
 
 ***Translations and pull requests are welcome!***
 
 == Installation ==
+
+Here is a video of installation
+
+[youtube http://youtu.be/eVOi8cZxU8I]
 
 Step 1. Install the extension
 
