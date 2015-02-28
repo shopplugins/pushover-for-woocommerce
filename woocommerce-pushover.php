@@ -4,8 +4,8 @@ Plugin Name: WooCommerce Pushover Integration
 Plugin URI: http://growdevelopment.com/woocommerce-pushover
 Description: Integrates <a href="http://www.woothemes.com/woocommerce" target="_blank" >WooCommerce</a> with the <a href="https://pushover.net/" target="_blank">Pushover</a> notifications app for Android and iOS.
 Version: 1.0.8
-Author: GrowDevelopment 
-Author URI: http://growdevelopment.com
+Author: Shop Plugins
+Author URI: https://shopplugins.com/plugins/woocommerce-pushover
 */
 /* 
     This program is free software; you can redistribute it and/or modify
@@ -83,8 +83,8 @@ add_filter('woocommerce_integrations', 'add_pushover_integration' );
 function wc_pushover_plugin_links( $links ) {
 	$plugin_links = array(
 		'<a href="' . admin_url( 'admin.php?page=wc-settings&tab=integration' ) . '">' . __( 'Settings', 'wc_pushover' ) . '</a>',
-		'<a href="http://growdevelopment.com/support">' . __( 'Support', 'wc_pushover' ) . '</a>',
-		'<a href="http://growdevelopment.com/products/woocommerce-pushover">' . __( 'Docs', 'wc_pushover' ) . '</a>',
+		'<a href="https://shopplugins.com/support">' . __( 'Support', 'wc_pushover' ) . '</a>',
+		'<a href="https://shopplugins.com/plugins/woocommerce-pushover">' . __( 'Docs', 'wc_pushover' ) . '</a>',
 	);
 
 	return array_merge( $plugin_links, $links );

@@ -1,0 +1,392 @@
+02-28-2015 @ 18:19:30 - Sending: 
+Title: Test Notification
+Message: This is a test notification from WC23 Local Test Site
+URL: http://wc23.co/wp-admin/
+02-28-2015 @ 18:19:30 - Response: 
+Array
+(
+    [headers] => Array
+        (
+            [date] => Sat, 28 Feb 2015 18:19:27 GMT
+            [content-type] => application/json; charset=utf-8
+            [connection] => close
+            [status] => 400 Bad Request
+            [access-control-allow-origin] => *
+            [access-control-allow-methods] => POST, OPTIONS
+            [access-control-allow-headers] => X-Requested-With, X-Prototype-Version, Origin, Accept, Content-Type, X-CSRF-Token, X-Pushover-App
+            [access-control-max-age] => 1728000
+            [x-limit-app-limit] => 7500
+            [x-limit-app-remaining] => 7500
+            [x-limit-app-reset] => 1425189600
+            [x-ua-compatible] => IE=Edge,chrome=1
+            [cache-control] => no-cache
+            [x-request-id] => 298364fd3478f1d2d38e63ef6d0ea422
+            [x-runtime] => 0.008003
+        )
+
+    [body] => {"user":"invalid","errors":["user identifier is not a valid user, group, or subscribed user key"],"status":0,"request":"298364fd3478f1d2d38e63ef6d0ea422"}
+    [response] => Array
+        (
+            [code] => 400
+            [message] => Bad Request
+        )
+
+    [cookies] => Array
+        (
+        )
+
+    [filename] => 
+)
+
+02-28-2015 @ 18:19:30 - Pushover response
+Array
+(
+    [headers] => Array
+        (
+            [date] => Sat, 28 Feb 2015 18:19:27 GMT
+            [content-type] => application/json; charset=utf-8
+            [connection] => close
+            [status] => 400 Bad Request
+            [access-control-allow-origin] => *
+            [access-control-allow-methods] => POST, OPTIONS
+            [access-control-allow-headers] => X-Requested-With, X-Prototype-Version, Origin, Accept, Content-Type, X-CSRF-Token, X-Pushover-App
+            [access-control-max-age] => 1728000
+            [x-limit-app-limit] => 7500
+            [x-limit-app-remaining] => 7500
+            [x-limit-app-reset] => 1425189600
+            [x-ua-compatible] => IE=Edge,chrome=1
+            [cache-control] => no-cache
+            [x-request-id] => 298364fd3478f1d2d38e63ef6d0ea422
+            [x-runtime] => 0.008003
+        )
+
+    [body] => {"user":"invalid","errors":["user identifier is not a valid user, group, or subscribed user key"],"status":0,"request":"298364fd3478f1d2d38e63ef6d0ea422"}
+    [response] => Array
+        (
+            [code] => 400
+            [message] => Bad Request
+        )
+
+    [cookies] => Array
+        (
+        )
+
+    [filename] => 
+)
+
+02-28-2015 @ 18:22:41 - Sending: 
+Title: Test Notification
+Message: This is a test notification from WC23 Local Test Site
+URL: http://wc23.co/wp-admin/
+02-28-2015 @ 18:22:42 - Response: 
+Array
+(
+    [headers] => Array
+        (
+            [date] => Sat, 28 Feb 2015 18:22:39 GMT
+            [content-type] => application/json; charset=utf-8
+            [connection] => close
+            [status] => 400 Bad Request
+            [access-control-allow-origin] => *
+            [access-control-allow-methods] => POST, OPTIONS
+            [access-control-allow-headers] => X-Requested-With, X-Prototype-Version, Origin, Accept, Content-Type, X-CSRF-Token, X-Pushover-App
+            [access-control-max-age] => 1728000
+            [x-limit-app-limit] => 7500
+            [x-limit-app-remaining] => 7500
+            [x-limit-app-reset] => 1425189600
+            [x-ua-compatible] => IE=Edge,chrome=1
+            [cache-control] => no-cache
+            [x-request-id] => 84b15b13cdb5112ef27a64f64f63c04f
+            [x-runtime] => 0.006756
+        )
+
+    [body] => {"user":"invalid","errors":["user identifier is not a valid user, group, or subscribed user key"],"status":0,"request":"84b15b13cdb5112ef27a64f64f63c04f"}
+    [response] => Array
+        (
+            [code] => 400
+            [message] => Bad Request
+        )
+
+    [cookies] => Array
+        (
+        )
+
+    [filename] => 
+)
+
+02-28-2015 @ 18:22:42 - Pushover response
+Array
+(
+    [headers] => Array
+        (
+            [date] => Sat, 28 Feb 2015 18:22:39 GMT
+            [content-type] => application/json; charset=utf-8
+            [connection] => close
+            [status] => 400 Bad Request
+            [access-control-allow-origin] => *
+            [access-control-allow-methods] => POST, OPTIONS
+            [access-control-allow-headers] => X-Requested-With, X-Prototype-Version, Origin, Accept, Content-Type, X-CSRF-Token, X-Pushover-App
+            [access-control-max-age] => 1728000
+            [x-limit-app-limit] => 7500
+            [x-limit-app-remaining] => 7500
+            [x-limit-app-reset] => 1425189600
+            [x-ua-compatible] => IE=Edge,chrome=1
+            [cache-control] => no-cache
+            [x-request-id] => 84b15b13cdb5112ef27a64f64f63c04f
+            [x-runtime] => 0.006756
+        )
+
+    [body] => {"user":"invalid","errors":["user identifier is not a valid user, group, or subscribed user key"],"status":0,"request":"84b15b13cdb5112ef27a64f64f63c04f"}
+    [response] => Array
+        (
+            [code] => 400
+            [message] => Bad Request
+        )
+
+    [cookies] => Array
+        (
+        )
+
+    [filename] => 
+)
+
+02-28-2015 @ 18:23:23 - Sending: 
+Title: Test Notification
+Message: This is a test notification from WC23 Local Test Site
+URL: http://wc23.co/wp-admin/
+02-28-2015 @ 18:23:24 - Response: 
+Array
+(
+    [headers] => Array
+        (
+            [date] => Sat, 28 Feb 2015 18:23:20 GMT
+            [content-type] => application/json; charset=utf-8
+            [connection] => close
+            [status] => 400 Bad Request
+            [access-control-allow-origin] => *
+            [access-control-allow-methods] => POST, OPTIONS
+            [access-control-allow-headers] => X-Requested-With, X-Prototype-Version, Origin, Accept, Content-Type, X-CSRF-Token, X-Pushover-App
+            [access-control-max-age] => 1728000
+            [x-limit-app-limit] => 7500
+            [x-limit-app-remaining] => 7500
+            [x-limit-app-reset] => 1425189600
+            [x-ua-compatible] => IE=Edge,chrome=1
+            [cache-control] => no-cache
+            [x-request-id] => be4a927a555882b522acb6a00566ffd3
+            [x-runtime] => 0.006896
+        )
+
+    [body] => {"user":"invalid","errors":["user identifier is not a valid user, group, or subscribed user key"],"status":0,"request":"be4a927a555882b522acb6a00566ffd3"}
+    [response] => Array
+        (
+            [code] => 400
+            [message] => Bad Request
+        )
+
+    [cookies] => Array
+        (
+        )
+
+    [filename] => 
+)
+
+02-28-2015 @ 18:23:24 - Pushover response
+Array
+(
+    [headers] => Array
+        (
+            [date] => Sat, 28 Feb 2015 18:23:20 GMT
+            [content-type] => application/json; charset=utf-8
+            [connection] => close
+            [status] => 400 Bad Request
+            [access-control-allow-origin] => *
+            [access-control-allow-methods] => POST, OPTIONS
+            [access-control-allow-headers] => X-Requested-With, X-Prototype-Version, Origin, Accept, Content-Type, X-CSRF-Token, X-Pushover-App
+            [access-control-max-age] => 1728000
+            [x-limit-app-limit] => 7500
+            [x-limit-app-remaining] => 7500
+            [x-limit-app-reset] => 1425189600
+            [x-ua-compatible] => IE=Edge,chrome=1
+            [cache-control] => no-cache
+            [x-request-id] => be4a927a555882b522acb6a00566ffd3
+            [x-runtime] => 0.006896
+        )
+
+    [body] => {"user":"invalid","errors":["user identifier is not a valid user, group, or subscribed user key"],"status":0,"request":"be4a927a555882b522acb6a00566ffd3"}
+    [response] => Array
+        (
+            [code] => 400
+            [message] => Bad Request
+        )
+
+    [cookies] => Array
+        (
+        )
+
+    [filename] => 
+)
+
+02-28-2015 @ 18:25:57 - Sending: 
+Title: Test Notification
+Message: This is a test notification from WC23 Local Test Site
+URL: http://wc23.co/wp-admin/
+02-28-2015 @ 18:25:58 - Response: 
+Array
+(
+    [headers] => Array
+        (
+            [date] => Sat, 28 Feb 2015 18:25:54 GMT
+            [content-type] => application/json; charset=utf-8
+            [connection] => close
+            [status] => 200 OK
+            [access-control-allow-origin] => *
+            [access-control-allow-methods] => POST, OPTIONS
+            [access-control-allow-headers] => X-Requested-With, X-Prototype-Version, Origin, Accept, Content-Type, X-CSRF-Token, X-Pushover-App
+            [access-control-max-age] => 1728000
+            [x-limit-app-limit] => 7500
+            [x-limit-app-remaining] => 7499
+            [x-limit-app-reset] => 1425189600
+            [x-ua-compatible] => IE=Edge,chrome=1
+            [etag] => "c7184a25bb7dfaf26628bd02d046e4c3"
+            [cache-control] => max-age=0, private, must-revalidate
+            [x-request-id] => 0d5424864127898ed3d2b0812a6f83f3
+            [x-runtime] => 0.027158
+            [x-frame-options] => DENY
+            [strict-transport-security] => max-age=31536000
+        )
+
+    [body] => {"status":1,"request":"0d5424864127898ed3d2b0812a6f83f3"}
+    [response] => Array
+        (
+            [code] => 200
+            [message] => OK
+        )
+
+    [cookies] => Array
+        (
+        )
+
+    [filename] => 
+)
+
+02-28-2015 @ 18:25:58 - Pushover response
+Array
+(
+    [headers] => Array
+        (
+            [date] => Sat, 28 Feb 2015 18:25:54 GMT
+            [content-type] => application/json; charset=utf-8
+            [connection] => close
+            [status] => 200 OK
+            [access-control-allow-origin] => *
+            [access-control-allow-methods] => POST, OPTIONS
+            [access-control-allow-headers] => X-Requested-With, X-Prototype-Version, Origin, Accept, Content-Type, X-CSRF-Token, X-Pushover-App
+            [access-control-max-age] => 1728000
+            [x-limit-app-limit] => 7500
+            [x-limit-app-remaining] => 7499
+            [x-limit-app-reset] => 1425189600
+            [x-ua-compatible] => IE=Edge,chrome=1
+            [etag] => "c7184a25bb7dfaf26628bd02d046e4c3"
+            [cache-control] => max-age=0, private, must-revalidate
+            [x-request-id] => 0d5424864127898ed3d2b0812a6f83f3
+            [x-runtime] => 0.027158
+            [x-frame-options] => DENY
+            [strict-transport-security] => max-age=31536000
+        )
+
+    [body] => {"status":1,"request":"0d5424864127898ed3d2b0812a6f83f3"}
+    [response] => Array
+        (
+            [code] => 200
+            [message] => OK
+        )
+
+    [cookies] => Array
+        (
+        )
+
+    [filename] => 
+)
+
+02-28-2015 @ 18:32:23 - Sending: 
+Title: Test Notification
+Message: This is a test notification from WC23 Local Test Site
+URL: http://wc23.co/wp-admin/
+02-28-2015 @ 18:32:24 - Response: 
+Array
+(
+    [headers] => Array
+        (
+            [date] => Sat, 28 Feb 2015 18:32:20 GMT
+            [content-type] => application/json; charset=utf-8
+            [connection] => close
+            [status] => 200 OK
+            [access-control-allow-origin] => *
+            [access-control-allow-methods] => POST, OPTIONS
+            [access-control-allow-headers] => X-Requested-With, X-Prototype-Version, Origin, Accept, Content-Type, X-CSRF-Token, X-Pushover-App
+            [access-control-max-age] => 1728000
+            [x-limit-app-limit] => 7500
+            [x-limit-app-remaining] => 7499
+            [x-limit-app-reset] => 1425189600
+            [x-ua-compatible] => IE=Edge,chrome=1
+            [etag] => "ec4efb4d3d95bb25a390efb5cc33efcd"
+            [cache-control] => max-age=0, private, must-revalidate
+            [x-request-id] => 2cb8374b16913bdf519eb1d39572319f
+            [x-runtime] => 0.028538
+            [x-frame-options] => DENY
+            [strict-transport-security] => max-age=31536000
+        )
+
+    [body] => {"status":1,"request":"2cb8374b16913bdf519eb1d39572319f"}
+    [response] => Array
+        (
+            [code] => 200
+            [message] => OK
+        )
+
+    [cookies] => Array
+        (
+        )
+
+    [filename] => 
+)
+
+02-28-2015 @ 18:32:24 - Pushover response
+Array
+(
+    [headers] => Array
+        (
+            [date] => Sat, 28 Feb 2015 18:32:20 GMT
+            [content-type] => application/json; charset=utf-8
+            [connection] => close
+            [status] => 200 OK
+            [access-control-allow-origin] => *
+            [access-control-allow-methods] => POST, OPTIONS
+            [access-control-allow-headers] => X-Requested-With, X-Prototype-Version, Origin, Accept, Content-Type, X-CSRF-Token, X-Pushover-App
+            [access-control-max-age] => 1728000
+            [x-limit-app-limit] => 7500
+            [x-limit-app-remaining] => 7499
+            [x-limit-app-reset] => 1425189600
+            [x-ua-compatible] => IE=Edge,chrome=1
+            [etag] => "ec4efb4d3d95bb25a390efb5cc33efcd"
+            [cache-control] => max-age=0, private, must-revalidate
+            [x-request-id] => 2cb8374b16913bdf519eb1d39572319f
+            [x-runtime] => 0.028538
+            [x-frame-options] => DENY
+            [strict-transport-security] => max-age=31536000
+        )
+
+    [body] => {"status":1,"request":"2cb8374b16913bdf519eb1d39572319f"}
+    [response] => Array
+        (
+            [code] => 200
+            [message] => OK
+        )
+
+    [cookies] => Array
+        (
+        )
+
+    [filename] => 
+)
+
