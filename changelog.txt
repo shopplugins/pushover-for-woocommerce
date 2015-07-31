@@ -1,5 +1,9 @@
 *** WooCommerce Pushover Integration ***
 
+2015.07.31  1.0.9
+* Verified WooCommerce 2.4.0 compatibility
+* Updated links
+
 2015.02.28   1.0.8
 * Added better logging functions.
 * Updated branding

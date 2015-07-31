@@ -1,11 +1,11 @@
 <?php
-/*
-Plugin Name: WooCommerce Pushover Integration
-Plugin URI: http://growdevelopment.com/woocommerce-pushover
-Description: Integrates <a href="http://www.woothemes.com/woocommerce" target="_blank" >WooCommerce</a> with the <a href="https://pushover.net/" target="_blank">Pushover</a> notifications app for Android and iOS.
-Version: 1.0.8
-Author: Shop Plugins
-Author URI: https://shopplugins.com/plugins/woocommerce-pushover
+/**
+ * Plugin Name: WooCommerce Pushover Integration
+ * Plugin URI: https://shopplugins.com/plugins/woocommerce-pushover
+ * Description: Integrates <a href="http://www.woothemes.com/woocommerce" target="_blank" >WooCommerce</a> with the <a href="https://pushover.net/" target="_blank">Pushover</a> notifications app for Android and iOS.
+ * Version: 1.0.9
+ * Author: Shop Plugins
+ * Author URI: https://shopplugins.com/plugins/woocommerce-pushover
 */
 /* 
     This program is free software; you can redistribute it and/or modify

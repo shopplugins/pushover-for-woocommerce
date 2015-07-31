@@ -1,9 +1,9 @@
 === Pushover for WooCommerce ===
 Contributors: growdev, shopplugins
-Donate link: http://growdevelopment.com
-Tags: woocommerce, pushover, ecommerce, notification, integration, ios, android, growdev, store manager
+Donate link: http://shopplugins.com
+Tags: woocommerce, pushover, ecommerce, notification, integration, ios, android, store manager
 Requires at least: 3.5
-Tested up to: 4.1.1
+Tested up to: 4.3.0
 Stable tag: 1.0.8
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -23,7 +23,7 @@ Follow this plugin on [GitHub](https://github.com/shopplugins/pushover-for-wooco
 
 Here is a video of installation
 
-[youtube http://youtu.be/eVOi8cZxU8I]
+[youtube http://www.youtube.com/watch?v=eVOi8cZxU8I]
 
 Step 1. Install the extension
 
@@ -35,9 +35,12 @@ Step 1. Install the extension
 Step 2. Setup Pushover Account
 
 Prerequisites:
+
  * To receive notifications you will need to purchase the Pushover App for Android (http://pushover.net/clients/android) or iOS (http://pushover.net/clients/ios)
+
  * You will also need to create an account at http://pushover.net
- 
+
+
 1. Register for an account on pushover.net
  1a.  Login to your account at pushover.net
  1b.  On your dashboard the first field in the "Your User Key" section is your User API Token
@@ -84,6 +87,10 @@ A.  Notifications are limited to 512 characters, including a title.  URL's are l
 2. screenshot-2.png
 
 == Changelog ==
+
+2015.07.31  1.0.9
+* Verified WooCommerce 2.4.0 compatibility
+* Updated links
 
 2015.02.28   1.0.8
 * Added better logging functions.
