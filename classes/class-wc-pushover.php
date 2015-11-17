@@ -184,7 +184,7 @@ class WC_Pushover extends WC_Integration {
 
 		$order = new WC_Order( $order_id );
 
-		$sent = get_post_meta( $order_id, 'pushover_new_order', true );
+		$sent = get_post_meta( $order_id, '_pushover_new_order', true );
 
 		if ( ! $sent ) {
 			// Send notifications if order total is greater than $0
@@ -201,7 +201,7 @@ class WC_Pushover extends WC_Integration {
 
 				$this->send_notification( $title, $message, $url );
 
-				add_post_meta( $order_id, 'pushover_new_order', true );
+				add_post_meta( $order_id, '_pushover_new_order', true );
 			}
 		}
 
