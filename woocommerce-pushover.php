@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: WooCommerce Pushover Integration
- * Plugin URI: https://shopplugins.com/plugins/woocommerce-pushover
+ * Plugin URI: https://shopplugins.com/
  * Description: Integrates <a href="http://www.woothemes.com/woocommerce" target="_blank" >WooCommerce</a> with the <a href="https://pushover.net/" target="_blank">Pushover</a> notifications app for Android and iOS.
- * Version: 1.0.10
+ * Version: 1.0.11
  * Author: Shop Plugins
- * Author URI: https://shopplugins.com/plugins/woocommerce-pushover
+ * Author URI: https://shopplugins.com/
 */
 /* 
     This program is free software; you can redistribute it and/or modify
@@ -84,7 +84,7 @@ function wc_pushover_plugin_links( $links ) {
 	$plugin_links = array(
 		'<a href="' . admin_url( 'admin.php?page=wc-settings&tab=integration' ) . '">' . __( 'Settings', 'wc_pushover' ) . '</a>',
 		'<a href="https://shopplugins.com/support">' . __( 'Support', 'wc_pushover' ) . '</a>',
-		'<a href="https://shopplugins.com/plugins/woocommerce-pushover">' . __( 'Docs', 'wc_pushover' ) . '</a>',
+		'<a href="https://wordpress.org/plugins/pushover-for-woocommerce/installation/">' . __( 'Docs', 'wc_pushover' ) . '</a>',
 	);
 
 	return array_merge( $plugin_links, $links );

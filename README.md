@@ -74,6 +74,11 @@ A.  Notifications are limited to 512 characters, including a title.  URL's are l
 
 == Changelog ==
 
+2015.05.16  1.0.11
+* Improvement to settings page
+* Fix Documentation and plugin links
+* Added priority to set message priority ref: https://pushover.net/api#priority
+
 2015.11.16  1.0.10
 * Fixed multiple new order sends when PayPal Standard is used
 
