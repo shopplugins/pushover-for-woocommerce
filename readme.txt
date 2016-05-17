@@ -3,8 +3,8 @@ Contributors: growdev, shopplugins
 Donate link: http://shopplugins.com
 Tags: woocommerce, pushover, ecommerce, notification, integration, ios, android, store manager
 Requires at least: 3.5
-Tested up to: 4.4.0
-Stable tag: 1.0.10
+Tested up to: 4.5.2
+Stable tag: 1.0.11
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -87,6 +87,11 @@ A.  Notifications are limited to 512 characters, including a title.  URL's are l
 2. screenshot-2.png
 
 == Changelog ==
+
+2015.05.16  1.0.11
+* Improvement to settings page
+* Fix Documentation and plugin links
+* Added priority to set message priority ref: https://pushover.net/api#priority
 
 2015.11.16  1.0.10
 * Fixed multiple new order sends when PayPal Standard is used

@@ -86,7 +86,7 @@ class WC_Pushover extends WC_Integration {
 			),
 			'site_api' => array(
 				'title'       => __( 'Site API Token', 'wc_pushover' ),
-				'description' => __( '', 'wc_pushover' ),
+				'description' => __( 'Get your token <a href="https://pushover.net/" target="_blank">here</a>', 'wc_pushover' ),
 				'type'        => 'text',
 				'default'     => '',
 			),
@@ -95,6 +95,19 @@ class WC_Pushover extends WC_Integration {
 				'description' => __( '', 'wc_pushover' ),
 				'type'        => 'text',
 				'default'     => '',
+			),
+			'priority' => array(
+				'title'       => __( 'Priority', 'wc_pushover' ),
+				'description' => __( 'Set priority of message. <a href="https://pushover.net/api#priority">Priorities explained.</a>', 'wc_pushover' ),
+				'type'        => 'select',
+				'options'     => array(
+									'-2' => __( '-2 Lowest Priority', 'wc_pushover'),
+									'-1' => __( '-1 Low Priority', 'wc_pushover'),
+									'0'  => __( '0 Normal', 'wc_pushover'),
+									'1'  => __( '1 High', 'wc_pushover'),
+									'2'  => __( '2 Emergency Priority', 'wc_pushover'),
+								),
+				'default'     => '0',
 			),
 			'device' => array(
 				'title'       => __( 'Device', 'wc_pushover' ),
@@ -297,6 +310,7 @@ class WC_Pushover extends WC_Integration {
 		if ( '' != $this->device ) {
 			$pushover->setDevice( $this->device );
 		}
+		$pushover->setPriority( $this->priority );
 
 		// Setup message
 		$pushover->setTitle ( $title );
@@ -307,7 +321,8 @@ class WC_Pushover extends WC_Integration {
 		$this->add_log( __('Sending: ', 'wc_pushover') .
 							"\nTitle: ". $title .
 							"\nMessage: ". $message .
-							"\nURL: " . $url );
+							"\nURL: " . $url .
+						    "\nPriority: " . $this->priority );
 
 		try {
 			$response = $pushover->send();
