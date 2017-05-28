@@ -1,10 +1,10 @@
 === Pushover for WooCommerce ===
 Contributors: growdev, shopplugins
-Donate link: http://shopplugins.com
+Donate link: https://shopplugins.com
 Tags: woocommerce, pushover, ecommerce, notification, integration, ios, android, store manager
 Requires at least: 3.5
-Tested up to: 4.5.3
-Stable tag: 1.0.11
+Tested up to: 4.7.5
+Stable tag: 1.0.12
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -87,6 +87,9 @@ A.  Notifications are limited to 512 characters, including a title.  URL's are l
 2. screenshot-2.png
 
 == Changelog ==
+
+2015.05.28  1.0.12
+* Update for getting product title.
 
 2015.05.16  1.0.11
 * Improvement to settings page
