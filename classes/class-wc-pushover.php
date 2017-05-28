@@ -164,8 +164,6 @@ class WC_Pushover extends WC_Integration {
 	} // End init_form_fields()
 
 	/**
-	 * wc_pushover_init
-	 *
 	 * Send notification when new order is received
 	 *
 	 * @access public
@@ -185,8 +183,6 @@ class WC_Pushover extends WC_Integration {
 	}
 
 	/**
-	 * notify_new_order
-	 *
 	 * Send notification when new order is received
 	 *
 	 * @access public
@@ -196,8 +192,17 @@ class WC_Pushover extends WC_Integration {
 	function notify_new_order( $order_id ) {
 
 		$order = new WC_Order( $order_id );
-
 		$sent = get_post_meta( $order_id, '_pushover_new_order', true );
+		if ( version_compare( WC()->version, '3.0.0', '>=' ) ){
+			$items = $order->get_items();
+			$names = array();
+			foreach( $items as $item ){
+				$names[] = $item->get_name();
+			}
+			$products = implode( ', ', $names );
+		} else {
+			$products = implode( ', ', wp_list_pluck( $order->get_items(), 'name' ) );
+		}
 
 		if ( ! $sent ) {
 			// Send notifications if order total is greater than $0
@@ -207,7 +212,7 @@ class WC_Pushover extends WC_Integration {
 				$message = sprintf(
 					__( '%1$s ordered %2$s for %3$s ', 'wc_pushover' ),
 					$order->billing_first_name . " " . $order->billing_last_name,
-					implode( ', ', wp_list_pluck( $order->get_items(), 'name' ) ),
+					$products,
 					$this->pushover_get_currency_symbol() . $order->order_total
 				);
 				$url     = get_admin_url();
@@ -221,8 +226,6 @@ class WC_Pushover extends WC_Integration {
 	}
 
 	/**
-	 * notify_backorder
-	 *
 	 * Send notification when new order is received
 	 *
 	 * @access public
@@ -233,8 +236,8 @@ class WC_Pushover extends WC_Integration {
 
 		$product  = $args['product'];
 		$order_id = $args['order_id'];
-		$title    = sprintf( __( 'Product Backorder', 'wc_pushover'), $order_id );
-		$message  = sprintf( __( 'Product (#%d %s) is on backorder.', 'wc_pushover'), $product->id, $product->get_title() );
+		$title    = sprintf( __( 'Product Backorder', 'wc_pushover' ), $order_id );
+		$message  = sprintf( __( 'Product (#%d %s) is on backorder.', 'wc_pushover' ), $product->id, $product->get_title() );
 		$url      = get_admin_url();
 
 		$this->send_notification( $title, $message, $url );
@@ -252,8 +255,8 @@ class WC_Pushover extends WC_Integration {
 	 */
 	function notify_no_stock( WC_Product $product ) {
 
-		$title   = __( 'Product Out of Stock', 'wc_pushover');
-		$message = sprintf( __( 'Product %s %s is now out of stock.', 'wc_pushover'), $product->id, $product->get_title() );
+		$title   = __( 'Product Out of Stock', 'wc_pushover' );
+		$message = sprintf( __( 'Product %s %s is now out of stock.', 'wc_pushover' ), $product->get_id(), $product->get_title() );
 		$url     = get_admin_url();
 
 		$this->send_notification( $title, $message, $url );
@@ -272,8 +275,8 @@ class WC_Pushover extends WC_Integration {
 	function notify_low_stock( WC_Product $product ) {
 
 		// get order details
-		$title   = __( 'Product Low Stock', 'wc_pushover');
-		$message = sprintf( __( 'Product %s %s now has low stock.', 'wc_pushover'), $product->id, $product->get_title() );
+		$title   = __( 'Product Low Stock', 'wc_pushover' );
+		$message = sprintf( __( 'Product %s %s now has low stock.', 'wc_pushover' ), $product->get_id(), $product->get_title() );
 		$url     = get_admin_url();
 
 		$this->send_notification( $title, $message, $url );
@@ -318,7 +321,7 @@ class WC_Pushover extends WC_Integration {
 		$pushover->setUrl( $url );
 		$response = '';
 
-		$this->add_log( __('Sending: ', 'wc_pushover') .
+		$this->add_log( __( 'Sending: ', 'wc_pushover' ) .
 							"\nTitle: ". $title .
 							"\nMessage: ". $message .
 							"\nURL: " . $url .
@@ -326,10 +329,10 @@ class WC_Pushover extends WC_Integration {
 
 		try {
 			$response = $pushover->send();
-			$this->add_log( __('Response: ', 'wc_pushover') . "\n" . print_r($response,true) );
+			$this->add_log( __( 'Response: ', 'wc_pushover' ) . "\n" . print_r( $response,true ) );
 
 		} catch ( Exception $e ) {
-			$this->add_log( sprintf(__('Error: Caught exception from send method: %s', 'wc_pushover'), $e->getMessage() ) );
+			$this->add_log( sprintf( __( 'Error: Caught exception from send method: %s', 'wc_pushover' ), $e->getMessage() ) );
 		}
 		
 		$this->add_log( __('Pushover response', 'wc_pushover') .  "\n" . print_r($response,true) ); 
@@ -347,7 +350,7 @@ class WC_Pushover extends WC_Integration {
 		<tr id="service_options">
 			<th scope="row" class="titledesc"><?php _e( 'Send Test', 'wc_pushover' ); ?></th>
 			<td >
-			<p><a href="<?php echo get_admin_url(); ?>admin.php?page=wc-settings&tab=integration&section=pushover&wc_test=1" class="button" ><?php _e('Send Test Notification', 'wc_pushover'); ?></a></p>
+			<p><a href="<?php echo get_admin_url(); ?>admin.php?page=wc-settings&tab=integration&section=pushover&wc_test=1" class="button" ><?php _e( 'Send Test Notification', 'wc_pushover' ); ?></a></p>
 			</td>
 		</tr>
 		<?php
@@ -368,7 +371,7 @@ class WC_Pushover extends WC_Integration {
 		$time = date_i18n( 'm-d-Y @ H:i:s -' );
 		$handle = fopen( WC_PUSHOVER_DIR . 'debug_pushover.log', 'a' );
 		if ( $handle ) {
-			fwrite( $handle, $time . " " . $message . "\n" );
+			fwrite( $handle, $time . ' ' . $message . "\n" );
 			fclose( $handle );
 		}
 

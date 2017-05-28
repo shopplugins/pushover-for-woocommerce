@@ -74,6 +74,9 @@ A.  Notifications are limited to 512 characters, including a title.  URL's are l
 
 == Changelog ==
 
+2015.05.28  1.0.12
+* Update for getting product title.
+
 2015.05.16  1.0.11
 * Improvement to settings page
 * Fix Documentation and plugin links

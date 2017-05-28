@@ -1,5 +1,8 @@
 *** WooCommerce Pushover Integration ***
 
+2017.05.28  1.0.12
+* Update for getting product title.
+
 2015.05.16  1.0.11
 * Improvement to settings page
 * Fix Documentation and plugin links
