@@ -4,7 +4,7 @@ Donate link: https://shopplugins.com
 Tags: woocommerce, pushover, ecommerce, notification, integration, ios, android, store manager
 Requires at least: 3.5
 Tested up to: 4.9.4
-Stable tag: 1.0.12
+Stable tag: 1.0.13
 WC tested up to: 3.3.3
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -89,6 +89,10 @@ A.  Notifications are limited to 512 characters, including a title.  URL's are l
 2. screenshot-2.png
 
 == Changelog ==
+
+2018.03.08  1.0.13
+* Testing with WC 3.3.3 and WordPress 4.9.4
+* Update field labesl to clarify key vs. token. thanks @jcs!
 
 2015.05.28  1.0.12
 * Update for getting product title.
