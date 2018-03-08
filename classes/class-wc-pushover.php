@@ -85,14 +85,14 @@ class WC_Pushover extends WC_Integration {
 				'default'     => 'no',
 			),
 			'site_api' => array(
-				'title'       => __( 'Site API Token', 'wc_pushover' ),
-				'description' => __( 'Get your token <a href="https://pushover.net/" target="_blank">here</a>', 'wc_pushover' ),
+				'title'       => __( 'API Token', 'wc_pushover' ),
+				'description' => __( 'Create a token <a href="https://pushover.net/apps/clone/woocommerce" target="_blank">here</a>', 'wc_pushover' ),
 				'type'        => 'text',
 				'default'     => '',
 			),
 			'user_api' => array(
-				'title'       => __( 'User API Token', 'wc_pushover' ),
-				'description' => __( '', 'wc_pushover' ),
+				'title'       => __( 'User Key', 'wc_pushover' ),
+				'description' => __( 'Find your user key <a href="https://pushover.net/dashboard" target="_blank">here</a>', 'wc_pushover' ),
 				'type'        => 'text',
 				'default'     => '',
 			),
