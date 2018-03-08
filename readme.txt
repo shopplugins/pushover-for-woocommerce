@@ -3,16 +3,17 @@ Contributors: growdev, shopplugins
 Donate link: https://shopplugins.com
 Tags: woocommerce, pushover, ecommerce, notification, integration, ios, android, store manager
 Requires at least: 3.5
-Tested up to: 4.7.5
+Tested up to: 4.9.4
 Stable tag: 1.0.12
+WC tested up to: 3.3.3
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Pushover for WooCommerce integrates WooCommerce with the Pushover notifications app for Android and iOS.  
+Pushover for WooCommerce integrates WooCommerce with the Pushover notifications app for Android and iOS.
 
 == Description ==
 
-Pushover for WooCommerce integrates WooCommerce with the Pushover notifications app for Android and iOS.  
+Pushover for WooCommerce integrates WooCommerce with the Pushover notifications app for Android and iOS.
 After installation and setup automatic notifications can be sent to your device for new orders, low stock, backorder and out of stock notifications.
 
 Follow this plugin on [GitHub](https://github.com/shopplugins/pushover-for-woocommerce).
@@ -40,10 +41,9 @@ Prerequisites:
 
  * You will also need to create an account at http://pushover.net
 
-
 1. Register for an account on pushover.net
  1a.  Login to your account at pushover.net
- 1b.  On your dashboard the first field in the "Your User Key" section is your User API Token
+ 1b.  On your dashboard the first field in the "Your User Key" section is your User Key
 
 2. Setup Website App
  2a.  To setup your WooCommerce site go to https://pushover.net/apps
@@ -53,8 +53,9 @@ Prerequisites:
  	- Add a description
  	- Set URL to the base URL of your WooCommerce site
  	- Optional: Choose an image URL to use for an Icon.
+ 	- Check the box for Terms of Service
  	- Press "Create Application"
- 2c.  The API Token/Key for your application is your Site API Token  
+ 2c.  The API Token/Key for your application is your Site API Token
 
 3. Optional:  Login to your device and add a name for it.
 
@@ -66,16 +67,17 @@ Step 3. Setup WooCommerce Pushover Integration
  4.  Click the "Enable" checkbox to turn on notifications
  5.  Set the Site API Token to the value from 2c. above
  6.  Set the User API Token to the value from 1b. above
- 7.  Optionally add a device name to limit notifications to.  If left blank notifications will go to all devices.
- 8.  Under "Notifications" check the box next to any notifications you want to receive on your device
- 9.  Optionally press "Send Test Notification" to test your settings
- 10. Press "Save changes"
+ 7.  Set a priority.
+ 8.  Optionally add a device name to limit notifications to.  If left blank notifications will go to all devices.
+ 9.  Under "Notifications" check the box next to any notifications you want to receive on your device
+ 10.  Optionally press "Send Test Notification" to test your settings
+ 11. Press "Save changes"
 
 == Frequently Asked Questions ==
 
 
 
-Q.  Is there a limit to the number of notifications I receive? 
+Q.  Is there a limit to the number of notifications I receive?
 A.  The current limit of notifications is 7,500 per month
 
 Q.  What is the length of a notification?
