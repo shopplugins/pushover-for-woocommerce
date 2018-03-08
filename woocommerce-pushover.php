@@ -6,6 +6,7 @@
  * Version: 1.0.12
  * Author: Shop Plugins
  * Author URI: https://shopplugins.com/
+ * WC tested up to: 3.3.3
 */
 /**
  * This program is free software; you can redistribute it and/or modify
