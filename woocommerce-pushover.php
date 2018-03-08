@@ -6,6 +6,7 @@
  * Version: 1.0.12
  * Author: Shop Plugins
  * Author URI: https://shopplugins.com/
+ * WC requires at least: 2.6.14
  * WC tested up to: 3.3.3
 */
 /**
@@ -44,13 +45,13 @@ function wc_pushover_activation_check() {
 
 	if ( is_multisite() )
 		$active_plugins = array_merge( $active_plugins, get_site_option( 'active_sitewide_plugins', array() ) );
-	
+
 	if ( ! ( in_array('woocommerce/woocommerce.php', $active_plugins) || array_key_exists('woocommerce/woocommerce.php', $active_plugins) ) ) {
         deactivate_plugins( basename( __FILE__ ) );
         wp_die( "This plugin requires WooCommerce to be installed and active." );
 	}
 
-	// verify that SimpleXML library is available	
+	// verify that SimpleXML library is available
 	if ( ! function_exists( 'simplexml_load_string' ) ) {
         deactivate_plugins( basename( __FILE__ ) );
         wp_die( "Sorry, but you can't run this plugin, it requires the SimpleXML library installed on your server/hosting to function." );
