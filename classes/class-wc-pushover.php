@@ -293,12 +293,12 @@ class WC_Pushover extends WC_Integration {
 			// Or if free order notification is enabled
 			if ( 0 < absint( $order_total ) || $this->notify_free_order ) {
 
-			  $type = 0 == absint( $order_total ) ? 'free_order' : 'new_order';
+				$type = 0 == absint( $order_total ) ? 'free_order' : 'new_order';
+				$title = !empty($this->settings['title_' . $type]) ? $this->replace_fields_custom_message($this->settings['title_' . $type], $order) : sprintf( __( 'New Order %d', 'wc_pushover' ), $order_id );
 
-				$title = !empty($this->settings['title_' . $type]) ? $this->replace_fields_custom_message($this->settings['title_' . $type], $order) : sprintf( __( 'New Order %d', 'wc_pushover' ), $order->id );
 				$message = !empty($this->settings['message_' . $type]) ? $this->replace_fields_custom_message($this->settings['message_' . $type], $order) : sprintf(
 					__( '%1$s ordered %2$s for %3$s ', 'wc_pushover' ),
-					$order->billing_first_name . " " . $order->billing_last_name,
+					$this->is_wc_3 ? $order->get_billing_first_name() . " " . $order->get_billing_last_name() : $order->billing_first_name . " " . $order->billing_last_name,
 					$this->get_ordered_products_string($order),
 					$this->pushover_get_currency_symbol() . $order_total
 				);
