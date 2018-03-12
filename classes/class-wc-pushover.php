@@ -294,11 +294,17 @@ class WC_Pushover extends WC_Integration {
 
 				$url     = get_admin_url();
 
-				$this->send_notification(array(
+				$args = array(
 					'title'    => $title,
 					'message' => $message,
 					'url'     => $url
-				));
+				);
+
+				if( 'free_order' === $type ) {
+					$this->send_notification( apply_filters('wc_pushover_notify_free_order', $args));
+        } else {
+					$this->send_notification( apply_filters('wc_pushover_notify_new_order', $args));
+        }
 
 				add_post_meta( $order_id, '_pushover_new_order', true );
 			}
@@ -323,11 +329,11 @@ class WC_Pushover extends WC_Integration {
 
 		$url      = get_admin_url();
 
-		$this->send_notification(array(
+		$this->send_notification( apply_filters('wc_pushover_notify_backorder', array(
 			'title'    => $title,
 			'message' => $message,
 			'url'     => $url
-		));
+		)));
 
 	}
 
@@ -346,11 +352,11 @@ class WC_Pushover extends WC_Integration {
 		$message = !empty($this->settings['message_no_stock']) ? $this->replace_fields_custom_message($this->settings['message_no_stock'], null, $product) : sprintf( __( 'Product %s %s is now out of stock.', 'wc_pushover' ), $product->get_id(), $product->get_title() );
 		$url     = get_admin_url();
 
-		$this->send_notification(array(
+		$this->send_notification( apply_filters('wc_pushover_notify_no_stock', array(
 			'title'    => $title,
 			'message' => $message,
 			'url'     => $url
-		));
+		)));
 
 	}
 
@@ -370,11 +376,11 @@ class WC_Pushover extends WC_Integration {
 		$message = !empty($this->settings['message_low_stock']) ? $this->replace_fields_custom_message($this->settings['message_low_stock'], null, $product) : sprintf( __( 'Product %s %s now has low stock.', 'wc_pushover' ), $product->get_id(), $product->get_title() );
 		$url     = get_admin_url();
 
-		$this->send_notification(array(
+		$this->send_notification( apply_filters('wc_pushover_notify_low_stock', array(
 			'title'    => $title,
 			'message' => $message,
 			'url'     => $url
-		));
+		)));
 
 	}
 
