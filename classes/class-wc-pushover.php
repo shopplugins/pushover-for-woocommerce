@@ -155,6 +155,40 @@ class WC_Pushover extends WC_Integration {
 				'type'        => 'checkbox',
 				'default'     => 'no',
 			),
+			'messages' => array(
+				'title'       => __( 'Messages', 'wc_pushover' ),
+				'type'        => 'title',
+			),
+			'message_new_order' => array(
+				'title'       => __( 'New Order', 'wc_pushover' ),
+				'description' => __( 'Optional: Custom Message. Possible fields: {First Name}, {Last Name}, {Products}, {Total}, {Currency}.', 'wc_pushover' ),
+				'type'        => 'text',
+				'default'     => '',
+			),
+			'message_free_order' => array(
+				'title'       => __( 'Free Order', 'wc_pushover' ),
+				'description' => __( 'Optional: Custom Message. Possible fields: {First Name}, {Last Name}, {Products}, {Total}, {Currency}.', 'wc_pushover' ),
+				'type'        => 'text',
+				'default'     => '',
+			),
+			'message_backorder' => array(
+				'title'       => __( 'Back Order', 'wc_pushover' ),
+				'description' => __( 'Optional: Custom Message. Possible fields: {First Name}, {Last Name}, {Products}, {Total}, {Currency}.', 'wc_pushover' ),
+				'type'        => 'text',
+				'default'     => '',
+			),
+			'message_no_stock' => array(
+				'title'       => __( 'No Stock', 'wc_pushover' ),
+				'description' => __( 'Optional: Custom Message. Possible fields: {First Name}, {Last Name}, {Products}, {Total}, {Currency}.', 'wc_pushover' ),
+				'type'        => 'text',
+				'default'     => '',
+			),
+			'message_low_stock' => array(
+				'title'       => __( 'Low Stock', 'wc_pushover' ),
+				'description' => __( 'Optional: Custom Message. Possible fields: {First Name}, {Last Name}, {Products}, {Total}, {Currency}.', 'wc_pushover' ),
+				'type'        => 'text',
+				'default'     => '',
+			),
 			'test_button' => array(
 				'type'        => 'test_button',
 			),
