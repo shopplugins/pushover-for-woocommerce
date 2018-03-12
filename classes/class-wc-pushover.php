@@ -161,25 +161,33 @@ class WC_Pushover extends WC_Integration {
 			),
 			'title_new_order' => array(
 				'title'       => __( 'New Order', 'wc_pushover' ),
-				'description' => __( 'Optional: <b>Custom Title</b>. Possible fields: {First Name}, {Last Name}, {Products}, {Total}, {Currency}.', 'wc_pushover' ),
+				'description' => __( 'Optional: <b>Custom Title</b>, Possible fields:<br> {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}.', 'wc_pushover' ),
 				'type'        => 'text',
 				'default'     => '',
-			),
+				'placeholder' => 'New Order {Order Id}',
+				'css'         => 'width: 100%'
+      ),
 			'message_new_order' => array(
-				'description' => __( 'Optional: <b>Custom Message</b>. Possible fields: {First Name}, {Last Name}, {Products}, {Total}, {Currency}.', 'wc_pushover' ),
+				'description' => __( 'Optional: <b>Custom Message</b>, Possible fields:<br> {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}.', 'wc_pushover' ),
 				'type'        => 'text',
 				'default'     => '',
+				'placeholder' => '{First Name} {Last Name} ordered {Products} for {Currency Symbol}{Total}',
+				'css'         => 'width: 100%'
 			),
 			'title_free_order' => array(
 				'title'       => __( 'Free Order', 'wc_pushover' ),
-				'description' => __( 'Optional: <b>Custom Title</b>. Possible fields: {First Name}, {Last Name}, {Products}, {Total}, {Currency}.', 'wc_pushover' ),
+				'description' => __( 'Optional: <b>Custom Title</b>, Possible fields:<br> {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}.', 'wc_pushover' ),
 				'type'        => 'text',
 				'default'     => '',
+				'placeholder' => 'New Order {Order Id}',
+				'css'         => 'width: 100%'
 			),
 			'message_free_order' => array(
-				'description' => __( 'Optional: <b>Custom Message</b>. Possible fields: {First Name}, {Last Name}, {Products}, {Total}, {Currency}.', 'wc_pushover' ),
+				'description' => __( 'Optional: <b>Custom Message</b>, Possible fields:<br> {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}.', 'wc_pushover' ),
 				'type'        => 'text',
 				'default'     => '',
+				'placeholder' => '{First Name} {Last Name} ordered {Products} for {Currency Symbol}{Total}',
+				'css'         => 'width: 100%'
 			),
 			'title_backorder' => array(
 				'title'       => __( 'Back Order', 'wc_pushover' ),
@@ -252,28 +260,22 @@ class WC_Pushover extends WC_Integration {
 
 		$order = new WC_Order( $order_id );
 		$sent = get_post_meta( $order_id, '_pushover_new_order', true );
-		if ( version_compare( WC()->version, '3.0.0', '>=' ) ){
-			$items = $order->get_items();
-			$names = array();
-			foreach( $items as $item ){
-				$names[] = $item->get_name();
-			}
-			$products = implode( ', ', $names );
-		} else {
-			$products = implode( ', ', wp_list_pluck( $order->get_items(), 'name' ) );
-		}
 
 		if ( ! $sent ) {
 			// Send notifications if order total is greater than $0
 			// Or if free order notification is enabled
 			if ( 0 < absint( $order->order_total ) || $this->notify_free_order ) {
-				$title   = sprintf( __( 'New Order %d', 'wc_pushover' ), $order_id );
-				$message = sprintf(
+
+			  $type = 0 == absint( $order->order_total ) ? 'free_order' : 'new_order';
+
+				$title = !empty($this->settings['title_' . $type]) ? $this->replace_fields_custom_message($this->settings['title_' . $type], $order) : sprintf( __( 'New Order %d', 'wc_pushover' ), $order->id );
+				$message = !empty($this->settings['message_' . $type]) ? $this->replace_fields_custom_message($this->settings['message_' . $type], $order) : sprintf(
 					__( '%1$s ordered %2$s for %3$s ', 'wc_pushover' ),
 					$order->billing_first_name . " " . $order->billing_last_name,
-					$products,
+					$this->get_ordered_products_string($order),
 					$this->pushover_get_currency_symbol() . $order->order_total
 				);
+
 				$url     = get_admin_url();
 
 				$this->send_notification( $title, $message, $url );
@@ -340,6 +342,71 @@ class WC_Pushover extends WC_Integration {
 
 		$this->send_notification( $title, $message, $url );
 
+	}
+
+	/**
+	 * Replaces the fields for custom messages and titles
+	 *
+	 * @param string $custom_string
+	 * @param WC_Order $order
+	 * @param string $type order or item
+	 *
+	 * @return mixed|string
+	 */
+	protected function replace_fields_custom_message($custom_string, $order, $type = 'order') {
+
+		if('item' === $type) {
+			// TODO: replace fields for item type
+			return $custom_string;
+		} else {
+			return str_replace(
+				array(
+					'{First Name}',
+					'{Last Name}',
+					'{Order Id}',
+					'{Products}',
+					'{Total}',
+					'{Currency}',
+					'{Currency Symbol}',
+					'{Payment Method}',
+					'{Order Status}'
+				),
+				array(
+					$order->billing_first_name,
+					$order->billing_last_name,
+					$order->id,
+					$this->get_ordered_products_string($order),
+					$order->get_total(),
+					get_woocommerce_currency(),
+					$this->pushover_get_currency_symbol(),
+					$order->payment_method_title,
+					$order->get_status()),
+				$custom_string
+			);
+		}
+
+	}
+
+	/**
+	 * Get ordered products in string
+	 *
+	 * @param WC_Order $order
+	 *
+	 * @return string of products
+	 */
+	protected function get_ordered_products_string($order) {
+		if ( version_compare( WC()->version, '3.0.0', '>=' ) ){
+			$items = $order->get_items();
+			$names = array();
+			foreach( $items as $item ){
+				$names[] = $item->get_name();
+			}
+			$products = implode( ', ', $names );
+		} else {
+			$products = implode( ', ', wp_list_pluck( $order->get_items(), 'name' ) );
+		}
+
+		return $products;
 	}
 
 	/**
