@@ -161,66 +161,78 @@ class WC_Pushover extends WC_Integration {
 			),
 			'title_new_order' => array(
 				'title'       => __( 'New Order', 'wc_pushover' ),
-				'description' => __( 'Optional: <b>Custom Title</b>, Possible fields:<br> {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}.', 'wc_pushover' ),
+				'description' => __( 'Optional: <b>Custom Title</b>, Possible fields:<br> {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}', 'wc_pushover' ),
 				'type'        => 'text',
 				'default'     => '',
 				'placeholder' => 'New Order {Order Id}',
-				'css'         => 'width: 100%'
+				'css'         => 'width: 100%',
       ),
 			'message_new_order' => array(
-				'description' => __( 'Optional: <b>Custom Message</b>, Possible fields:<br> {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}.', 'wc_pushover' ),
+				'description' => __( 'Optional: <b>Custom Message</b>, Possible fields:<br> {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}', 'wc_pushover' ),
 				'type'        => 'text',
 				'default'     => '',
 				'placeholder' => '{First Name} {Last Name} ordered {Products} for {Currency Symbol}{Total}',
-				'css'         => 'width: 100%'
+				'css'         => 'width: 100%',
 			),
 			'title_free_order' => array(
 				'title'       => __( 'Free Order', 'wc_pushover' ),
-				'description' => __( 'Optional: <b>Custom Title</b>, Possible fields:<br> {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}.', 'wc_pushover' ),
+				'description' => __( 'Optional: <b>Custom Title</b>, Possible fields:<br> {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}', 'wc_pushover' ),
 				'type'        => 'text',
 				'default'     => '',
 				'placeholder' => 'New Order {Order Id}',
-				'css'         => 'width: 100%'
+				'css'         => 'width: 100%',
 			),
 			'message_free_order' => array(
-				'description' => __( 'Optional: <b>Custom Message</b>, Possible fields:<br> {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}.', 'wc_pushover' ),
+				'description' => __( 'Optional: <b>Custom Message</b>, Possible fields:<br> {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}', 'wc_pushover' ),
 				'type'        => 'text',
 				'default'     => '',
 				'placeholder' => '{First Name} {Last Name} ordered {Products} for {Currency Symbol}{Total}',
-				'css'         => 'width: 100%'
+				'css'         => 'width: 100%',
 			),
 			'title_backorder' => array(
 				'title'       => __( 'Back Order', 'wc_pushover' ),
-				'description' => __( 'Optional: <b>Custom Title</b>. Possible fields: {First Name}, {Last Name}, {Products}, {Total}, {Currency}.', 'wc_pushover' ),
+				'description' => __( 'Optional: <b>Custom Title</b>, Possible fields:<br> {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}, {Product Id}, {Product Name}, {Product Url}', 'wc_pushover' ),
 				'type'        => 'text',
 				'default'     => '',
+				'placeholder' => 'Product Backorder',
+				'css'         => 'width: 100%',
 			),
 			'message_backorder' => array(
-				'description' => __( 'Optional: <b>Custom Message</b>. Possible fields: {First Name}, {Last Name}, {Products}, {Total}, {Currency}.', 'wc_pushover' ),
+				'description' => __( 'Optional: <b>Custom Message</b>, Possible fields:<br> {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}, {Product Id}, {Product Name}, {Product Url}', 'wc_pushover' ),
 				'type'        => 'text',
 				'default'     => '',
+				'placeholder' => 'Product (#{Product Id} {Product Name}) is on backorder.',
+				'css'         => 'width: 100%',
 			),
 			'title_no_stock' => array(
 				'title'       => __( 'No Stock', 'wc_pushover' ),
-				'description' => __( 'Optional: <b>Custom Title</b>. Possible fields: {First Name}, {Last Name}, {Products}, {Total}, {Currency}.', 'wc_pushover' ),
+				'description' => __( 'Optional: <b>Custom Title</b>, Possible fields:<br> {Product Id}, {Product Name}, {Product Url}', 'wc_pushover' ),
 				'type'        => 'text',
 				'default'     => '',
+				'placeholder' => 'Product Out of Stock',
+				'css'         => 'width: 100%',
 			),
 			'message_no_stock' => array(
-				'description' => __( 'Optional: <b>Custom Message</b>. Possible fields: {First Name}, {Last Name}, {Products}, {Total}, {Currency}.', 'wc_pushover' ),
+				'description' => __( 'Optional: <b>Custom Message</b>, Possible fields:<br> {Product Id}, {Product Name}, {Product Url}', 'wc_pushover' ),
 				'type'        => 'text',
 				'default'     => '',
+				'placeholder' => 'Product {Product Id} {Product Name} is now out of stock.',
+				'css'         => 'width: 100%',
 			),
 			'title_low_stock' => array(
 				'title'       => __( 'Low Stock', 'wc_pushover' ),
-				'description' => __( 'Optional: <b>Custom Title</b>. Possible fields: {First Name}, {Last Name}, {Products}, {Total}, {Currency}.', 'wc_pushover' ),
+				'description' => __( 'Optional: <b>Custom Title</b>, Possible fields:<br> {Product Id}, {Product Name}, {Product Url}', 'wc_pushover' ),
 				'type'        => 'text',
 				'default'     => '',
+				'placeholder' => 'Product Low Stock',
+				'css'         => 'width: 100%',
 			),
 			'message_low_stock' => array(
-				'description' => __( 'Optional: <b>Custom Message</b>. Possible fields: {First Name}, {Last Name}, {Products}, {Total}, {Currency}.', 'wc_pushover' ),
+				'description' => __( 'Optional: <b>Custom Message</b>, Possible fields:<br> {Product Id}, {Product Name}, {Product Url}', 'wc_pushover' ),
 				'type'        => 'text',
 				'default'     => '',
+				'placeholder' => 'Product {Product Id} {Product Name} now has low stock.',
+				'css'         => 'width: 100%',
 			),
 			'test_button' => array(
 				'type'        => 'test_button',
@@ -297,8 +309,10 @@ class WC_Pushover extends WC_Integration {
 
 		$product  = $args['product'];
 		$order_id = $args['order_id'];
-		$title    = sprintf( __( 'Product Backorder', 'wc_pushover' ), $order_id );
-		$message  = sprintf( __( 'Product (#%d %s) is on backorder.', 'wc_pushover' ), $product->id, $product->get_title() );
+
+		$title = !empty($this->settings['title_backorder']) ? $this->replace_fields_custom_message($this->settings['title_backorder'], new WC_Order($args['order_id']), $product) : sprintf( __( 'Product Backorder', 'wc_pushover' ), $order_id );
+		$message = !empty($this->settings['message_backorder']) ? $this->replace_fields_custom_message($this->settings['message_backorder'], new WC_Order($args['order_id']), $product) : sprintf( __( 'Product (#%d %s) is on backorder.', 'wc_pushover' ), $product->get_id(), $product->get_title() );
+
 		$url      = get_admin_url();
 
 		$this->send_notification( $title, $message, $url );
@@ -316,8 +330,8 @@ class WC_Pushover extends WC_Integration {
 	 */
 	function notify_no_stock( WC_Product $product ) {
 
-		$title   = __( 'Product Out of Stock', 'wc_pushover' );
-		$message = sprintf( __( 'Product %s %s is now out of stock.', 'wc_pushover' ), $product->get_id(), $product->get_title() );
+		$title = !empty($this->settings['title_no_stock']) ? $this->replace_fields_custom_message($this->settings['title_no_stock'], null, $product) : __( 'Product Out of Stock', 'wc_pushover' );
+		$message = !empty($this->settings['message_no_stock']) ? $this->replace_fields_custom_message($this->settings['message_no_stock'], null, $product) : sprintf( __( 'Product %s %s is now out of stock.', 'wc_pushover' ), $product->get_id(), $product->get_title() );
 		$url     = get_admin_url();
 
 		$this->send_notification( $title, $message, $url );
@@ -336,8 +350,8 @@ class WC_Pushover extends WC_Integration {
 	function notify_low_stock( WC_Product $product ) {
 
 		// get order details
-		$title   = __( 'Product Low Stock', 'wc_pushover' );
-		$message = sprintf( __( 'Product %s %s now has low stock.', 'wc_pushover' ), $product->get_id(), $product->get_title() );
+		$title = !empty($this->settings['title_low_stock']) ? $this->replace_fields_custom_message($this->settings['title_low_stock'], null, $product) : __( 'Product Low Stock', 'wc_pushover' );
+		$message = !empty($this->settings['message_low_stock']) ? $this->replace_fields_custom_message($this->settings['message_low_stock'], null, $product) : sprintf( __( 'Product %s %s now has low stock.', 'wc_pushover' ), $product->get_id(), $product->get_title() );
 		$url     = get_admin_url();
 
 		$this->send_notification( $title, $message, $url );
@@ -349,17 +363,14 @@ class WC_Pushover extends WC_Integration {
 	 *
 	 * @param string $custom_string
 	 * @param WC_Order $order
-	 * @param string $type order or item
+	 * @param WC_Product $product
 	 *
 	 * @return mixed|string
 	 */
-	protected function replace_fields_custom_message($custom_string, $order, $type = 'order') {
+	protected function replace_fields_custom_message($custom_string, $order = null, $product = null) {
 
-		if('item' === $type) {
-			// TODO: replace fields for item type
-			return $custom_string;
-		} else {
-			return str_replace(
+	  if(!empty($order)) {
+			$custom_string = str_replace(
 				array(
 					'{First Name}',
 					'{Last Name}',
@@ -369,7 +380,7 @@ class WC_Pushover extends WC_Integration {
 					'{Currency}',
 					'{Currency Symbol}',
 					'{Payment Method}',
-					'{Order Status}'
+					'{Order Status}',
 				),
 				array(
 					$order->billing_first_name,
@@ -380,10 +391,29 @@ class WC_Pushover extends WC_Integration {
 					get_woocommerce_currency(),
 					$this->pushover_get_currency_symbol(),
 					$order->payment_method_title,
-					$order->get_status()),
+					$order->get_status(),
+        ),
+				$custom_string
+			);
+    }
+
+		if(!empty($product)) {
+			$custom_string = str_replace(
+				array(
+					'{Product Id}',
+					'{Product Name}',
+					'{Product Url}',
+				),
+				array(
+					$product->get_id(),
+					$product->get_title(),
+					get_permalink($product->get_id()),
+        ),
 				$custom_string
 			);
 		}
+
+		return $custom_string;
 
 	}
 
