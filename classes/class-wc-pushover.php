@@ -63,9 +63,9 @@ class WC_Pushover extends WC_Integration {
 		if ( $this->notify_backorder )
 			add_action( 'woocommerce_product_on_backorder', array( $this, 'notify_backorder' ) );
 		if ( $this->notify_no_stock )
-			add_action( 'woocommerce_notify_no_stock', array( $this, 'notify_no_stock' ) );
+			add_action( 'woocommerce_no_stock', array( $this, 'notify_no_stock' ) );
 		if ( $this->notify_low_stock )
-			add_action( 'woocommerce_notify_low_stock', array( $this, 'notify_low_stock' ) );
+			add_action( 'woocommerce_low_stock', array( $this, 'notify_low_stock' ) );
 
 	}
 
