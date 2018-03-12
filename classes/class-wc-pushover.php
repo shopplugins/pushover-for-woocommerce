@@ -161,14 +161,14 @@ class WC_Pushover extends WC_Integration {
 			),
 			'title_new_order' => array(
 				'title'       => __( 'New Order', 'wc_pushover' ),
-				'description' => __( 'Optional: <b>Custom Title</b>, Possible fields:<br> {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}', 'wc_pushover' ),
+				'description' => __( 'Optional: Custom Title, Possible fields:<br> {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}', 'wc_pushover' ),
 				'type'        => 'text',
 				'default'     => '',
 				'placeholder' => 'New Order {Order Id}',
 				'css'         => 'width: 100%',
       ),
 			'message_new_order' => array(
-				'description' => __( 'Optional: <b>Custom Message</b>, Possible fields:<br> {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}', 'wc_pushover' ),
+				'description' => __( 'Optional: Custom Message, Possible fields:<br> {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}', 'wc_pushover' ),
 				'type'        => 'text',
 				'default'     => '',
 				'placeholder' => '{First Name} {Last Name} ordered {Products} for {Currency Symbol}{Total}',
@@ -176,14 +176,14 @@ class WC_Pushover extends WC_Integration {
 			),
 			'title_free_order' => array(
 				'title'       => __( 'Free Order', 'wc_pushover' ),
-				'description' => __( 'Optional: <b>Custom Title</b>, Possible fields:<br> {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}', 'wc_pushover' ),
+				'description' => __( 'Optional: Custom Title, Possible fields:<br> {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}', 'wc_pushover' ),
 				'type'        => 'text',
 				'default'     => '',
 				'placeholder' => 'New Order {Order Id}',
 				'css'         => 'width: 100%',
 			),
 			'message_free_order' => array(
-				'description' => __( 'Optional: <b>Custom Message</b>, Possible fields:<br> {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}', 'wc_pushover' ),
+				'description' => __( 'Optional: Custom Message, Possible fields:<br> {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}', 'wc_pushover' ),
 				'type'        => 'text',
 				'default'     => '',
 				'placeholder' => '{First Name} {Last Name} ordered {Products} for {Currency Symbol}{Total}',
@@ -191,14 +191,14 @@ class WC_Pushover extends WC_Integration {
 			),
 			'title_backorder' => array(
 				'title'       => __( 'Back Order', 'wc_pushover' ),
-				'description' => __( 'Optional: <b>Custom Title</b>, Possible fields:<br> {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}, {Product Id}, {Product Name}, {Product Url}', 'wc_pushover' ),
+				'description' => __( 'Optional: Custom Title, Possible fields:<br> {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}, {Product Id}, {Product Name}, {Product Url}', 'wc_pushover' ),
 				'type'        => 'text',
 				'default'     => '',
 				'placeholder' => 'Product Backorder',
 				'css'         => 'width: 100%',
 			),
 			'message_backorder' => array(
-				'description' => __( 'Optional: <b>Custom Message</b>, Possible fields:<br> {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}, {Product Id}, {Product Name}, {Product Url}', 'wc_pushover' ),
+				'description' => __( 'Optional: Custom Message, Possible fields:<br> {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}, {Product Id}, {Product Name}, {Product Url}', 'wc_pushover' ),
 				'type'        => 'text',
 				'default'     => '',
 				'placeholder' => 'Product (#{Product Id} {Product Name}) is on backorder.',
@@ -206,14 +206,14 @@ class WC_Pushover extends WC_Integration {
 			),
 			'title_no_stock' => array(
 				'title'       => __( 'No Stock', 'wc_pushover' ),
-				'description' => __( 'Optional: <b>Custom Title</b>, Possible fields:<br> {Product Id}, {Product Name}, {Product Url}', 'wc_pushover' ),
+				'description' => __( 'Optional: Custom Title, Possible fields:<br> {Product Id}, {Product Name}, {Product Url}', 'wc_pushover' ),
 				'type'        => 'text',
 				'default'     => '',
 				'placeholder' => 'Product Out of Stock',
 				'css'         => 'width: 100%',
 			),
 			'message_no_stock' => array(
-				'description' => __( 'Optional: <b>Custom Message</b>, Possible fields:<br> {Product Id}, {Product Name}, {Product Url}', 'wc_pushover' ),
+				'description' => __( 'Optional: Custom Message, Possible fields:<br> {Product Id}, {Product Name}, {Product Url}', 'wc_pushover' ),
 				'type'        => 'text',
 				'default'     => '',
 				'placeholder' => 'Product {Product Id} {Product Name} is now out of stock.',
@@ -221,14 +221,14 @@ class WC_Pushover extends WC_Integration {
 			),
 			'title_low_stock' => array(
 				'title'       => __( 'Low Stock', 'wc_pushover' ),
-				'description' => __( 'Optional: <b>Custom Title</b>, Possible fields:<br> {Product Id}, {Product Name}, {Product Url}', 'wc_pushover' ),
+				'description' => __( 'Optional: Custom Title, Possible fields:<br> {Product Id}, {Product Name}, {Product Url}', 'wc_pushover' ),
 				'type'        => 'text',
 				'default'     => '',
 				'placeholder' => 'Product Low Stock',
 				'css'         => 'width: 100%',
 			),
 			'message_low_stock' => array(
-				'description' => __( 'Optional: <b>Custom Message</b>, Possible fields:<br> {Product Id}, {Product Name}, {Product Url}', 'wc_pushover' ),
+				'description' => __( 'Optional: Custom Message, Possible fields:<br> {Product Id}, {Product Name}, {Product Url}', 'wc_pushover' ),
 				'type'        => 'text',
 				'default'     => '',
 				'placeholder' => 'Product {Product Id} {Product Name} now has low stock.',
@@ -257,9 +257,9 @@ class WC_Pushover extends WC_Integration {
 
 			$this->send_notification(array(
 				'title'    => $title,
-        'message' => $message,
-        'url'     => $url
-      ));
+				'message' => $message,
+				'url'     => $url
+			));
 
 			wp_safe_redirect( get_admin_url() . 'admin.php?page=wc-settings&tab=integration&section=pushover' );
 		}
@@ -302,9 +302,9 @@ class WC_Pushover extends WC_Integration {
 
 				if( 'free_order' === $type ) {
 					$this->send_notification( apply_filters('wc_pushover_notify_free_order', $args));
-        } else {
+				} else {
 					$this->send_notification( apply_filters('wc_pushover_notify_new_order', $args));
-        }
+				}
 
 				add_post_meta( $order_id, '_pushover_new_order', true );
 			}
@@ -509,7 +509,7 @@ class WC_Pushover extends WC_Integration {
 							"\nTitle: ". $args['title'] .
 							"\nMessage: ". $args['message'] .
 							"\nURL: " . $args['url'] .
-						    "\nPriority: " . $this->priority );
+						  "\nPriority: " . $this->priority );
 
 		try {
 			$response = $pushover->send();
