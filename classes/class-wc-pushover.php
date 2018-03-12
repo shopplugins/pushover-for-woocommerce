@@ -255,7 +255,11 @@ class WC_Pushover extends WC_Integration {
 			$message = sprintf(__( 'This is a test notification from %s', 'wc_pushover'), get_bloginfo('name'));
 			$url     = get_admin_url();
 
-			$this->send_notification( $title, $message, $url);
+			$this->send_notification(array(
+				'title'    => $title,
+        'message' => $message,
+        'url'     => $url
+      ));
 
 			wp_safe_redirect( get_admin_url() . 'admin.php?page=wc-settings&tab=integration&section=pushover' );
 		}
@@ -290,7 +294,11 @@ class WC_Pushover extends WC_Integration {
 
 				$url     = get_admin_url();
 
-				$this->send_notification( $title, $message, $url );
+				$this->send_notification(array(
+					'title'    => $title,
+					'message' => $message,
+					'url'     => $url
+				));
 
 				add_post_meta( $order_id, '_pushover_new_order', true );
 			}
@@ -315,7 +323,11 @@ class WC_Pushover extends WC_Integration {
 
 		$url      = get_admin_url();
 
-		$this->send_notification( $title, $message, $url );
+		$this->send_notification(array(
+			'title'    => $title,
+			'message' => $message,
+			'url'     => $url
+		));
 
 	}
 
@@ -334,7 +346,11 @@ class WC_Pushover extends WC_Integration {
 		$message = !empty($this->settings['message_no_stock']) ? $this->replace_fields_custom_message($this->settings['message_no_stock'], null, $product) : sprintf( __( 'Product %s %s is now out of stock.', 'wc_pushover' ), $product->get_id(), $product->get_title() );
 		$url     = get_admin_url();
 
-		$this->send_notification( $title, $message, $url );
+		$this->send_notification(array(
+			'title'    => $title,
+			'message' => $message,
+			'url'     => $url
+		));
 
 	}
 
@@ -354,7 +370,11 @@ class WC_Pushover extends WC_Integration {
 		$message = !empty($this->settings['message_low_stock']) ? $this->replace_fields_custom_message($this->settings['message_low_stock'], null, $product) : sprintf( __( 'Product %s %s now has low stock.', 'wc_pushover' ), $product->get_id(), $product->get_title() );
 		$url     = get_admin_url();
 
-		$this->send_notification( $title, $message, $url );
+		$this->send_notification(array(
+			'title'    => $title,
+			'message' => $message,
+			'url'     => $url
+		));
 
 	}
 
@@ -445,12 +465,14 @@ class WC_Pushover extends WC_Integration {
 	 * Send notification when new order is received
 	 *
 	 * @access public
-	 * @param $title
-	 * @param $message
-	 * @param string $url
+	 * @param $args {
+	 *     @type string title   Push title
+	 *     @type string message Push message
+	 *     @type string url     URL of admin area
+	 * }
 	 * @return void
 	 */
-	function send_notification( $title, $message, $url = '' ) {
+	function send_notification( $args ) {
 
 		if ( ! class_exists( 'Pushover_Api' ) )
 			include_once( 'class-pushover-api.php' );
@@ -472,15 +494,15 @@ class WC_Pushover extends WC_Integration {
 		$pushover->setPriority( $this->priority );
 
 		// Setup message
-		$pushover->setTitle ( $title );
-		$pushover->setMessage( $message );
-		$pushover->setUrl( $url );
+		$pushover->setTitle ( $args['title'] );
+		$pushover->setMessage( $args['message'] );
+		$pushover->setUrl( $args['url'] );
 		$response = '';
 
 		$this->add_log( __( 'Sending: ', 'wc_pushover' ) .
-							"\nTitle: ". $title .
-							"\nMessage: ". $message .
-							"\nURL: " . $url .
+							"\nTitle: ". $args['title'] .
+							"\nMessage: ". $args['message'] .
+							"\nURL: " . $args['url'] .
 						    "\nPriority: " . $this->priority );
 
 		try {
