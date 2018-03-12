@@ -23,11 +23,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 class WC_Pushover extends WC_Integration {
 
 	/**
+   * True if WooCommerce 3 is installed
+   *
+	 * @var boolean
+	 */
+  protected $is_wc_3;
+
+	/**
 	 * Constructor
 	 *
 	 * @access public
 	 */
 	public function __construct() {
+
+		$this->is_wc_3 = version_compare( WC()->version, '3.0.0', '>=');
 
 		$this->id                 = 'pushover';
 		$this->method_title       = __( 'Pushover', 'wc_pushover' );
@@ -278,18 +287,20 @@ class WC_Pushover extends WC_Integration {
 		$sent = get_post_meta( $order_id, '_pushover_new_order', true );
 
 		if ( ! $sent ) {
+
+		  $order_total = $this->is_wc_3 ? $order->get_total() : $order->order_total;
 			// Send notifications if order total is greater than $0
 			// Or if free order notification is enabled
-			if ( 0 < absint( $order->order_total ) || $this->notify_free_order ) {
+			if ( 0 < absint( $order_total ) || $this->notify_free_order ) {
 
-			  $type = 0 == absint( $order->order_total ) ? 'free_order' : 'new_order';
+			  $type = 0 == absint( $order_total ) ? 'free_order' : 'new_order';
 
 				$title = !empty($this->settings['title_' . $type]) ? $this->replace_fields_custom_message($this->settings['title_' . $type], $order) : sprintf( __( 'New Order %d', 'wc_pushover' ), $order->id );
 				$message = !empty($this->settings['message_' . $type]) ? $this->replace_fields_custom_message($this->settings['message_' . $type], $order) : sprintf(
 					__( '%1$s ordered %2$s for %3$s ', 'wc_pushover' ),
 					$order->billing_first_name . " " . $order->billing_last_name,
 					$this->get_ordered_products_string($order),
-					$this->pushover_get_currency_symbol() . $order->order_total
+					$this->pushover_get_currency_symbol() . $order_total
 				);
 
 				$url     = get_admin_url();
@@ -409,14 +420,14 @@ class WC_Pushover extends WC_Integration {
 					'{Order Status}',
 				),
 				array(
-					$order->billing_first_name,
-					$order->billing_last_name,
-					$order->id,
+					$this->is_wc_3 ? $order->get_billing_first_name() : $order->billing_first_name,
+					$this->is_wc_3 ? $order->get_billing_last_name() : $order->billing_last_name,
+					$this->is_wc_3 ? $order->get_id() : $order->id,
 					$this->get_ordered_products_string($order),
 					$order->get_total(),
 					get_woocommerce_currency(),
 					$this->pushover_get_currency_symbol(),
-					$order->payment_method_title,
+					$this->is_wc_3 ? $order->get_payment_method_title() : $order->payment_method_title,
 					$order->get_status(),
         ),
 				$custom_string
@@ -451,7 +462,7 @@ class WC_Pushover extends WC_Integration {
 	 * @return string of products
 	 */
 	protected function get_ordered_products_string($order) {
-		if ( version_compare( WC()->version, '3.0.0', '>=' ) ){
+		if ( $this->is_wc_3 ){
 			$items = $order->get_items();
 			$names = array();
 			foreach( $items as $item ){
