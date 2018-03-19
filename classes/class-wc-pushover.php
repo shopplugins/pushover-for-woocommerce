@@ -95,20 +95,32 @@ class WC_Pushover extends WC_Integration {
 			),
 			'site_api' => array(
 				'title'       => __( 'API Token', 'wc_pushover' ),
-				'description' => __( 'Create a token <a href="https://pushover.net/apps/clone/woocommerce" target="_blank">here</a>', 'wc_pushover' ),
+				'description' => sprintf(
+					'%s <a href="https://pushover.net/apps/clone/woocommerce" target="_blank">%s</a>',
+					__( 'Create a token', 'wc_pushover' ),
+					__( 'here', 'wc_pushover' )
+				),
 				'type'        => 'text',
 				'default'     => '',
 			),
 			'user_api' => array(
 				'title'       => __( 'User Key', 'wc_pushover' ),
-				'description' => __( 'Find your user key <a href="https://pushover.net/dashboard" target="_blank">here</a>', 'wc_pushover' ),
+				'description' => sprintf(
+					'%s <a href="https://pushover.net/dashboard" target="_blank">%s</a>',
+					__( 'Find your user key', 'wc_pushover' ),
+					__( 'here', 'wc_pushover' )
+				),
 				'type'        => 'text',
 				'default'     => '',
 			),
 			'priority' => array(
 				'title'       => __( 'Priority', 'wc_pushover' ),
-				'description' => __( 'Set priority of message. <a href="https://pushover.net/api#priority">Priorities explained.</a>', 'wc_pushover' ),
-				'type'        => 'select',
+				'description' => sprintf(
+					'%s <a href="https://pushover.net/api#priority" target="_blank">%s</a>',
+					__( 'Set priority of message.', 'wc_pushover' ),
+					__( 'Priorities explained.', 'wc_pushover' )
+				),
+        'type'        => 'select',
 				'options'     => array(
 									'-2' => __( '-2 Lowest Priority', 'wc_pushover'),
 									'-1' => __( '-1 Low Priority', 'wc_pushover'),
@@ -170,77 +182,103 @@ class WC_Pushover extends WC_Integration {
 			),
 			'title_new_order' => array(
 				'title'       => __( 'New Order', 'wc_pushover' ),
-				'description' => __( 'Optional: Custom Title<br>Fields:', 'wc_pushover' ) . ' {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}',
+				'description' => sprintf( '%s<br>%s:', __( 'Optional: Custom Title', 'wc_pushover' ), __( 'Fields', 'wc_pushover' ) ) . ' {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}',
 				'type'        => 'text',
 				'default'     => '',
-				'placeholder' => 'New Order {Order Id}',
+				'placeholder' => sprintf(
+				  '%s {Order Id}',
+          __( 'New Order', 'wc_pushover' )
+        ),
 				'css'         => 'width: 100%',
       ),
 			'message_new_order' => array(
-				'description' => __( 'Optional: Custom Message<br>Fields:', 'wc_pushover' ) . ' {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}',
+				'description' => sprintf( '%s<br>%s:', __( 'Optional: Custom Message', 'wc_pushover' ), __( 'Fields', 'wc_pushover' ) ) . ' {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}',
 				'type'        => 'text',
 				'default'     => '',
-				'placeholder' => '{First Name} {Last Name} ordered {Products} for {Currency Symbol}{Total}',
+				'placeholder' => sprintf(
+				  '{First Name} {Last Name} %s {Products} %s {Currency Symbol}{Total}',
+          __( 'ordered', 'wc_pushover' ),
+          __( 'for', 'wc_pushover' )
+        ),
 				'css'         => 'width: 100%',
 			),
 			'title_free_order' => array(
 				'title'       => __( 'Free Order', 'wc_pushover' ),
-				'description' =>  __( 'Optional: Custom Title<br>Fields:', 'wc_pushover' ) . ' {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}',
+				'description' =>  sprintf( '%s<br>%s:', __( 'Optional: Custom Title', 'wc_pushover' ), __( 'Fields', 'wc_pushover' ) ) . ' {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}',
 				'type'        => 'text',
 				'default'     => '',
-				'placeholder' => 'New Order {Order Id}',
+				'placeholder' => sprintf(
+					'%s {Order Id}',
+					__( 'New Order', 'wc_pushover' )
+				),
 				'css'         => 'width: 100%',
 			),
 			'message_free_order' => array(
-				'description' => __( 'Optional: Custom Message<br>Fields:', 'wc_pushover' ) . ' {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}',
+				'description' => sprintf( '%s<br>%s:', __( 'Optional: Custom Message', 'wc_pushover' ), __( 'Fields', 'wc_pushover' ) ) . ' {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}',
 				'type'        => 'text',
 				'default'     => '',
-				'placeholder' => '{First Name} {Last Name} ordered {Products} for {Currency Symbol}{Total}',
+				'placeholder' => sprintf(
+					'{First Name} {Last Name} %s {Products} %s {Currency Symbol}{Total}',
+					__( 'ordered', 'wc_pushover' ),
+					__( 'for', 'wc_pushover' )
+				),
 				'css'         => 'width: 100%',
 			),
 			'title_backorder' => array(
 				'title'       => __( 'Back Order', 'wc_pushover' ),
-				'description' =>  __( 'Optional: Custom Title<br>Fields:', 'wc_pushover' ) . ' {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}, {Product Id}, {Product Name}, {Product Url}',
+				'description' => sprintf( '%s<br>%s:', __( 'Optional: Custom Title', 'wc_pushover' ), __( 'Fields', 'wc_pushover' ) ) . ' {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}, {Product Id}, {Product Name}, {Product Url}',
 				'type'        => 'text',
 				'default'     => '',
-				'placeholder' => 'Product Backorder',
+				'placeholder' => __( 'Product Backorder', 'wc_pushover' ),
 				'css'         => 'width: 100%',
 			),
 			'message_backorder' => array(
-				'description' => __( 'Optional: Custom Message<br>Fields:', 'wc_pushover' ) . ' {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}, {Product Id}, {Product Name}, {Product Url}',
+				'description' => sprintf( '%s<br>%s:', __( 'Optional: Custom Message', 'wc_pushover' ), __( 'Fields', 'wc_pushover' ) ) . ' {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}, {Product Id}, {Product Name}, {Product Url}',
 				'type'        => 'text',
 				'default'     => '',
-				'placeholder' => 'Product (#{Product Id} {Product Name}) is on backorder.',
+				'placeholder' => sprintf(
+					'%s (#{Product Id} {Product Name}) %s.',
+					__( 'Product', 'wc_pushover' ),
+					__( 'is on backorder', 'wc_pushover' )
+				),
 				'css'         => 'width: 100%',
 			),
 			'title_no_stock' => array(
 				'title'       => __( 'No Stock', 'wc_pushover' ),
-				'description' =>  __( 'Optional: Custom Title<br>Fields:', 'wc_pushover' ) . ' {Product Id}, {Product Name}, {Product Url}',
+				'description' =>  sprintf( '%s<br>%s:', __( 'Optional: Custom Title', 'wc_pushover' ), __( 'Fields', 'wc_pushover' ) ) . ' {Product Id}, {Product Name}, {Product Url}',
 				'type'        => 'text',
 				'default'     => '',
-				'placeholder' => 'Product Out of Stock',
+				'placeholder' => __( 'Product Out of Stock', 'wc_pushover' ),
 				'css'         => 'width: 100%',
 			),
 			'message_no_stock' => array(
-				'description' => __( 'Optional: Custom Message<br>Fields:', 'wc_pushover' ) . ' {Product Id}, {Product Name}, {Product Url}',
+				'description' => sprintf( '%s<br>%s:', __( 'Optional: Custom Message', 'wc_pushover' ), __( 'Fields', 'wc_pushover' ) ) . ' {Product Id}, {Product Name}, {Product Url}',
 				'type'        => 'text',
 				'default'     => '',
-				'placeholder' => 'Product {Product Id} {Product Name} is now out of stock.',
+				'placeholder' => sprintf(
+					'%s {Product Id} {Product Name} %s.',
+					__( 'Product', 'wc_pushover' ),
+					__( 'is now out of stock', 'wc_pushover' )
+				),
 				'css'         => 'width: 100%',
 			),
 			'title_low_stock' => array(
 				'title'       => __( 'Low Stock', 'wc_pushover' ),
-				'description' =>  __( 'Optional: Custom Title<br>Fields:', 'wc_pushover' ) . ' {Product Id}, {Product Name}, {Product Url}',
+				'description' =>  sprintf( '%s<br>%s:', __( 'Optional: Custom Title', 'wc_pushover' ), __( 'Fields', 'wc_pushover' ) ) . ' {Product Id}, {Product Name}, {Product Url}',
 				'type'        => 'text',
 				'default'     => '',
-				'placeholder' => 'Product Low Stock',
+				'placeholder' => __( 'Product Low Stock', 'wc_pushover' ),
 				'css'         => 'width: 100%',
 			),
 			'message_low_stock' => array(
-				'description' => __( 'Optional: Custom Message<br>Fields:', 'wc_pushover' ) . ' {Product Id}, {Product Name}, {Product Url}',
+				'description' => sprintf( '%s<br>%s:', __( 'Optional: Custom Message', 'wc_pushover' ), __( 'Fields', 'wc_pushover' ) ) . ' {Product Id}, {Product Name}, {Product Url}',
 				'type'        => 'text',
 				'default'     => '',
-				'placeholder' => 'Product {Product Id} {Product Name} now has low stock.',
+				'placeholder' => sprintf(
+					'%s {Product Id} {Product Name} %s.',
+					__( 'Product', 'wc_pushover' ),
+					__( 'now has low stock', 'wc_pushover' )
+				),
 				'css'         => 'width: 100%',
 			),
 			'test_button' => array(
@@ -261,7 +299,7 @@ class WC_Pushover extends WC_Integration {
 
 		if ( isset($_GET['wc_test']) && ($_GET['wc_test']==1)){
 			$title   = __( 'Test Notification', 'wc_pushover');
-			$message = sprintf(__( 'This is a test notification from %s', 'wc_pushover'), get_bloginfo('name'));
+			$message = sprintf( __( 'This is a test notification from %s', 'wc_pushover' ), get_bloginfo('name'));
 			$url     = get_admin_url();
 
 			$this->send_notification(array(
