@@ -1,0 +1,309 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: WooCommerce Pushover Integration\n"
+"POT-Creation-Date: 2018-03-19 13:46+0100\n"
+"PO-Revision-Date: 2018-03-19 13:41+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.4\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: woocommerce-pushover.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: classes/class-wc-pushover.php:42
+msgid "Pushover"
+msgstr ""
+
+#: classes/class-wc-pushover.php:43
+msgid ""
+"Pushover makes it easy to send real-time notifications to your Android and "
+"iOS devices."
+msgstr ""
+
+#: classes/class-wc-pushover.php:91
+msgid "Enable/Disable"
+msgstr ""
+
+#: classes/class-wc-pushover.php:92
+msgid "Enable sending of notifications"
+msgstr ""
+
+#: classes/class-wc-pushover.php:97
+msgid "API Token"
+msgstr ""
+
+#: classes/class-wc-pushover.php:100
+msgid "Create a token"
+msgstr ""
+
+#: classes/class-wc-pushover.php:101 classes/class-wc-pushover.php:111
+msgid "here"
+msgstr ""
+
+#: classes/class-wc-pushover.php:107
+msgid "User Key"
+msgstr ""
+
+#: classes/class-wc-pushover.php:110
+msgid "Find your user key"
+msgstr ""
+
+#: classes/class-wc-pushover.php:117
+msgid "Priority"
+msgstr ""
+
+#: classes/class-wc-pushover.php:120
+msgid "Set priority of message."
+msgstr ""
+
+#: classes/class-wc-pushover.php:121
+msgid "Priorities explained."
+msgstr ""
+
+#: classes/class-wc-pushover.php:125
+msgid "-2 Lowest Priority"
+msgstr ""
+
+#: classes/class-wc-pushover.php:126
+msgid "-1 Low Priority"
+msgstr ""
+
+#: classes/class-wc-pushover.php:127
+msgid "0 Normal"
+msgstr ""
+
+#: classes/class-wc-pushover.php:128
+msgid "1 High"
+msgstr ""
+
+#: classes/class-wc-pushover.php:129
+msgid "2 Emergency Priority"
+msgstr ""
+
+#: classes/class-wc-pushover.php:134
+msgid "Device"
+msgstr ""
+
+#: classes/class-wc-pushover.php:135
+msgid "Optional: Name of device to send notifications"
+msgstr ""
+
+#: classes/class-wc-pushover.php:140
+msgid "Debug"
+msgstr ""
+
+#: classes/class-wc-pushover.php:141
+msgid "Enable debug logging"
+msgstr ""
+
+#: classes/class-wc-pushover.php:146
+msgid "Notifications"
+msgstr ""
+
+#: classes/class-wc-pushover.php:150 classes/class-wc-pushover.php:184
+#: classes/class-wc-pushover.php:190 classes/class-wc-pushover.php:212
+msgid "New Order"
+msgstr ""
+
+#: classes/class-wc-pushover.php:151
+msgid "Send notification when a new order is received."
+msgstr ""
+
+#: classes/class-wc-pushover.php:156 classes/class-wc-pushover.php:206
+msgid "Free Order"
+msgstr ""
+
+#: classes/class-wc-pushover.php:157
+msgid "Send notification when an order totals $0."
+msgstr ""
+
+#: classes/class-wc-pushover.php:162 classes/class-wc-pushover.php:228
+msgid "Back Order"
+msgstr ""
+
+#: classes/class-wc-pushover.php:163
+msgid "Send notification when a product is back ordered."
+msgstr ""
+
+#: classes/class-wc-pushover.php:168 classes/class-wc-pushover.php:247
+msgid "No Stock"
+msgstr ""
+
+#: classes/class-wc-pushover.php:169
+msgid "Send notification when a product has no stock."
+msgstr ""
+
+#: classes/class-wc-pushover.php:174 classes/class-wc-pushover.php:266
+msgid "Low Stock"
+msgstr ""
+
+#: classes/class-wc-pushover.php:175
+msgid "Send notification when a product hits the low stock."
+msgstr ""
+
+#: classes/class-wc-pushover.php:180
+msgid "Messages"
+msgstr ""
+
+#: classes/class-wc-pushover.php:185 classes/class-wc-pushover.php:207
+#: classes/class-wc-pushover.php:229 classes/class-wc-pushover.php:248
+#: classes/class-wc-pushover.php:267
+msgid "Optional: Custom Title"
+msgstr ""
+
+#: classes/class-wc-pushover.php:185 classes/class-wc-pushover.php:195
+#: classes/class-wc-pushover.php:207 classes/class-wc-pushover.php:217
+#: classes/class-wc-pushover.php:229 classes/class-wc-pushover.php:236
+#: classes/class-wc-pushover.php:248 classes/class-wc-pushover.php:255
+#: classes/class-wc-pushover.php:267 classes/class-wc-pushover.php:274
+msgid "Fields"
+msgstr ""
+
+#: classes/class-wc-pushover.php:195 classes/class-wc-pushover.php:217
+#: classes/class-wc-pushover.php:236 classes/class-wc-pushover.php:255
+#: classes/class-wc-pushover.php:274
+msgid "Optional: Custom Message"
+msgstr ""
+
+#: classes/class-wc-pushover.php:200 classes/class-wc-pushover.php:222
+msgid "ordered"
+msgstr ""
+
+#: classes/class-wc-pushover.php:201 classes/class-wc-pushover.php:223
+msgid "for"
+msgstr ""
+
+#: classes/class-wc-pushover.php:232 classes/class-wc-pushover.php:376
+msgid "Product Backorder"
+msgstr ""
+
+#: classes/class-wc-pushover.php:241 classes/class-wc-pushover.php:260
+#: classes/class-wc-pushover.php:279
+msgid "Product"
+msgstr ""
+
+#: classes/class-wc-pushover.php:242
+msgid "is on backorder"
+msgstr ""
+
+#: classes/class-wc-pushover.php:251 classes/class-wc-pushover.php:400
+msgid "Product Out of Stock"
+msgstr ""
+
+#: classes/class-wc-pushover.php:261
+msgid "is now out of stock"
+msgstr ""
+
+#: classes/class-wc-pushover.php:270 classes/class-wc-pushover.php:424
+msgid "Product Low Stock"
+msgstr ""
+
+#: classes/class-wc-pushover.php:280
+msgid "now has low stock"
+msgstr ""
+
+#: classes/class-wc-pushover.php:301
+msgid "Test Notification"
+msgstr ""
+
+#: classes/class-wc-pushover.php:302
+#, php-format
+msgid "This is a test notification from %s"
+msgstr ""
+
+#: classes/class-wc-pushover.php:335
+#, php-format
+msgid "New Order %d"
+msgstr ""
+
+#: classes/class-wc-pushover.php:338
+#, php-format
+msgid "%1$s ordered %2$s for %3$s "
+msgstr ""
+
+#: classes/class-wc-pushover.php:377
+#, php-format
+msgid "Product (#%d %s) is on backorder."
+msgstr ""
+
+#: classes/class-wc-pushover.php:401
+#, php-format
+msgid "Product (#%d %s) is now out of stock."
+msgstr ""
+
+#: classes/class-wc-pushover.php:425
+#, php-format
+msgid "Product (#%d %s) now has low stock."
+msgstr ""
+
+#: classes/class-wc-pushover.php:539
+msgid "Site API or User API setting is missing.  Notification not sent."
+msgstr ""
+
+#: classes/class-wc-pushover.php:557
+msgid "Sending: "
+msgstr ""
+
+#: classes/class-wc-pushover.php:565
+msgid "Response: "
+msgstr ""
+
+#: classes/class-wc-pushover.php:568
+#, php-format
+msgid "Error: Caught exception from send method: %s"
+msgstr ""
+
+#: classes/class-wc-pushover.php:571
+msgid "Pushover response"
+msgstr ""
+
+#: classes/class-wc-pushover.php:584
+msgid "Send Test"
+msgstr ""
+
+#: classes/class-wc-pushover.php:586
+msgid "Send Test Notification"
+msgstr ""
+
+#: woocommerce-pushover.php:84
+msgid "Settings"
+msgstr ""
+
+#: woocommerce-pushover.php:85
+msgid "Support"
+msgstr ""
+
+#: woocommerce-pushover.php:86
+msgid "Docs"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "WooCommerce Pushover Integration"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+#. Author URI of the plugin/theme
+msgid "https://shopplugins.com/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Integrates <a href=\"http://www.woothemes.com/woocommerce\" target=\"_blank"
+"\" >WooCommerce</a> with the <a href=\"https://pushover.net/\" target="
+"\"_blank\">Pushover</a> notifications app for Android and iOS."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Shop Plugins"
+msgstr ""

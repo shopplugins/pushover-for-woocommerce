@@ -256,7 +256,7 @@ class WC_Pushover extends WC_Integration {
 				'type'        => 'text',
 				'default'     => '',
 				'placeholder' => sprintf(
-					'%s {Product Id} {Product Name} %s.',
+					'%s (#{Product Id} {Product Name}) %s.',
 					__( 'Product', 'wc_pushover' ),
 					__( 'is now out of stock', 'wc_pushover' )
 				),
@@ -275,7 +275,7 @@ class WC_Pushover extends WC_Integration {
 				'type'        => 'text',
 				'default'     => '',
 				'placeholder' => sprintf(
-					'%s {Product Id} {Product Name} %s.',
+					'%s (#{Product Id} {Product Name}) %s.',
 					__( 'Product', 'wc_pushover' ),
 					__( 'now has low stock', 'wc_pushover' )
 				),
@@ -398,7 +398,7 @@ class WC_Pushover extends WC_Integration {
 	function notify_no_stock( WC_Product $product ) {
 
 		$title = !empty($this->settings['title_no_stock']) ? $this->replace_fields_custom_message($this->settings['title_no_stock'], null, $product) : __( 'Product Out of Stock', 'wc_pushover' );
-		$message = !empty($this->settings['message_no_stock']) ? $this->replace_fields_custom_message($this->settings['message_no_stock'], null, $product) : sprintf( __( 'Product %s %s is now out of stock.', 'wc_pushover' ), $product->get_id(), $product->get_title() );
+		$message = !empty($this->settings['message_no_stock']) ? $this->replace_fields_custom_message($this->settings['message_no_stock'], null, $product) : sprintf( __( 'Product (#%d %s) is now out of stock.', 'wc_pushover' ), $product->get_id(), $product->get_title() );
 		$url     = get_admin_url();
 
 		$this->send_notification( apply_filters('wc_pushover_notify_no_stock', array(
@@ -422,7 +422,7 @@ class WC_Pushover extends WC_Integration {
 
 		// get order details
 		$title = !empty($this->settings['title_low_stock']) ? $this->replace_fields_custom_message($this->settings['title_low_stock'], null, $product) : __( 'Product Low Stock', 'wc_pushover' );
-		$message = !empty($this->settings['message_low_stock']) ? $this->replace_fields_custom_message($this->settings['message_low_stock'], null, $product) : sprintf( __( 'Product %s %s now has low stock.', 'wc_pushover' ), $product->get_id(), $product->get_title() );
+		$message = !empty($this->settings['message_low_stock']) ? $this->replace_fields_custom_message($this->settings['message_low_stock'], null, $product) : sprintf( __( 'Product (#%d %s) now has low stock.', 'wc_pushover' ), $product->get_id(), $product->get_title() );
 		$url     = get_admin_url();
 
 		$this->send_notification( apply_filters('wc_pushover_notify_low_stock', array(
