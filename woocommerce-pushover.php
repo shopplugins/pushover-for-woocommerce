@@ -28,12 +28,18 @@
  */
 if ( class_exists( 'WC_Pushover' ) ) return;
 
-/**
- * Localisation
- */
-load_plugin_textdomain( 'wc_pushover', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
-
 define( 'WC_PUSHOVER_DIR', plugin_dir_path(__FILE__) );
+
+/**
+ * Adds plugin localization
+ * Domain: et_automatic_updates
+ *
+ * @return void
+ */
+function wc_pushover_localization() {
+	load_plugin_textdomain( 'wc_pushover', false, basename( dirname( __FILE__ ) ) . '/languages' );
+}
+add_action( 'plugins_loaded', 'wc_pushover_localization' );
 
 /**
  * Plugin activation check
@@ -56,6 +62,7 @@ function wc_pushover_activation_check() {
         deactivate_plugins( basename( __FILE__ ) );
         wp_die( "Sorry, but you can't run this plugin, it requires the SimpleXML library installed on your server/hosting to function." );
 	}
+	
 }
 register_activation_hook( __FILE__, 'wc_pushover_activation_check' );
 

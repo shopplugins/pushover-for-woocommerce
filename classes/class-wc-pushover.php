@@ -23,11 +23,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 class WC_Pushover extends WC_Integration {
 
 	/**
+   * True if WooCommerce 3 is installed
+   *
+	 * @var boolean
+	 */
+  protected $is_wc_3;
+
+	/**
 	 * Constructor
 	 *
 	 * @access public
 	 */
 	public function __construct() {
+
+		$this->is_wc_3 = version_compare( WC()->version, '3.0.0', '>=');
 
 		$this->id                 = 'pushover';
 		$this->method_title       = __( 'Pushover', 'wc_pushover' );
@@ -63,9 +72,9 @@ class WC_Pushover extends WC_Integration {
 		if ( $this->notify_backorder )
 			add_action( 'woocommerce_product_on_backorder', array( $this, 'notify_backorder' ) );
 		if ( $this->notify_no_stock )
-			add_action( 'woocommerce_notify_no_stock', array( $this, 'notify_no_stock' ) );
+			add_action( 'woocommerce_no_stock', array( $this, 'notify_no_stock' ) );
 		if ( $this->notify_low_stock )
-			add_action( 'woocommerce_notify_low_stock', array( $this, 'notify_low_stock' ) );
+			add_action( 'woocommerce_low_stock', array( $this, 'notify_low_stock' ) );
 
 	}
 
@@ -86,20 +95,32 @@ class WC_Pushover extends WC_Integration {
 			),
 			'site_api' => array(
 				'title'       => __( 'API Token', 'wc_pushover' ),
-				'description' => __( 'Create a token <a href="https://pushover.net/apps/clone/woocommerce" target="_blank">here</a>', 'wc_pushover' ),
+				'description' => sprintf(
+					'%s <a href="https://pushover.net/apps/clone/woocommerce" target="_blank">%s</a>',
+					__( 'Create a token', 'wc_pushover' ),
+					__( 'here', 'wc_pushover' )
+				),
 				'type'        => 'text',
 				'default'     => '',
 			),
 			'user_api' => array(
 				'title'       => __( 'User Key', 'wc_pushover' ),
-				'description' => __( 'Find your user key <a href="https://pushover.net/dashboard" target="_blank">here</a>', 'wc_pushover' ),
+				'description' => sprintf(
+					'%s <a href="https://pushover.net/dashboard" target="_blank">%s</a>',
+					__( 'Find your user key', 'wc_pushover' ),
+					__( 'here', 'wc_pushover' )
+				),
 				'type'        => 'text',
 				'default'     => '',
 			),
 			'priority' => array(
 				'title'       => __( 'Priority', 'wc_pushover' ),
-				'description' => __( 'Set priority of message. <a href="https://pushover.net/api#priority">Priorities explained.</a>', 'wc_pushover' ),
-				'type'        => 'select',
+				'description' => sprintf(
+					'%s <a href="https://pushover.net/api#priority" target="_blank">%s</a>',
+					__( 'Set priority of message.', 'wc_pushover' ),
+					__( 'Priorities explained.', 'wc_pushover' )
+				),
+        'type'        => 'select',
 				'options'     => array(
 									'-2' => __( '-2 Lowest Priority', 'wc_pushover'),
 									'-1' => __( '-1 Low Priority', 'wc_pushover'),
@@ -155,6 +176,111 @@ class WC_Pushover extends WC_Integration {
 				'type'        => 'checkbox',
 				'default'     => 'no',
 			),
+			'messages' => array(
+				'title'       => __( 'Messages', 'wc_pushover' ),
+				'type'        => 'title',
+			),
+			'title_new_order' => array(
+				'title'       => __( 'New Order', 'wc_pushover' ),
+				'description' => sprintf( '%s<br>%s:', __( 'Optional: Custom Title', 'wc_pushover' ), __( 'Fields', 'wc_pushover' ) ) . ' {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}',
+				'type'        => 'text',
+				'default'     => '',
+				'placeholder' => sprintf(
+				  '%s {Order Id}',
+          __( 'New Order', 'wc_pushover' )
+        ),
+				'css'         => 'width: 100%',
+      ),
+			'message_new_order' => array(
+				'description' => sprintf( '%s<br>%s:', __( 'Optional: Custom Message', 'wc_pushover' ), __( 'Fields', 'wc_pushover' ) ) . ' {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}',
+				'type'        => 'text',
+				'default'     => '',
+				'placeholder' => sprintf(
+				  '{First Name} {Last Name} %s {Products} %s {Currency Symbol}{Total}',
+          __( 'ordered', 'wc_pushover' ),
+          __( 'for', 'wc_pushover' )
+        ),
+				'css'         => 'width: 100%',
+			),
+			'title_free_order' => array(
+				'title'       => __( 'Free Order', 'wc_pushover' ),
+				'description' =>  sprintf( '%s<br>%s:', __( 'Optional: Custom Title', 'wc_pushover' ), __( 'Fields', 'wc_pushover' ) ) . ' {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}',
+				'type'        => 'text',
+				'default'     => '',
+				'placeholder' => sprintf(
+					'%s {Order Id}',
+					__( 'New Order', 'wc_pushover' )
+				),
+				'css'         => 'width: 100%',
+			),
+			'message_free_order' => array(
+				'description' => sprintf( '%s<br>%s:', __( 'Optional: Custom Message', 'wc_pushover' ), __( 'Fields', 'wc_pushover' ) ) . ' {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}',
+				'type'        => 'text',
+				'default'     => '',
+				'placeholder' => sprintf(
+					'{First Name} {Last Name} %s {Products} %s {Currency Symbol}{Total}',
+					__( 'ordered', 'wc_pushover' ),
+					__( 'for', 'wc_pushover' )
+				),
+				'css'         => 'width: 100%',
+			),
+			'title_backorder' => array(
+				'title'       => __( 'Back Order', 'wc_pushover' ),
+				'description' => sprintf( '%s<br>%s:', __( 'Optional: Custom Title', 'wc_pushover' ), __( 'Fields', 'wc_pushover' ) ) . ' {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}, {Product Id}, {Product Name}, {Product Url}',
+				'type'        => 'text',
+				'default'     => '',
+				'placeholder' => __( 'Product Backorder', 'wc_pushover' ),
+				'css'         => 'width: 100%',
+			),
+			'message_backorder' => array(
+				'description' => sprintf( '%s<br>%s:', __( 'Optional: Custom Message', 'wc_pushover' ), __( 'Fields', 'wc_pushover' ) ) . ' {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}, {Product Id}, {Product Name}, {Product Url}',
+				'type'        => 'text',
+				'default'     => '',
+				'placeholder' => sprintf(
+					'%s (#{Product Id} {Product Name}) %s.',
+					__( 'Product', 'wc_pushover' ),
+					__( 'is on backorder', 'wc_pushover' )
+				),
+				'css'         => 'width: 100%',
+			),
+			'title_no_stock' => array(
+				'title'       => __( 'No Stock', 'wc_pushover' ),
+				'description' =>  sprintf( '%s<br>%s:', __( 'Optional: Custom Title', 'wc_pushover' ), __( 'Fields', 'wc_pushover' ) ) . ' {Product Id}, {Product Name}, {Product Url}',
+				'type'        => 'text',
+				'default'     => '',
+				'placeholder' => __( 'Product Out of Stock', 'wc_pushover' ),
+				'css'         => 'width: 100%',
+			),
+			'message_no_stock' => array(
+				'description' => sprintf( '%s<br>%s:', __( 'Optional: Custom Message', 'wc_pushover' ), __( 'Fields', 'wc_pushover' ) ) . ' {Product Id}, {Product Name}, {Product Url}',
+				'type'        => 'text',
+				'default'     => '',
+				'placeholder' => sprintf(
+					'%s (#{Product Id} {Product Name}) %s.',
+					__( 'Product', 'wc_pushover' ),
+					__( 'is now out of stock', 'wc_pushover' )
+				),
+				'css'         => 'width: 100%',
+			),
+			'title_low_stock' => array(
+				'title'       => __( 'Low Stock', 'wc_pushover' ),
+				'description' =>  sprintf( '%s<br>%s:', __( 'Optional: Custom Title', 'wc_pushover' ), __( 'Fields', 'wc_pushover' ) ) . ' {Product Id}, {Product Name}, {Product Url}',
+				'type'        => 'text',
+				'default'     => '',
+				'placeholder' => __( 'Product Low Stock', 'wc_pushover' ),
+				'css'         => 'width: 100%',
+			),
+			'message_low_stock' => array(
+				'description' => sprintf( '%s<br>%s:', __( 'Optional: Custom Message', 'wc_pushover' ), __( 'Fields', 'wc_pushover' ) ) . ' {Product Id}, {Product Name}, {Product Url}',
+				'type'        => 'text',
+				'default'     => '',
+				'placeholder' => sprintf(
+					'%s (#{Product Id} {Product Name}) %s.',
+					__( 'Product', 'wc_pushover' ),
+					__( 'now has low stock', 'wc_pushover' )
+				),
+				'css'         => 'width: 100%',
+			),
 			'test_button' => array(
 				'type'        => 'test_button',
 			),
@@ -173,10 +299,14 @@ class WC_Pushover extends WC_Integration {
 
 		if ( isset($_GET['wc_test']) && ($_GET['wc_test']==1)){
 			$title   = __( 'Test Notification', 'wc_pushover');
-			$message = sprintf(__( 'This is a test notification from %s', 'wc_pushover'), get_bloginfo('name'));
+			$message = sprintf( __( 'This is a test notification from %s', 'wc_pushover' ), get_bloginfo('name'));
 			$url     = get_admin_url();
 
-			$this->send_notification( $title, $message, $url);
+			$this->send_notification(array(
+				'title'    => $title,
+				'message' => $message,
+				'url'     => $url
+			));
 
 			wp_safe_redirect( get_admin_url() . 'admin.php?page=wc-settings&tab=integration&section=pushover' );
 		}
@@ -193,31 +323,37 @@ class WC_Pushover extends WC_Integration {
 
 		$order = new WC_Order( $order_id );
 		$sent = get_post_meta( $order_id, '_pushover_new_order', true );
-		if ( version_compare( WC()->version, '3.0.0', '>=' ) ){
-			$items = $order->get_items();
-			$names = array();
-			foreach( $items as $item ){
-				$names[] = $item->get_name();
-			}
-			$products = implode( ', ', $names );
-		} else {
-			$products = implode( ', ', wp_list_pluck( $order->get_items(), 'name' ) );
-		}
 
 		if ( ! $sent ) {
+
+		  $order_total = $this->is_wc_3 ? $order->get_total() : $order->order_total;
 			// Send notifications if order total is greater than $0
 			// Or if free order notification is enabled
-			if ( 0 < absint( $order->order_total ) || $this->notify_free_order ) {
-				$title   = sprintf( __( 'New Order %d', 'wc_pushover' ), $order_id );
-				$message = sprintf(
+			if ( 0 < absint( $order_total ) || $this->notify_free_order ) {
+
+				$type = 0 == absint( $order_total ) ? 'free_order' : 'new_order';
+				$title = !empty($this->settings['title_' . $type]) ? $this->replace_fields_custom_message($this->settings['title_' . $type], $order) : sprintf( __( 'New Order %d', 'wc_pushover' ), $order_id );
+
+				$message = !empty($this->settings['message_' . $type]) ? $this->replace_fields_custom_message($this->settings['message_' . $type], $order) : sprintf(
 					__( '%1$s ordered %2$s for %3$s ', 'wc_pushover' ),
-					$order->billing_first_name . " " . $order->billing_last_name,
-					$products,
-					$this->pushover_get_currency_symbol() . $order->order_total
+					$this->is_wc_3 ? $order->get_billing_first_name() . " " . $order->get_billing_last_name() : $order->billing_first_name . " " . $order->billing_last_name,
+					$this->get_ordered_products_string($order),
+					$this->pushover_get_currency_symbol() . $order_total
 				);
+
 				$url     = get_admin_url();
 
-				$this->send_notification( $title, $message, $url );
+				$args = array(
+					'title'    => $title,
+					'message' => $message,
+					'url'     => $url
+				);
+
+				if( 'free_order' === $type ) {
+					$this->send_notification( apply_filters('wc_pushover_notify_free_order', $args));
+				} else {
+					$this->send_notification( apply_filters('wc_pushover_notify_new_order', $args));
+				}
 
 				add_post_meta( $order_id, '_pushover_new_order', true );
 			}
@@ -236,11 +372,17 @@ class WC_Pushover extends WC_Integration {
 
 		$product  = $args['product'];
 		$order_id = $args['order_id'];
-		$title    = sprintf( __( 'Product Backorder', 'wc_pushover' ), $order_id );
-		$message  = sprintf( __( 'Product (#%d %s) is on backorder.', 'wc_pushover' ), $product->id, $product->get_title() );
+
+		$title = !empty($this->settings['title_backorder']) ? $this->replace_fields_custom_message($this->settings['title_backorder'], new WC_Order($args['order_id']), $product) : sprintf( __( 'Product Backorder', 'wc_pushover' ), $order_id );
+		$message = !empty($this->settings['message_backorder']) ? $this->replace_fields_custom_message($this->settings['message_backorder'], new WC_Order($args['order_id']), $product) : sprintf( __( 'Product (#%d %s) is on backorder.', 'wc_pushover' ), $product->get_id(), $product->get_title() );
+
 		$url      = get_admin_url();
 
-		$this->send_notification( $title, $message, $url );
+		$this->send_notification( apply_filters('wc_pushover_notify_backorder', array(
+			'title'    => $title,
+			'message' => $message,
+			'url'     => $url
+		)));
 
 	}
 
@@ -255,11 +397,15 @@ class WC_Pushover extends WC_Integration {
 	 */
 	function notify_no_stock( WC_Product $product ) {
 
-		$title   = __( 'Product Out of Stock', 'wc_pushover' );
-		$message = sprintf( __( 'Product %s %s is now out of stock.', 'wc_pushover' ), $product->get_id(), $product->get_title() );
+		$title = !empty($this->settings['title_no_stock']) ? $this->replace_fields_custom_message($this->settings['title_no_stock'], null, $product) : __( 'Product Out of Stock', 'wc_pushover' );
+		$message = !empty($this->settings['message_no_stock']) ? $this->replace_fields_custom_message($this->settings['message_no_stock'], null, $product) : sprintf( __( 'Product (#%d %s) is now out of stock.', 'wc_pushover' ), $product->get_id(), $product->get_title() );
 		$url     = get_admin_url();
 
-		$this->send_notification( $title, $message, $url );
+		$this->send_notification( apply_filters('wc_pushover_notify_no_stock', array(
+			'title'    => $title,
+			'message' => $message,
+			'url'     => $url
+		)));
 
 	}
 
@@ -275,12 +421,97 @@ class WC_Pushover extends WC_Integration {
 	function notify_low_stock( WC_Product $product ) {
 
 		// get order details
-		$title   = __( 'Product Low Stock', 'wc_pushover' );
-		$message = sprintf( __( 'Product %s %s now has low stock.', 'wc_pushover' ), $product->get_id(), $product->get_title() );
+		$title = !empty($this->settings['title_low_stock']) ? $this->replace_fields_custom_message($this->settings['title_low_stock'], null, $product) : __( 'Product Low Stock', 'wc_pushover' );
+		$message = !empty($this->settings['message_low_stock']) ? $this->replace_fields_custom_message($this->settings['message_low_stock'], null, $product) : sprintf( __( 'Product (#%d %s) now has low stock.', 'wc_pushover' ), $product->get_id(), $product->get_title() );
 		$url     = get_admin_url();
 
-		$this->send_notification( $title, $message, $url );
+		$this->send_notification( apply_filters('wc_pushover_notify_low_stock', array(
+			'title'    => $title,
+			'message' => $message,
+			'url'     => $url
+		)));
 
+	}
+
+	/**
+	 * Replaces the fields for custom messages and titles
+	 *
+	 * @param string $custom_string
+	 * @param WC_Order $order
+	 * @param WC_Product $product
+	 *
+	 * @return mixed|string
+	 */
+	protected function replace_fields_custom_message($custom_string, $order = null, $product = null) {
+
+	  if(!empty($order)) {
+			$custom_string = str_replace(
+				array(
+					'{First Name}',
+					'{Last Name}',
+					'{Order Id}',
+					'{Products}',
+					'{Total}',
+					'{Currency}',
+					'{Currency Symbol}',
+					'{Payment Method}',
+					'{Order Status}',
+				),
+				array(
+					$this->is_wc_3 ? $order->get_billing_first_name() : $order->billing_first_name,
+					$this->is_wc_3 ? $order->get_billing_last_name() : $order->billing_last_name,
+					$this->is_wc_3 ? $order->get_id() : $order->id,
+					$this->get_ordered_products_string($order),
+					$order->get_total(),
+					get_woocommerce_currency(),
+					$this->pushover_get_currency_symbol(),
+					$this->is_wc_3 ? $order->get_payment_method_title() : $order->payment_method_title,
+					$order->get_status(),
+        ),
+				$custom_string
+			);
+    }
+
+		if(!empty($product)) {
+			$custom_string = str_replace(
+				array(
+					'{Product Id}',
+					'{Product Name}',
+					'{Product Url}',
+				),
+				array(
+					$product->get_id(),
+					$product->get_title(),
+					get_permalink($product->get_id()),
+        ),
+				$custom_string
+			);
+		}
+
+		return $custom_string;
+
+	}
+
+	/**
+	 * Get ordered products in string
+	 *
+	 * @param WC_Order $order
+	 *
+	 * @return string of products
+	 */
+	protected function get_ordered_products_string($order) {
+		if ( $this->is_wc_3 ){
+			$items = $order->get_items();
+			$names = array();
+			foreach( $items as $item ){
+				$names[] = $item->get_name();
+			}
+			$products = implode( ', ', $names );
+		} else {
+			$products = implode( ', ', wp_list_pluck( $order->get_items(), 'name' ) );
+		}
+
+		return $products;
 	}
 
 	/**
@@ -289,12 +520,14 @@ class WC_Pushover extends WC_Integration {
 	 * Send notification when new order is received
 	 *
 	 * @access public
-	 * @param $title
-	 * @param $message
-	 * @param string $url
+	 * @param $args {
+	 *     @type string title   Push title
+	 *     @type string message Push message
+	 *     @type string url     URL of admin area
+	 * }
 	 * @return void
 	 */
-	function send_notification( $title, $message, $url = '' ) {
+	function send_notification( $args ) {
 
 		if ( ! class_exists( 'Pushover_Api' ) )
 			include_once( 'class-pushover-api.php' );
@@ -316,16 +549,16 @@ class WC_Pushover extends WC_Integration {
 		$pushover->setPriority( $this->priority );
 
 		// Setup message
-		$pushover->setTitle ( $title );
-		$pushover->setMessage( $message );
-		$pushover->setUrl( $url );
+		$pushover->setTitle ( $args['title'] );
+		$pushover->setMessage( $args['message'] );
+		$pushover->setUrl( $args['url'] );
 		$response = '';
 
 		$this->add_log( __( 'Sending: ', 'wc_pushover' ) .
-							"\nTitle: ". $title .
-							"\nMessage: ". $message .
-							"\nURL: " . $url .
-						    "\nPriority: " . $this->priority );
+							"\nTitle: ". $args['title'] .
+							"\nMessage: ". $args['message'] .
+							"\nURL: " . $args['url'] .
+						  "\nPriority: " . $this->priority );
 
 		try {
 			$response = $pushover->send();
