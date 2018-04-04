@@ -3,11 +3,11 @@
  * Plugin Name: WooCommerce Pushover Integration
  * Plugin URI: https://shopplugins.com/
  * Description: Integrates <a href="http://www.woothemes.com/woocommerce" target="_blank" >WooCommerce</a> with the <a href="https://pushover.net/" target="_blank">Pushover</a> notifications app for Android and iOS.
- * Version: 1.0.13
+ * Version: 1.0.14
  * Author: Shop Plugins
  * Author URI: https://shopplugins.com/
  * WC requires at least: 2.6.14
- * WC tested up to: 3.3.3
+ * WC tested up to: 3.3.4
 */
 /**
  * This program is free software; you can redistribute it and/or modify
@@ -28,12 +28,18 @@
  */
 if ( class_exists( 'WC_Pushover' ) ) return;
 
-/**
- * Localisation
- */
-load_plugin_textdomain( 'wc_pushover', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
-
 define( 'WC_PUSHOVER_DIR', plugin_dir_path(__FILE__) );
+
+/**
+ * Adds plugin localization
+ * Domain: et_automatic_updates
+ *
+ * @return void
+ */
+function wc_pushover_localization() {
+	load_plugin_textdomain( 'wc_pushover', false, basename( dirname( __FILE__ ) ) . '/languages' );
+}
+add_action( 'plugins_loaded', 'wc_pushover_localization' );
 
 /**
  * Plugin activation check
@@ -56,6 +62,7 @@ function wc_pushover_activation_check() {
         deactivate_plugins( basename( __FILE__ ) );
         wp_die( "Sorry, but you can't run this plugin, it requires the SimpleXML library installed on your server/hosting to function." );
 	}
+	
 }
 register_activation_hook( __FILE__, 'wc_pushover_activation_check' );
 
