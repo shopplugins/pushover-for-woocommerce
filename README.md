@@ -74,7 +74,15 @@ A.  Notifications are limited to 512 characters, including a title.  URL's are l
 
 == Changelog ==
 
-2015.05.28  1.0.12
+2018.04.04 1.0.14
+* Added Slovenian translation
+* Added user defined notifications for all messages.
+
+2018.03.08 1.0.13
+* Testing with WC 3.3.3 and WordPress 4.9.4
+* Update field labels to clarify key vs. token. thanks @jcs!
+
+2017.05.28  1.0.12
 * Update for getting product title.
 
 2015.05.16  1.0.11
@@ -89,27 +97,35 @@ A.  Notifications are limited to 512 characters, including a title.  URL's are l
 * Verified WooCommerce 2.4.0 compatibility
 * Updated links
 
+2015.02.28   1.0.8
+* Added better logging functions.
+* Updated branding
+* Updated support and docs links
+
+2014.12.10   1.0.7
+* WordPress 4.0.1 testing
+* Added plugin icon
+
 2014.09.17   1.0.6
 * WooCommerce 2.2 compatibility
 
 2014.04.04   1.0.5
- * Fixed admin settings page link
- * Fixed send test message redirect page
- * Fixed text domain
+* Fixed admin settings page link
+* Fixed send test message redirect page
+* Fixed text domain
 
 2013.11.21   1.0.4
- * Added notification when an order totals $0.
+* Added notification when an order totals $0.
 
 2013.10.19   1.0.3
- * Updated branding and links
+* Updated branding and links
 
 2013.08.29   1.0.2
- * Fixed low and no stock notifications hook.
- * Fixed currency symbol - now sending symbol for WooCommerce base currency
+* Fixed low and no stock notifications hook.
+* Fixed currency symbol - now sending symbol for WooCommerce base currency
 
-2013.02.07	 1.0.1
-	* Fixed fatal error from undefined is_woocommerce_active() function call
+2013.02.06   1.0.1
+* Fixed fatal error from undefined is_woocommerce_active() function call
 
 2013.01.18   1.0.0
-	* First Version
-
+* First Version
