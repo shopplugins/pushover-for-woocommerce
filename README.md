@@ -78,7 +78,7 @@ A.  Notifications are limited to 512 characters, including a title.  URL's are l
 * Added Slovenian translation
 * Added user defined notifications for all messages.
 
-2018.03.08 1.0.13
+2018.03.08  1.0.13
 * Testing with WC 3.3.3 and WordPress 4.9.4
 * Update field labels to clarify key vs. token. thanks @jcs!
 
