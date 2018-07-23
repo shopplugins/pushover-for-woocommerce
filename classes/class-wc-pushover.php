@@ -55,7 +55,7 @@ class WC_Pushover extends WC_Integration {
 		$this->device            = isset( $this->settings['device'] ) ? $this->settings['device'] : '';
 		$this->priority          = isset( $this->settings['priority'] ) ? $this->settings['priority'] : '';
 		$this->debug             = isset( $this->settings['debug'] ) && $this->settings['debug'] == 'yes' ? true : false;
-		$this->sound		 = isset( $this->settings['sound'] ) ? $this->settings['sound'] : '';
+		$this->sound          	 = isset( $this->settings['sound'] ) ? $this->settings['sound'] : '';
 		
 		// Notices
 		$this->notify_new_order  = isset( $this->settings['notify_new_order'] ) && $this->settings['notify_new_order'] == 'yes' ? true : false;
@@ -134,8 +134,8 @@ class WC_Pushover extends WC_Integration {
 			'sound' => array(
 				'title'       => __( 'Notification Sound', 'wc_pushover' ),
 				'description' => sprintf(
-					'%s <a href="https://pushover.net/apps/clone/woocommerce" target="_blank">%s</a>',
-					__( 'Create a token', 'wc_pushover' ),
+					'%s <a href="https://pushover.net/api#sounds" target="_blank">%s</a>',
+					__( 'Select from', 'wc_pushover' ),
 					__( 'here', 'wc_pushover' )
 				),
 				'type'        => 'text',
