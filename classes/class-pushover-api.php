@@ -29,6 +29,7 @@ class Pushover_Api {
 	private $user_api   = '';
 	private $device     = '';
 	private $priority   = '';
+	private $sound	    = '';
 	private $title      = '';
 	private $message    = '';
 	private $url        = '';
@@ -111,6 +112,22 @@ class Pushover_Api {
 	public function getPriority() {
 		return $this->priority;
 	}
+   /*
+	*  Set Sound to send to Pushover (optional)
+	*
+	*/
+	public function setSound( $sound ) {
+		$this->sound = $sound;
+	}
+
+   /*
+	*  Get Sound to send to Pushover (optional)
+	*
+    * @return string $priority
+	*/
+	public function getSound() {
+		return $this->sound;
+	}
 
    /*
 	*  setTitle()
@@ -184,7 +201,7 @@ class Pushover_Api {
 		$request = array(
 						'token' 	=> $this->site_api,
 						'user'  	=> $this->user_api,
-						'title'     => $this->title,
+						'title'     	=> $this->title,
 						'message'	=> $this->message,
 						'url' 		=> $this->url,
 					);
