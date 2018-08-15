@@ -140,7 +140,7 @@ class WC_Pushover extends WC_Integration {
 				),
 				'type'        => 'text',
 				'default'     => '',
-			)
+			),
 			'device' => array(
 				'title'       => __( 'Device', 'wc_pushover' ),
 				'description' => __( 'Optional: Name of device to send notifications', 'wc_pushover' ),
@@ -570,7 +570,7 @@ class WC_Pushover extends WC_Integration {
 							"\nTitle: ". $args['title'] .
 							"\nMessage: ". $args['message'] .
 							"\nURL: " . $args['url'] .
-						  	"\nPriority: " . $this->priority ) .
+						  	"\nPriority: " . $this->priority .
 							"\nSound: " . $this->sound );
 
 		try {
