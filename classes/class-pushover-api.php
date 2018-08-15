@@ -204,6 +204,7 @@ class Pushover_Api {
 						'title'     	=> $this->title,
 						'message'	=> $this->message,
 						'url' 		=> $this->url,
+						'sound'		=> $this->sound
 					);
 
 		$response = wp_remote_post( 
