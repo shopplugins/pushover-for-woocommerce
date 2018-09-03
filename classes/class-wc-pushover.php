@@ -55,7 +55,8 @@ class WC_Pushover extends WC_Integration {
 		$this->device            = isset( $this->settings['device'] ) ? $this->settings['device'] : '';
 		$this->priority          = isset( $this->settings['priority'] ) ? $this->settings['priority'] : '';
 		$this->debug             = isset( $this->settings['debug'] ) && $this->settings['debug'] == 'yes' ? true : false;
-
+		$this->sound          	 = isset( $this->settings['sound'] ) ? $this->settings['sound'] : '';
+		
 		// Notices
 		$this->notify_new_order  = isset( $this->settings['notify_new_order'] ) && $this->settings['notify_new_order'] == 'yes' ? true : false;
 		$this->notify_free_order = isset( $this->settings['notify_free_order'] ) && $this->settings['notify_free_order'] == 'yes' ? true : false;
@@ -129,6 +130,16 @@ class WC_Pushover extends WC_Integration {
 									'2'  => __( '2 Emergency Priority', 'wc_pushover'),
 								),
 				'default'     => '0',
+			),
+			'sound' => array(
+				'title'       => __( 'Notification Sound', 'wc_pushover' ),
+				'description' => sprintf(
+					'%s <a href="https://pushover.net/api#sounds" target="_blank">%s</a>',
+					__( 'Select from', 'wc_pushover' ),
+					__( 'here', 'wc_pushover' )
+				),
+				'type'        => 'text',
+				'default'     => '',
 			),
 			'device' => array(
 				'title'       => __( 'Device', 'wc_pushover' ),
@@ -547,7 +558,8 @@ class WC_Pushover extends WC_Integration {
 			$pushover->setDevice( $this->device );
 		}
 		$pushover->setPriority( $this->priority );
-
+		$pushover->setSound( $this->sound );
+		
 		// Setup message
 		$pushover->setTitle ( $args['title'] );
 		$pushover->setMessage( $args['message'] );
@@ -558,7 +570,8 @@ class WC_Pushover extends WC_Integration {
 							"\nTitle: ". $args['title'] .
 							"\nMessage: ". $args['message'] .
 							"\nURL: " . $args['url'] .
-						  "\nPriority: " . $this->priority );
+						  	"\nPriority: " . $this->priority .
+							"\nSound: " . $this->sound );
 
 		try {
 			$response = $pushover->send();
