@@ -201,7 +201,7 @@ class Pushover_Api {
 		$request = array(
 						'token' 	=> $this->site_api,
 						'user'  	=> $this->user_api,
-						'title'     	=> $this->title,
+						'title'     => $this->title,
 						'message'	=> $this->message,
 						'url' 		=> $this->url,
 						'sound'		=> $this->sound
