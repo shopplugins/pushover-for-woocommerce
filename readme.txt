@@ -4,8 +4,8 @@ Donate link: https://shopplugins.com
 Tags: woocommerce, pushover, ecommerce, notification, integration, ios, android, store manager
 Requires at least: 3.5
 Tested up to: 4.9.5
-Stable tag: 1.0.14
-WC tested up to: 3.3.4
+Stable tag: 1.0.15
+WC tested up to: 3.5.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -89,6 +89,10 @@ A.  Notifications are limited to 512 characters, including a title.  URL's are l
 2. screenshot-2.png
 
 == Changelog ==
+
+2019.01.29 1.0.15
+* Added Phone field for messages
+* Added sounds: https://pushover.net/api#sounds
 
 2018.04.04 1.0.14
 * Added Slovenian translation

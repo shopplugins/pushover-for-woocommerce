@@ -74,6 +74,10 @@ A.  Notifications are limited to 512 characters, including a title.  URL's are l
 
 == Changelog ==
 
+2019.01.29 1.0.15
+* Added Phone field for messages
+* Added sounds: https://pushover.net/api#sounds
+
 2018.04.04 1.0.14
 * Added Slovenian translation
 * Added user defined notifications for all messages.

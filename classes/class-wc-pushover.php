@@ -193,7 +193,7 @@ class WC_Pushover extends WC_Integration {
 			),
 			'title_new_order' => array(
 				'title'       => __( 'New Order', 'wc_pushover' ),
-				'description' => sprintf( '%s<br>%s:', __( 'Optional: Custom Title', 'wc_pushover' ), __( 'Fields', 'wc_pushover' ) ) . ' {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}',
+				'description' => sprintf( '%s<br>%s:', __( 'Optional: Custom Title', 'wc_pushover' ), __( 'Fields', 'wc_pushover' ) ) . ' {First Name}, {Last Name}, {Phone}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}',
 				'type'        => 'text',
 				'default'     => '',
 				'placeholder' => sprintf(
@@ -203,7 +203,7 @@ class WC_Pushover extends WC_Integration {
 				'css'         => 'width: 100%',
       ),
 			'message_new_order' => array(
-				'description' => sprintf( '%s<br>%s:', __( 'Optional: Custom Message', 'wc_pushover' ), __( 'Fields', 'wc_pushover' ) ) . ' {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}',
+				'description' => sprintf( '%s<br>%s:', __( 'Optional: Custom Message', 'wc_pushover' ), __( 'Fields', 'wc_pushover' ) ) . ' {First Name}, {Last Name}, {Phone}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}',
 				'type'        => 'text',
 				'default'     => '',
 				'placeholder' => sprintf(
@@ -215,7 +215,7 @@ class WC_Pushover extends WC_Integration {
 			),
 			'title_free_order' => array(
 				'title'       => __( 'Free Order', 'wc_pushover' ),
-				'description' =>  sprintf( '%s<br>%s:', __( 'Optional: Custom Title', 'wc_pushover' ), __( 'Fields', 'wc_pushover' ) ) . ' {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}',
+				'description' =>  sprintf( '%s<br>%s:', __( 'Optional: Custom Title', 'wc_pushover' ), __( 'Fields', 'wc_pushover' ) ) . ' {First Name}, {Last Name}, {Phone}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}',
 				'type'        => 'text',
 				'default'     => '',
 				'placeholder' => sprintf(
@@ -225,7 +225,7 @@ class WC_Pushover extends WC_Integration {
 				'css'         => 'width: 100%',
 			),
 			'message_free_order' => array(
-				'description' => sprintf( '%s<br>%s:', __( 'Optional: Custom Message', 'wc_pushover' ), __( 'Fields', 'wc_pushover' ) ) . ' {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}',
+				'description' => sprintf( '%s<br>%s:', __( 'Optional: Custom Message', 'wc_pushover' ), __( 'Fields', 'wc_pushover' ) ) . ' {First Name}, {Last Name}, {Phone}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}',
 				'type'        => 'text',
 				'default'     => '',
 				'placeholder' => sprintf(
@@ -237,14 +237,14 @@ class WC_Pushover extends WC_Integration {
 			),
 			'title_backorder' => array(
 				'title'       => __( 'Back Order', 'wc_pushover' ),
-				'description' => sprintf( '%s<br>%s:', __( 'Optional: Custom Title', 'wc_pushover' ), __( 'Fields', 'wc_pushover' ) ) . ' {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}, {Product Id}, {Product Name}, {Product Url}',
+				'description' => sprintf( '%s<br>%s:', __( 'Optional: Custom Title', 'wc_pushover' ), __( 'Fields', 'wc_pushover' ) ) . ' {First Name}, {Last Name}, {Phone}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}, {Product Id}, {Product Name}, {Product Url}',
 				'type'        => 'text',
 				'default'     => '',
 				'placeholder' => __( 'Product Backorder', 'wc_pushover' ),
 				'css'         => 'width: 100%',
 			),
 			'message_backorder' => array(
-				'description' => sprintf( '%s<br>%s:', __( 'Optional: Custom Message', 'wc_pushover' ), __( 'Fields', 'wc_pushover' ) ) . ' {First Name}, {Last Name}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}, {Product Id}, {Product Name}, {Product Url}',
+				'description' => sprintf( '%s<br>%s:', __( 'Optional: Custom Message', 'wc_pushover' ), __( 'Fields', 'wc_pushover' ) ) . ' {First Name}, {Last Name}, {Phone}, {Order Id}, {Products}, {Total}, {Currency}, {Currency Symbol}, {Payment Method}, {Order Status}, {Product Id}, {Product Name}, {Product Url}',
 				'type'        => 'text',
 				'default'     => '',
 				'placeholder' => sprintf(
@@ -453,37 +453,39 @@ class WC_Pushover extends WC_Integration {
 	 *
 	 * @return mixed|string
 	 */
-	protected function replace_fields_custom_message($custom_string, $order = null, $product = null) {
+	protected function replace_fields_custom_message( $custom_string, $order = null, $product = null ) {
 
-	  if(!empty($order)) {
-			$custom_string = str_replace(
-				array(
-					'{First Name}',
-					'{Last Name}',
-					'{Order Id}',
-					'{Products}',
-					'{Total}',
-					'{Currency}',
-					'{Currency Symbol}',
-					'{Payment Method}',
-					'{Order Status}',
-				),
-				array(
-					$this->is_wc_3 ? $order->get_billing_first_name() : $order->billing_first_name,
-					$this->is_wc_3 ? $order->get_billing_last_name() : $order->billing_last_name,
-					$this->is_wc_3 ? $order->get_id() : $order->id,
-					$this->get_ordered_products_string($order),
-					$order->get_total(),
-					get_woocommerce_currency(),
-					$this->pushover_get_currency_symbol(),
-					$this->is_wc_3 ? $order->get_payment_method_title() : $order->payment_method_title,
-					$order->get_status(),
-        ),
-				$custom_string
-			);
-    }
+		  if( ! empty( $order ) ) {
+				$custom_string = str_replace(
+					array(
+						'{First Name}',
+						'{Last Name}',
+						'{Phone}',
+						'{Order Id}',
+						'{Products}',
+						'{Total}',
+						'{Currency}',
+						'{Currency Symbol}',
+						'{Payment Method}',
+						'{Order Status}',
+					),
+					array(
+						$this->is_wc_3 ? $order->get_billing_first_name() : $order->billing_first_name,
+						$this->is_wc_3 ? $order->get_billing_last_name() : $order->billing_last_name,
+						$this->is_wc_3 ? $order->get_billing_phone() : $order->billing_phone,
+						$this->is_wc_3 ? $order->get_id() : $order->id,
+						$this->get_ordered_products_string($order),
+						$order->get_total(),
+						get_woocommerce_currency(),
+						$this->pushover_get_currency_symbol(),
+						$this->is_wc_3 ? $order->get_payment_method_title() : $order->payment_method_title,
+						$order->get_status(),
+					),
+					$custom_string
+				);
+	    }
 
-		if(!empty($product)) {
+		if( ! empty( $product ) ) {
 			$custom_string = str_replace(
 				array(
 					'{Product Id}',
@@ -494,7 +496,7 @@ class WC_Pushover extends WC_Integration {
 					$product->get_id(),
 					$product->get_title(),
 					get_permalink($product->get_id()),
-        ),
+				),
 				$custom_string
 			);
 		}
