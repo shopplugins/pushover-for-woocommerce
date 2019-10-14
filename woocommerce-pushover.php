@@ -55,7 +55,7 @@ function wc_pushover_activation_check() {
 		$active_plugins = array_merge( $active_plugins, get_site_option( 'active_sitewide_plugins', array() ) );
 	}
 
-	if ( ! ( in_array( 'woocommerce/woocommerce.php', $active_plugins ) || array_key_exists( 'woocommerce/woocommerce.php', $active_plugins ) ) ) {
+	if ( ! ( in_array( 'woocommerce/woocommerce.php', $active_plugins, true ) || array_key_exists( 'woocommerce/woocommerce.php', $active_plugins ) ) ) {
 		deactivate_plugins( basename( __FILE__ ) );
 		wp_die( 'This plugin requires WooCommerce to be installed and active.' );
 	}

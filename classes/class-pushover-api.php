@@ -3,19 +3,19 @@
  * Pushover_Api class.
  *
  */
-/* 
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License, version 2, as
-    published by the Free Software Foundation.
+/*
+	This program is free software; you can redistribute it and/or modify
+	it under the terms of the GNU General Public License, version 2, as
+	published by the Free Software Foundation.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+	You should have received a copy of the GNU General Public License
+	along with this program; if not, write to the Free Software
+	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 */
 if ( ! defined( 'ABSPATH' ) ) {
@@ -24,45 +24,45 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Pushover_Api {
 
-	private $endpoint   = 'https://api.pushover.net/1/messages.json';
-	private $site_api   = '';
-	private $user_api   = '';
-	private $device     = '';
-	private $priority   = '';
-	private $sound	    = '';
-	private $title      = '';
-	private $message    = '';
-	private $url        = '';
+	private $endpoint = 'https://api.pushover.net/1/messages.json';
+	private $site_api = '';
+	private $user_api = '';
+	private $device   = '';
+	private $priority = '';
+	private $sound    = '';
+	private $title    = '';
+	private $message  = '';
+	private $url      = '';
 
-   /**
-    * Constructor
-    *
-    * @access public
-    */
+	/**
+	 * Constructor
+	 *
+	 * @access public
+	 */
 	public function __construct() {
-		
+
 	}
-	
-   /*
+
+	/*
 	* Sets the Site API for Pushover
 	*
-    * @param string $site_api
-    *
+	* @param string $site_api
+	*
 	*/
 	public function setSiteApi( $site_api ) {
 		$this->site_api = $site_api;
 	}
 
-   /*
+	/*
 	*  Getter for Site API
-    *
+	*
 	* @return string $site_api
 	*/
 	public function getSiteApi() {
 		return $this->site_api;
 	}
 
-   /*
+	/*
 	*  setUserApi()
 	*
 	*/
@@ -70,16 +70,16 @@ class Pushover_Api {
 		$this->user_api = $user_api;
 	}
 
-   /*
-	* getUserApi() 
+	/*
+	* getUserApi()
 	*
-    * @return string @site_api
+	* @return string @site_api
 	*/
 	public function getUserApi() {
 		return $this->user_api;
 	}
 
-   /*
+	/*
 	*  Set Device ID to send to Pushover (optional)
 	*
 	*/
@@ -87,16 +87,16 @@ class Pushover_Api {
 		$this->device = $device;
 	}
 
-   /*
+	/*
 	* Get Device ID to send to Pushover
 	*
-    * @return string device
+	* @return string device
 	*/
 	public function getDevice() {
 		return $this->device;
 	}
 
-   /*
+	/*
 	*  Set Priority to send to Pushover (optional)
 	*
 	*/
@@ -104,15 +104,15 @@ class Pushover_Api {
 		$this->priority = $priority;
 	}
 
-   /*
+	/*
 	*  Get Priority to send to Pushover (optional)
 	*
-    * @return string $priority
+	* @return string $priority
 	*/
 	public function getPriority() {
 		return $this->priority;
 	}
-   /*
+	/*
 	*  Set Sound to send to Pushover (optional)
 	*
 	*/
@@ -120,16 +120,16 @@ class Pushover_Api {
 		$this->sound = $sound;
 	}
 
-   /*
+	/*
 	*  Get Sound to send to Pushover (optional)
 	*
-    * @return string $priority
+	* @return string $priority
 	*/
 	public function getSound() {
 		return $this->sound;
 	}
 
-   /*
+	/*
 	*  setTitle()
 	*
 	*/
@@ -137,7 +137,7 @@ class Pushover_Api {
 		$this->title = $title;
 	}
 
-   /*
+	/*
 	*  getTitle()
 	*
 	*/
@@ -145,7 +145,7 @@ class Pushover_Api {
 		return $this->title;
 	}
 
-   /*
+	/*
 	*  setMessage()
 	*
 	*/
@@ -153,7 +153,7 @@ class Pushover_Api {
 		$this->message = $message;
 	}
 
-   /*
+	/*
 	*  getMessage()
 	*
 	*/
@@ -161,7 +161,7 @@ class Pushover_Api {
 		return $this->message;
 	}
 
-   /*
+	/*
 	*  setUrl()
 	*
 	*/
@@ -186,38 +186,43 @@ class Pushover_Api {
 	 * @return none
 	 */
 	function send() {
-			
-		if ( $this->site_api == '' )	
-			throw new Exception('Missing Site API'); 
-		if ( $this->user_api == '' )	
-			throw new Exception('Missing User API'); 
-		if ( $this->title == '' )	
-			throw new Exception('Missing Title'); 
-		if ( $this->message == '' )	
-			throw new Exception('Missing Message'); 
-		if ( $this->url == '' )	
-			throw new Exception('Missing URL'); 
+
+		if ( $this->site_api == '' ) {
+			throw new Exception( 'Missing Site API' );
+		}
+		if ( $this->user_api == '' ) {
+			throw new Exception( 'Missing User API' );
+		}
+		if ( $this->title == '' ) {
+			throw new Exception( 'Missing Title' );
+		}
+		if ( $this->message == '' ) {
+			throw new Exception( 'Missing Message' );
+		}
+		if ( $this->url == '' ) {
+			throw new Exception( 'Missing URL' );
+		}
 
 		$request = array(
-						'token' 	=> $this->site_api,
-						'user'  	=> $this->user_api,
-						'title'     => $this->title,
-						'message'	=> $this->message,
-						'url' 		=> $this->url,
-						'sound'		=> $this->sound
-					);
-
-		$response = wp_remote_post( 
-				$this->endpoint,
-				array(
-					'timeout'   => 70,
-					'sslverify' => 0,
-					'body'      => $request
-			    )
+			'token'   => $this->site_api,
+			'user'    => $this->user_api,
+			'title'   => $this->title,
+			'message' => $this->message,
+			'url'     => $this->url,
+			'sound'   => $this->sound,
 		);
-	
-		return $response; 
-			
+
+		$response = wp_remote_post(
+			$this->endpoint,
+			array(
+				'timeout'   => 70,
+				'sslverify' => 0,
+				'body'      => $request,
+			)
+		);
+
+		return $response;
+
 	}
 
 
