@@ -26,9 +26,11 @@
 /**
  * Required functions
  */
-if ( class_exists( 'WC_Pushover' ) ) return;
+if ( class_exists( 'WC_Pushover' ) ) {
+	return;
+}
 
-define( 'WC_PUSHOVER_DIR', plugin_dir_path(__FILE__) );
+define( 'WC_PUSHOVER_DIR', plugin_dir_path( __FILE__ ) );
 
 /**
  * Adds plugin localization
@@ -49,20 +51,21 @@ function wc_pushover_activation_check() {
 	// Verify WooCommerce is installed and active
 	$active_plugins = (array) get_option( 'active_plugins', array() );
 
-	if ( is_multisite() )
+	if ( is_multisite() ) {
 		$active_plugins = array_merge( $active_plugins, get_site_option( 'active_sitewide_plugins', array() ) );
+	}
 
-	if ( ! ( in_array('woocommerce/woocommerce.php', $active_plugins) || array_key_exists('woocommerce/woocommerce.php', $active_plugins) ) ) {
-        deactivate_plugins( basename( __FILE__ ) );
-        wp_die( "This plugin requires WooCommerce to be installed and active." );
+	if ( ! ( in_array( 'woocommerce/woocommerce.php', $active_plugins ) || array_key_exists( 'woocommerce/woocommerce.php', $active_plugins ) ) ) {
+		deactivate_plugins( basename( __FILE__ ) );
+		wp_die( 'This plugin requires WooCommerce to be installed and active.' );
 	}
 
 	// verify that SimpleXML library is available
 	if ( ! function_exists( 'simplexml_load_string' ) ) {
-        deactivate_plugins( basename( __FILE__ ) );
-        wp_die( "Sorry, but you can't run this plugin, it requires the SimpleXML library installed on your server/hosting to function." );
+		deactivate_plugins( basename( __FILE__ ) );
+		wp_die( "Sorry, but you can't run this plugin, it requires the SimpleXML library installed on your server/hosting to function." );
 	}
-	
+
 }
 register_activation_hook( __FILE__, 'wc_pushover_activation_check' );
 
@@ -73,7 +76,7 @@ register_activation_hook( __FILE__, 'wc_pushover_activation_check' );
  * @return void
  */
 function wc_pushover_init() {
-	include_once( 'classes/class-wc-pushover.php' );
+	include_once 'classes/class-wc-pushover.php';
 }
 add_action( 'woocommerce_integrations_init', 'wc_pushover_init' );
 
@@ -81,7 +84,7 @@ function add_pushover_integration( $integrations ) {
 	$integrations[] = 'WC_Pushover';
 	return $integrations;
 }
-add_filter('woocommerce_integrations', 'add_pushover_integration' );
+add_filter( 'woocommerce_integrations', 'add_pushover_integration' );
 
 /**
  * Plugin page links
