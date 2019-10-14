@@ -1,5 +1,8 @@
 *** WooCommerce Pushover Integration ***
 
+2019.10.14 1.0.16
+
+
 2019.01.29 1.0.15
 * Added Phone field for messages
 * Added sounds: https://pushover.net/api#sounds
