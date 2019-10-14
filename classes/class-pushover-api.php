@@ -185,21 +185,21 @@ class Pushover_Api {
 	 * @throws exception - on any error in sending, or missing settings
 	 * @return none
 	 */
-	function send() {
+	public function send() {
 
-		if ( $this->site_api == '' ) {
+		if ( '' === $this->site_api ) {
 			throw new Exception( 'Missing Site API' );
 		}
-		if ( $this->user_api == '' ) {
+		if ( '' === $this->user_api ) {
 			throw new Exception( 'Missing User API' );
 		}
-		if ( $this->title == '' ) {
+		if ( '' === $this->title ) {
 			throw new Exception( 'Missing Title' );
 		}
-		if ( $this->message == '' ) {
+		if ( '' === $this->message ) {
 			throw new Exception( 'Missing Message' );
 		}
-		if ( $this->url == '' ) {
+		if ( '' === $this->url ) {
 			throw new Exception( 'Missing URL' );
 		}
 
