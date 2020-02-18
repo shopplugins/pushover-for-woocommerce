@@ -599,7 +599,12 @@ class WC_Pushover extends WC_Integration {
 	 * @return string of products
 	 */
 	protected function get_ordered_products_string( $order ) {
-		$products = implode( ', ', wp_list_pluck( $order->get_items(), 'name' ) );
+		$items = $order->get_items();
+		$names = array();
+		foreach ( $items as $item ) {
+			$names[] = $item->get_name();
+		}
+		$products = implode( ', ', $names );
 
 		return $products;
 	}
