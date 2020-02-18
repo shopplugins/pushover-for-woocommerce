@@ -100,20 +100,11 @@ class WC_Pushover extends WC_Integration {
 	public $notify_low_stock = false;
 
 	/**
-	 * True if WooCommerce 3 is installed
-	 *
-	 * @var boolean
-	 */
-	protected $is_wc_3;
-
-	/**
 	 * Constructor
 	 *
 	 * @access public
 	 */
 	public function __construct() {
-
-		$this->is_wc_3 = version_compare( WC()->version, '3.0.0', '>=' );
 
 		$this->id                 = 'pushover';
 		$this->method_title       = __( 'Pushover', 'wc_pushover' );
@@ -230,7 +221,7 @@ class WC_Pushover extends WC_Integration {
 			),
 			'debug'              => array(
 				'title'       => __( 'Debug', 'wc_pushover' ),
-				'description' => __( 'Enable debug logging', 'wc_pushover' ),
+				'description' => sprintf( __( 'Enable debug logging. View log <a href="%s">here</a>.', 'wc_pushover' ), admin_url('admin.php?page=wc-status&tab=logs') ),
 				'type'        => 'checkbox',
 				'default'     => 'no',
 			),
@@ -420,7 +411,7 @@ class WC_Pushover extends WC_Integration {
 
 		if ( ! $sent ) {
 
-			$order_total = $this->is_wc_3 ? $order->get_total() : $order->order_total;
+			$order_total = $order->get_total();
 			// Send notifications if order total is greater than $0
 			// Or if free order notification is enabled
 			if ( 0 < absint( $order_total ) || $this->notify_free_order ) {
@@ -430,7 +421,7 @@ class WC_Pushover extends WC_Integration {
 
 				$message = ! empty( $this->settings[ 'message_' . $type ] ) ? $this->replace_fields_custom_message( $this->settings[ 'message_' . $type ], $order ) : sprintf(
 					__( '%1$s ordered %2$s for %3$s ', 'wc_pushover' ),
-					$this->is_wc_3 ? $order->get_billing_first_name() . ' ' . $order->get_billing_last_name() : $order->billing_first_name . ' ' . $order->billing_last_name,
+					$order->get_billing_first_name() . ' ' . $order->get_billing_last_name(),
 					$this->get_ordered_products_string( $order ),
 					$this->pushover_get_currency_symbol() . $order_total
 				);
@@ -459,7 +450,7 @@ class WC_Pushover extends WC_Integration {
 	 * Send notification when new order is received
 	 *
 	 * @access public
-	 * @param $args
+	 * @param array  $args
 	 * @return void
 	 */
 	public function notify_backorder( $args ) {
@@ -565,15 +556,15 @@ class WC_Pushover extends WC_Integration {
 					'{Order Status}',
 				),
 				array(
-					$this->is_wc_3 ? $order->get_billing_first_name() : $order->billing_first_name,
-					$this->is_wc_3 ? $order->get_billing_last_name() : $order->billing_last_name,
-					$this->is_wc_3 ? $order->get_billing_phone() : $order->billing_phone,
-					$this->is_wc_3 ? $order->get_id() : $order->id,
+					$order->get_billing_first_name(),
+					$order->get_billing_last_name(),
+					$order->get_billing_phone(),
+					$order->get_id(),
 					$this->get_ordered_products_string( $order ),
 					$order->get_total(),
 					get_woocommerce_currency(),
 					$this->pushover_get_currency_symbol(),
-					$this->is_wc_3 ? $order->get_payment_method_title() : $order->payment_method_title,
+					$order->get_payment_method_title(),
 					$order->get_status(),
 				),
 				$custom_string
@@ -608,16 +599,7 @@ class WC_Pushover extends WC_Integration {
 	 * @return string of products
 	 */
 	protected function get_ordered_products_string( $order ) {
-		if ( $this->is_wc_3 ) {
-			$items = $order->get_items();
-			$names = array();
-			foreach ( $items as $item ) {
-				$names[] = $item->get_name();
-			}
-			$products = implode( ', ', $names );
-		} else {
-			$products = implode( ', ', wp_list_pluck( $order->get_items(), 'name' ) );
-		}
+		$products = implode( ', ', wp_list_pluck( $order->get_items(), 'name' ) );
 
 		return $products;
 	}
@@ -716,12 +698,8 @@ class WC_Pushover extends WC_Integration {
 			return;
 		}
 
-		$time   = date_i18n( 'm-d-Y @ H:i:s -' );
-		$handle = fopen( WC_PUSHOVER_DIR . 'debug_pushover.log', 'a' );
-		if ( $handle ) {
-			fwrite( $handle, $time . ' ' . $message . "\n" );
-			fclose( $handle );
-		}
+		$logger = new WC_Logger();
+		$logger->add('pushover-woocommerce', $message );
 
 	}
 
