@@ -426,7 +426,7 @@ class WC_Pushover extends WC_Integration {
 					$this->pushover_get_currency_symbol() . $order_total
 				);
 
-				$url = get_admin_url();
+				$url     = get_admin_url().'post.php?post='.$order_id.'&action=edit';
 
 				$args = array(
 					'title'   => $title,
