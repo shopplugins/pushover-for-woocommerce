@@ -6,8 +6,8 @@
  * Version: 1.0.16
  * Author: Shop Plugins
  * Author URI: https://shopplugins.com/
- * WC requires at least: 2.6.14
- * WC tested up to: 3.7
+ * WC requires at least: 3.0
+ * WC tested up to: 4.0
 */
 /**
  * This program is free software; you can redistribute it and/or modify
@@ -91,7 +91,7 @@ add_filter( 'woocommerce_integrations', 'add_pushover_integration' );
  */
 function wc_pushover_plugin_links( $links ) {
 	$plugin_links = array(
-		'<a href="' . admin_url( 'admin.php?page=wc-settings&tab=integration' ) . '">' . __( 'Settings', 'wc_pushover' ) . '</a>',
+		'<a href="' . admin_url( 'admin.php?page=wc-settings&tab=integration&section=pushover' ) . '">' . __( 'Settings', 'wc_pushover' ) . '</a>',
 		'<a href="https://shopplugins.com/support">' . __( 'Support', 'wc_pushover' ) . '</a>',
 		'<a href="https://wordpress.org/plugins/pushover-for-woocommerce/installation/">' . __( 'Docs', 'wc_pushover' ) . '</a>',
 	);
