@@ -3,9 +3,9 @@ Contributors: growdev, shopplugins, poglaa
 Donate link: https://shopplugins.com
 Tags: woocommerce, pushover, ecommerce, notification, integration, ios, android, store manager
 Requires at least: 3.5
-Tested up to: 4.9.5
-Stable tag: 1.0.15
-WC tested up to: 3.5.4
+Tested up to: 5.3.2
+Stable tag: 1.0.16
+WC tested up to: 4.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -89,6 +89,13 @@ A.  Notifications are limited to 512 characters, including a title.  URL's are l
 2. screenshot-2.png
 
 == Changelog ==
+
+2020.20.18 1.0.16
+* Tested with WooCommerce 3.9
+* Removed support for WooCommerce 2.x
+* Added direct link to edit order page - Thanks @galapogos01
+* Fixing formatting and PHPCS Doc
+* Moved debug log to WC_Logger
 
 2019.01.29 1.0.15
 * Added Phone field for messages
