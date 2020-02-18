@@ -74,6 +74,13 @@ A.  Notifications are limited to 512 characters, including a title.  URL's are l
 
 == Changelog ==
 
+2020.20.18 1.0.16
+* Tested with WooCommerce 3.9 
+* Removed support for WooCommerce 2.x
+* Added direct link to edit order page - Thanks @galapogos01
+* Fixing formatting and PHPCS Doc
+* Moved debug log to WC_Logger
+
 2019.01.29 1.0.15
 * Added Phone field for messages
 * Added sounds: https://pushover.net/api#sounds
