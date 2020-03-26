@@ -380,7 +380,7 @@ class WC_Pushover extends WC_Integration {
 	 */
 	public function wc_pushover_init() {
 
-		if ( isset( $_GET['wc_test'] ) && ( 1 === $_GET['wc_test'] ) ) {
+		if ( isset( $_GET['wc_test'] ) && ( 1 === absint( $_GET['wc_test'] ) ) ) {
 			$title   = __( 'Test Notification', 'wc_pushover' );
 			$message = sprintf( __( 'This is a test notification from %s', 'wc_pushover' ), get_bloginfo( 'name' ) );
 			$url     = get_admin_url();
