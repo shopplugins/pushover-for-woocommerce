@@ -448,7 +448,7 @@ class WC_Pushover extends WC_Integration {
 	}
 
 	/**
-	 * Send notification when new order is received
+	 * Send notification when product is backordered.
 	 *
 	 * @access public
 	 * @param array  $args
@@ -481,7 +481,7 @@ class WC_Pushover extends WC_Integration {
 	/**
 	 * notify_no_stock
 	 *
-	 * Send notification when new order is received
+	 * Send notification when product has no stock.
 	 *
 	 * @access public
 	 * @param WC_Product $product
@@ -509,7 +509,7 @@ class WC_Pushover extends WC_Integration {
 	/**
 	 * notify_low_stock
 	 *
-	 * Send notification when new order is received
+	 * Send notification when product has low stock.
 	 *
 	 * @access public
 	 * @param WC_Product $product
