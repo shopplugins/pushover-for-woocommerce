@@ -74,6 +74,11 @@ A.  Notifications are limited to 512 characters, including a title.  URL's are l
 
 == Changelog ==
 
+2020.07.14 1.0.18
+* Add args to filters.
+* Add PHP doc.
+* Change WC_Pushover::wc_pushover_init() method name to WC_Pushover::maybe_send_test_message() for clarity.
+
 2020.05.04 1.0.17
 * Fix Send Test Notification
 * Verify with WordPress 5.4
