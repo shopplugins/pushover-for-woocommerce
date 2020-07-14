@@ -221,7 +221,7 @@ class WC_Pushover extends WC_Integration {
 			),
 			'debug'              => array(
 				'title'       => __( 'Debug', 'wc_pushover' ),
-				'description' => sprintf( __( 'Enable debug logging. View log <a href="%s">here</a>.', 'wc_pushover' ), admin_url('admin.php?page=wc-status&tab=logs') ),
+				'description' => sprintf( __( 'Enable debug logging. View log <a href="%s">here</a>.', 'wc_pushover' ), admin_url( 'admin.php?page=wc-status&tab=logs' ) ),
 				'type'        => 'checkbox',
 				'default'     => 'no',
 			),
@@ -426,7 +426,7 @@ class WC_Pushover extends WC_Integration {
 					$this->pushover_get_currency_symbol() . $order_total
 				);
 
-				$url     = get_admin_url().'post.php?post='.$order_id.'&action=edit';
+				$url = get_admin_url() . 'post.php?post=' . $order_id . '&action=edit';
 
 				$args = array(
 					'title'   => $title,
@@ -704,7 +704,7 @@ class WC_Pushover extends WC_Integration {
 		}
 
 		$logger = new WC_Logger();
-		$logger->add('pushover-woocommerce', $message );
+		$logger->add( 'pushover-woocommerce', $message );
 
 	}
 

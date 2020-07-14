@@ -1,5 +1,8 @@
 *** WooCommerce Pushover Integration ***
 
+2020.07.14 1.0.18
+
+
 2020.05.04 1.0.17
 * Fix Send Test Notification
 * Verify with WordPress 5.4
