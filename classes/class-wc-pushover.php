@@ -134,7 +134,7 @@ class WC_Pushover extends WC_Integration {
 
 		// Actions
 		add_action( 'woocommerce_update_options_integration_pushover', array( &$this, 'process_admin_options' ) );
-		add_action( 'init', array( $this, 'wc_pushover_init' ), 10 );
+		add_action( 'init', array( $this, 'maybe_send_test_message' ), 10 );
 
 		if ( $this->notify_new_order ) {
 			add_action( 'woocommerce_thankyou', array( $this, 'notify_new_order' ) );
@@ -373,12 +373,12 @@ class WC_Pushover extends WC_Integration {
 	} // End init_form_fields()
 
 	/**
-	 * Send notification when new order is received
+	 * Check if test notification has been requested.
 	 *
 	 * @access public
 	 * @return void
 	 */
-	public function wc_pushover_init() {
+	public function maybe_send_test_message() {
 
 		if ( isset( $_GET['wc_test'] ) && ( 1 === absint( $_GET['wc_test'] ) ) ) {
 			$title   = __( 'Test Notification', 'wc_pushover' );
@@ -429,9 +429,10 @@ class WC_Pushover extends WC_Integration {
 				$url = get_admin_url() . 'post.php?post=' . $order_id . '&action=edit';
 
 				$args = array(
-					'title'   => $title,
-					'message' => $message,
-					'url'     => $url,
+					'title'    => $title,
+					'message'  => $message,
+					'url'      => $url,
+					'order_id' => $order_id,
 				);
 
 				if ( 'free_order' === $type ) {
@@ -466,9 +467,11 @@ class WC_Pushover extends WC_Integration {
 		$this->send_notification(
 			apply_filters(
 				'wc_pushover_notify_backorder', array(
-					'title'   => $title,
-					'message' => $message,
-					'url'     => $url,
+					'title'      => $title,
+					'message'    => $message,
+					'url'        => $url,
+					'order_id'   => $order_id,
+					'product_id' => $product->get_id(),
 				)
 			)
 		);
@@ -496,6 +499,7 @@ class WC_Pushover extends WC_Integration {
 					'title'   => $title,
 					'message' => $message,
 					'url'     => $url,
+					'product' => $product,
 				)
 			)
 		);
@@ -524,6 +528,7 @@ class WC_Pushover extends WC_Integration {
 					'title'   => $title,
 					'message' => $message,
 					'url'     => $url,
+					'product' => $product,
 				)
 			)
 		);
