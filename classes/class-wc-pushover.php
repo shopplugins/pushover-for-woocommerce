@@ -203,6 +203,26 @@ class WC_Pushover extends WC_Integration {
 				),
 				'default'     => '0',
 			),
+			'retry' => array(
+				'title'             => __( 'Retry', 'wc_pushover' ),
+				'description'       => __( 'How often (in seconds) Pushover servers will send notification to the user until the message is acknowledged by the user.<br/>This is only used if Priority is set to <code>2 Emergency Priority</code>.<br/>Example: <code>30</code> to resend message every 30 seconds.', 'wc_pushover' ),
+				'placeholder'       => 30,
+				'type'              => 'number',
+				'default'           => '',
+                'custom_attributes' => array(
+                        'min' => '30',
+                ),
+            ),
+			'expire' => array(
+				'title'             => __( 'Expire', 'wc_pushover' ),
+				'description'       => __( 'How many seconds your notification will continue to be retried (for every `retry` seconds).<br/>This is only used if Priority is set to <code>2 Emergency Priority</code>.<br/>Example: <code>3600</code> to send the message every <code>retry</code> seconds for 1 hour.', 'wc_pushover' ),
+				'placeholder'       => 3600,
+                'type'              => 'number',
+				'default'           => '',
+                'custom_attributes' => array(
+                        'max' => '10800',
+                ),
+            ),
 			'sound'              => array(
 				'title'       => __( 'Notification Sound', 'wc_pushover' ),
 				'description' => sprintf(
