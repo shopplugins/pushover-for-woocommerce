@@ -3,9 +3,9 @@ Contributors: growdev, shopplugins, poglaa
 Donate link: https://shopplugins.com
 Tags: woocommerce, pushover, ecommerce, notification, integration, ios, android, store manager
 Requires at least: 3.5
-Tested up to: 5.4.2
-Stable tag: 1.0.18
-WC tested up to: 4.3
+Tested up to: 5.8
+Stable tag: 1.0.19
+WC tested up to: 5.6
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
