@@ -50,6 +50,9 @@ class WC_Pushover extends WC_Integration {
 	 */
 	public $priority = '';
 
+	public $retry = '';
+
+	public $expire = '';
 	/**
 	 * desc
 	 *
@@ -122,6 +125,8 @@ class WC_Pushover extends WC_Integration {
 		$this->user_api = isset( $this->settings['user_api'] ) ? $this->settings['user_api'] : '';
 		$this->device   = isset( $this->settings['device'] ) ? $this->settings['device'] : '';
 		$this->priority = isset( $this->settings['priority'] ) ? $this->settings['priority'] : '';
+		$this->retry    = isset( $this->settings['retry'] ) ? $this->settings['retry'] : '';
+		$this->expire   = isset( $this->settings['expire'] ) ? $this->settings['expire'] : '';
 		$this->debug    = isset( $this->settings['debug'] ) && 'yes' === $this->settings['debug'] ? true : false;
 		$this->sound    = isset( $this->settings['sound'] ) ? $this->settings['sound'] : '';
 
@@ -668,6 +673,8 @@ class WC_Pushover extends WC_Integration {
 			$pushover->setDevice( $this->device );
 		}
 		$pushover->setPriority( $this->priority );
+		$pushover->setRetry( $this->retry );
+		$pushover->setExpire( $this->expire );
 		$pushover->setSound( $this->sound );
 
 		// Setup message
