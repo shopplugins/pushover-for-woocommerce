@@ -592,7 +592,7 @@ class WC_Pushover extends WC_Integration {
 			);
 		}
 
-		return $custom_string;
+		return apply_filters( 'pushover_custom_message_string', $custom_string );
 
 	}
 
