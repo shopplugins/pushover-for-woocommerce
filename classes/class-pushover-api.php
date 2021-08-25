@@ -28,6 +28,8 @@ class Pushover_Api {
 	private $user_api = '';
 	private $device   = '';
 	private $priority = '';
+	private $retry    = '';
+	private $expire   = '';
 	private $sound    = '';
 	private $title    = '';
 	private $message  = '';
@@ -112,6 +114,40 @@ class Pushover_Api {
 	}
 
 	/**
+	 * Set the retry (in seconds) parameter for Emergency priority messages
+	 * @param $retry
+	 */
+	public function setRetry( $retry ) {
+		$this->retry = $retry;
+	}
+
+	/**
+	 * Get retry to send to Pushover (optional)
+	 *
+	 * @return string $retry
+	 */
+	public function getRetry() {
+		return $this->retry;
+	}
+
+	/**
+	 * Set the Expire (in seconds) parameter for Emergency priority messages
+	 * @param $expire
+	 */
+	public function setExpire( $expire ) {
+		$this->expire = $expire;
+	}
+
+	/**
+	 * Get Expire to send to Pushover (optional)
+	 *
+	 * @return string $expire
+	 */
+	public function getExpire() {
+		return $this->expire;
+	}
+
+	/**
 	 *  Set Sound to send to Pushover (optional)
 	 *
 	 */
@@ -122,7 +158,7 @@ class Pushover_Api {
 	/**
 	 * Get Sound to send to Pushover (optional)
 	 *
-	 * @return string $priority
+	 * @return string $sound
 	 */
 	public function getSound() {
 		return $this->sound;
@@ -203,6 +239,9 @@ class Pushover_Api {
 			'message' => $this->message,
 			'url'     => $this->url,
 			'sound'   => $this->sound,
+			'priority'=> $this->priority,
+			'retry'   => $this->retry,
+			'expire'  => $this->expire,
 		);
 
 		$response = wp_remote_post(

@@ -50,6 +50,9 @@ class WC_Pushover extends WC_Integration {
 	 */
 	public $priority = '';
 
+	public $retry = '';
+
+	public $expire = '';
 	/**
 	 * desc
 	 *
@@ -122,6 +125,8 @@ class WC_Pushover extends WC_Integration {
 		$this->user_api = isset( $this->settings['user_api'] ) ? $this->settings['user_api'] : '';
 		$this->device   = isset( $this->settings['device'] ) ? $this->settings['device'] : '';
 		$this->priority = isset( $this->settings['priority'] ) ? $this->settings['priority'] : '';
+		$this->retry    = isset( $this->settings['retry'] ) ? $this->settings['retry'] : '';
+		$this->expire   = isset( $this->settings['expire'] ) ? $this->settings['expire'] : '';
 		$this->debug    = isset( $this->settings['debug'] ) && 'yes' === $this->settings['debug'] ? true : false;
 		$this->sound    = isset( $this->settings['sound'] ) ? $this->settings['sound'] : '';
 
@@ -203,6 +208,26 @@ class WC_Pushover extends WC_Integration {
 				),
 				'default'     => '0',
 			),
+			'retry' => array(
+				'title'             => __( 'Retry', 'wc_pushover' ),
+				'description'       => __( 'How often (in seconds) Pushover servers will send notification to the user until the message is acknowledged by the user.<br/>This is only used if Priority is set to <code>2 Emergency Priority</code>.<br/>Example: <code>30</code> to resend message every 30 seconds.', 'wc_pushover' ),
+				'placeholder'       => 30,
+				'type'              => 'number',
+				'default'           => '',
+                'custom_attributes' => array(
+                        'min' => '30',
+                ),
+            ),
+			'expire' => array(
+				'title'             => __( 'Expire', 'wc_pushover' ),
+				'description'       => __( 'How many seconds your notification will continue to be retried (for every `retry` seconds).<br/>This is only used if Priority is set to <code>2 Emergency Priority</code>.<br/>Example: <code>3600</code> to send the message every <code>retry</code> seconds for 1 hour.', 'wc_pushover' ),
+				'placeholder'       => 3600,
+                'type'              => 'number',
+				'default'           => '',
+                'custom_attributes' => array(
+                        'max' => '10800',
+                ),
+            ),
 			'sound'              => array(
 				'title'       => __( 'Notification Sound', 'wc_pushover' ),
 				'description' => sprintf(
@@ -592,7 +617,7 @@ class WC_Pushover extends WC_Integration {
 			);
 		}
 
-		return $custom_string;
+		return apply_filters( 'wc_pushover_custom_message_string', $custom_string );
 
 	}
 
@@ -648,6 +673,8 @@ class WC_Pushover extends WC_Integration {
 			$pushover->setDevice( $this->device );
 		}
 		$pushover->setPriority( $this->priority );
+		$pushover->setRetry( $this->retry );
+		$pushover->setExpire( $this->expire );
 		$pushover->setSound( $this->sound );
 
 		// Setup message
