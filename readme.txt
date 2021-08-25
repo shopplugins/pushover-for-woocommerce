@@ -90,6 +90,12 @@ A.  Notifications are limited to 512 characters, including a title.  URL's are l
 
 == Changelog ==
 
+2021.08.25 1.0.19
+* Test with WooCommerce 5.6
+* Add filter to return of WC_Pushover::replace_fields_custom_message()
+* Add 'retry' and 'expire' settings.
+* Verify Emergency priority messages are sent correctly.
+
 2020.07.14 1.0.18
 * Add args to filters.
 * Add PHP doc.
