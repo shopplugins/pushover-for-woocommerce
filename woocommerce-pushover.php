@@ -3,11 +3,11 @@
  * Plugin Name: WooCommerce Pushover Integration
  * Plugin URI: https://shopplugins.com/
  * Description: Integrates <a href="https://woocommerce.com" target="_blank" >WooCommerce</a> with the <a href="https://pushover.net/" target="_blank">Pushover</a> notifications app for Android and iOS.
- * Version: 1.0.19
+ * Version: 1.0.20
  * Author: Shop Plugins
  * Author URI: https://shopplugins.com/
  * WC requires at least: 3.0
- * WC tested up to: 5
+ * WC tested up to: 6
 */
 /**
  * This program is free software; you can redistribute it and/or modify

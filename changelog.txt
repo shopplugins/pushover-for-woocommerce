@@ -1,5 +1,9 @@
 *** WooCommerce Pushover Integration ***
 
+2022.07.28 1.0.20
+* Tested with WooCommerce 6.7.0
+* Tested with WordPress 6.0.1
+
 2021.08.25 1.0.19
 * Test with WooCommerce 5.6
 * Add filter to return of WC_Pushover::replace_fields_custom_message()
