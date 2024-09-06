@@ -10,7 +10,7 @@
  * License:              GPL-3.0
  * License URI:          https://www.gnu.org/licenses/gpl-3.0.html
  * Text Domain:          wc_pushover
- * WC requires at least: 3.0
+ * WC requires at least: 4.3
  * WC tested up to:      9.2
 */
 
