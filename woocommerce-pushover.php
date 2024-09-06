@@ -1,27 +1,18 @@
 <?php
 /**
- * Plugin Name: WooCommerce Pushover Integration
- * Plugin URI: https://shopplugins.com/
- * Description: Integrates <a href="https://woocommerce.com" target="_blank" >WooCommerce</a> with the <a href="https://pushover.net/" target="_blank">Pushover</a> notifications app for Android and iOS.
- * Version: 1.0.20
- * Author: Shop Plugins
- * Author URI: https://shopplugins.com/
- * WC requires at least: 3.0
- * WC tested up to: 6
+ * Plugin Name:          Pushover Integration for WooCommerce
+ * Requires Plugins:     woocommerce
+ * Plugin URI:           https://shopplugins.com/
+ * Description:          Integrates WooCommerce with Pushover.net, a versatile push notification service that delivers real-time alerts to Android, iOS, and desktop devices.
+ * Version:              1.0.20
+ * Author:               Shop Plugins
+ * Author URI:           https://shopplugins.com/
+ * License:              GPL-3.0
+ * License URI:          https://www.gnu.org/licenses/gpl-3.0.html
+ * Text Domain:          wc_pushover
+ * WC requires at least: 4.3
+ * WC tested up to:      9.2
 */
-/**
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License, version 2, as
- * published by the Free Software Foundation.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
- */
 
 /**
  * Required functions
@@ -85,6 +76,18 @@ function add_pushover_integration( $integrations ) {
 	return $integrations;
 }
 add_filter( 'woocommerce_integrations', 'add_pushover_integration' );
+
+/**
+ * Declares WooCommerce HPOS compatibility.
+ *
+ * @return void
+ */
+function wc_pushover_hpos_compatible(): void {
+	if ( class_exists( '\Automattic\WooCommerce\Utilities\FeaturesUtil' ) ) {
+		\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+	}
+}
+add_action( 'before_woocommerce_init', 'wc_pushover_hpos_compatible' );
 
 /**
  * Plugin page links
