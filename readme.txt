@@ -91,6 +91,11 @@ A.  Notifications are limited to 512 characters, including a title.  URL's are l
 
 == Changelog ==
 
+2024.09.06 1.1.0
+* New: Declares compatibility with HPOS (High-Performance Order Storage)
+* Translations: Updated translation template (POT)
+* Tested up to WooCommerce 9.2 & WordPress 6.6
+
 2022.07.28 1.0.20
 * Tested with WooCommerce 6.7.0
 * Tested with WordPress 6.0.1
