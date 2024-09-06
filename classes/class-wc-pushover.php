@@ -246,7 +246,11 @@ class WC_Pushover extends WC_Integration {
 			),
 			'debug'              => array(
 				'title'       => __( 'Debug', 'wc_pushover' ),
-				'description' => sprintf( __( 'Enable debug logging. View log <a href="%s">here</a>.', 'wc_pushover' ), admin_url( 'admin.php?page=wc-status&tab=logs' ) ),
+				'description' => sprintf(
+					/* translators: %s: URL */
+					__( 'Enable debug logging. View log <a href="%s">here</a>.', 'wc_pushover' ),
+					admin_url( 'admin.php?page=wc-status&tab=logs' )
+				),
 				'type'        => 'checkbox',
 				'default'     => 'no',
 			),
@@ -407,7 +411,11 @@ class WC_Pushover extends WC_Integration {
 
 		if ( isset( $_GET['wc_test'] ) && ( 1 === absint( $_GET['wc_test'] ) ) ) {
 			$title   = __( 'Test Notification', 'wc_pushover' );
-			$message = sprintf( __( 'This is a test notification from %s', 'wc_pushover' ), get_bloginfo( 'name' ) );
+			$message = sprintf(
+				/* translators: %s: Site name */
+				__( 'This is a test notification from %s', 'wc_pushover' ),
+				get_bloginfo( 'name' )
+			);
 			$url     = get_admin_url();
 
 			$this->send_notification(
@@ -450,15 +458,24 @@ class WC_Pushover extends WC_Integration {
 			// Or if free order notification is enabled
 			if ( 0 < absint( $order_total ) || $this->notify_free_order ) {
 
-				$type  = 0 === absint( $order_total ) ? 'free_order' : 'new_order';
-				$title = ! empty( $this->settings[ 'title_' . $type ] ) ? $this->replace_fields_custom_message( $this->settings[ 'title_' . $type ], $order ) : sprintf( __( 'New Order %d', 'wc_pushover' ), $order_id );
+				$type = 0 === absint( $order_total ) ? 'free_order' : 'new_order';
+				$title = ! empty( $this->settings[ 'title_' . $type ] ) ?
+					$this->replace_fields_custom_message( $this->settings[ 'title_' . $type ], $order ) :
+					sprintf(
+						/* translators: %d: Order ID */
+						__( 'New Order %d', 'wc_pushover' ),
+						$order_id
+					);
 
-				$message = ! empty( $this->settings[ 'message_' . $type ] ) ? $this->replace_fields_custom_message( $this->settings[ 'message_' . $type ], $order ) : sprintf(
-					__( '%1$s ordered %2$s for %3$s ', 'wc_pushover' ),
-					$order->get_billing_first_name() . ' ' . $order->get_billing_last_name(),
-					$this->get_ordered_products_string( $order ),
-					$this->pushover_get_currency_symbol() . $order_total
-				);
+				$message = ! empty( $this->settings[ 'message_' . $type ] ) ?
+					$this->replace_fields_custom_message( $this->settings[ 'message_' . $type ], $order ) :
+					sprintf(
+						/* translators: 1: Customer name, 2: Ordered products, 3: Order total */
+						__( '%1$s ordered %2$s for %3$s ', 'wc_pushover' ),
+						$order->get_billing_first_name() . ' ' . $order->get_billing_last_name(),
+						$this->get_ordered_products_string( $order ),
+						$this->pushover_get_currency_symbol() . $order_total
+					);
 
 				$url = get_admin_url() . 'post.php?post=' . $order_id . '&action=edit';
 
@@ -497,12 +514,25 @@ class WC_Pushover extends WC_Integration {
 			return;
 		}
 		
-		$order   = wc_get_order( $order_id );
+		$order = wc_get_order( $order_id );
 
-		$title   = ! empty( $this->settings['title_backorder'] ) ? $this->replace_fields_custom_message( $this->settings['title_backorder'], $order, $product ) : sprintf( __( 'Product Backorder', 'wc_pushover' ), $order_id );
-		$message = ! empty( $this->settings['message_backorder'] ) ? $this->replace_fields_custom_message( $this->settings['message_backorder'], $order, $product ) : sprintf( __( 'Product (#%1$d %2$s) is on backorder.', 'wc_pushover' ), $product->get_id(), $product->get_title() );
+		$title = ! empty( $this->settings['title_backorder'] ) ?
+			$this->replace_fields_custom_message( $this->settings['title_backorder'], $order, $product ) :
+			sprintf(
+				/* translators: %1$d: Product ID, %2$s: Product title */
+				__( 'Product Backorder', 'wc_pushover' ),
+				$order_id
+			);
+		$message = ! empty( $this->settings['message_backorder'] ) ?
+			$this->replace_fields_custom_message( $this->settings['message_backorder'], $order, $product ) :
+			sprintf(
+				/* translators: %1$d: Product ID, %2$s: Product title */
+				__( 'Product (#%1$d %2$s) is on backorder.', 'wc_pushover' ),
+				$product->get_id(),
+				$product->get_title()
+			);
 
-		$url     = get_admin_url();
+		$url = get_admin_url();
 
 		$this->send_notification(
 			apply_filters(
@@ -528,10 +558,18 @@ class WC_Pushover extends WC_Integration {
 	 * @return void
 	 */
 	public function notify_no_stock( \WC_Product $product ) {
-
-		$title   = ! empty( $this->settings['title_no_stock'] ) ? $this->replace_fields_custom_message( $this->settings['title_no_stock'], null, $product ) : __( 'Product Out of Stock', 'wc_pushover' );
-		$message = ! empty( $this->settings['message_no_stock'] ) ? $this->replace_fields_custom_message( $this->settings['message_no_stock'], null, $product ) : sprintf( __( 'Product (#%1$d %2$s) is now out of stock.', 'wc_pushover' ), $product->get_id(), $product->get_title() );
-		$url     = get_admin_url();
+		$title = ! empty( $this->settings['title_no_stock'] ) ?
+			$this->replace_fields_custom_message( $this->settings['title_no_stock'], null, $product ) :
+			__( 'Product Out of Stock', 'wc_pushover' );
+		$message = ! empty( $this->settings['message_no_stock'] ) ?
+			$this->replace_fields_custom_message( $this->settings['message_no_stock'], null, $product ) :
+			sprintf(
+				/* translators: %1$d: Product ID, %2$s: Product title */
+				__( 'Product (#%1$d %2$s) is now out of stock.', 'wc_pushover' ),
+				$product->get_id(),
+				$product->get_title()
+			);
+		$url = get_admin_url();
 
 		$this->send_notification(
 			apply_filters(
@@ -556,11 +594,19 @@ class WC_Pushover extends WC_Integration {
 	 * @return void
 	 */
 	public function notify_low_stock( \WC_Product $product ) {
-
 		// get order details
-		$title   = ! empty( $this->settings['title_low_stock'] ) ? $this->replace_fields_custom_message( $this->settings['title_low_stock'], null, $product ) : __( 'Product Low Stock', 'wc_pushover' );
-		$message = ! empty( $this->settings['message_low_stock'] ) ? $this->replace_fields_custom_message( $this->settings['message_low_stock'], null, $product ) : sprintf( __( 'Product (#%1$d %2$s) now has low stock.', 'wc_pushover' ), $product->get_id(), $product->get_title() );
-		$url     = get_admin_url();
+		$title = ! empty( $this->settings['title_low_stock'] ) ?
+			$this->replace_fields_custom_message( $this->settings['title_low_stock'], null, $product ) :
+			__( 'Product Low Stock', 'wc_pushover' );
+		$message = ! empty( $this->settings['message_low_stock'] ) ?
+			$this->replace_fields_custom_message( $this->settings['message_low_stock'], null, $product ) :
+			sprintf(
+				/* translators: %1$d: Product ID, %2$s: Product title */
+				__( 'Product (#%1$d %2$s) now has low stock.', 'wc_pushover' ),
+				$product->get_id(),
+				$product->get_title()
+			);
+		$url = get_admin_url();
 
 		$this->send_notification(
 			apply_filters(
@@ -712,7 +758,13 @@ class WC_Pushover extends WC_Integration {
 			$this->add_log( __( 'Response: ', 'wc_pushover' ) . "\n" . print_r( $response, true ) );
 
 		} catch ( Exception $e ) {
-			$this->add_log( sprintf( __( 'Error: Caught exception from send method: %s', 'wc_pushover' ), $e->getMessage() ) );
+			$this->add_log(
+				sprintf(
+					/* translators: %s: Exception message */
+					__( 'Error: Caught exception from send method: %s', 'wc_pushover' ),
+					$e->getMessage()
+				)
+			);
 		}
 
 		$this->add_log( __( 'Pushover response', 'wc_pushover' ) . "\n" . print_r( $response, true ) );
