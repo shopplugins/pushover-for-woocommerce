@@ -2,7 +2,7 @@
 /**
  * Plugin Name:          Pushover Integration for WooCommerce
  * Plugin URI:           https://shopplugins.com/
- * Description:          Integrates <a href="https://woocommerce.com" target="_blank" >WooCommerce</a> with the <a href="https://pushover.net/" target="_blank">Pushover</a> notifications app for Android and iOS.
+ * Description:          Integrates WooCommerce with Pushover.net, a versatile push notification service that delivers real-time alerts to Android, iOS, and desktop devices.
  * Version:              1.0.20
  * Author:               Shop Plugins
  * Author URI:           https://shopplugins.com/
