@@ -5,7 +5,7 @@ Tags: woocommerce, pushover, ecommerce, notification, integration, ios, android,
 Requires at least: 3.5
 Tested up to: 6.6
 Requires PHP: 7.2
-Stable tag: 1.0.19
+Stable tag: 1.1.0
 WC tested up to: 9.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html

@@ -4,7 +4,7 @@
  * Requires Plugins:     woocommerce
  * Plugin URI:           https://shopplugins.com/
  * Description:          Integrates WooCommerce with Pushover.net, a versatile push notification service that delivers real-time alerts to Android, iOS, and desktop devices.
- * Version:              1.0.20
+ * Version:              1.1.0
  * Author:               Shop Plugins
  * Author URI:           https://shopplugins.com/
  * License:              GPL-3.0
