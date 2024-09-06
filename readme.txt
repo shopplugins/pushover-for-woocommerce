@@ -1,11 +1,11 @@
-=== Pushover for WooCommerce ===
-Contributors: growdev, shopplugins, poglaa
+=== Pushover Integration for WooCommerce ===
+Contributors: growdev, shopplugins, poglaa, alexmigf
 Donate link: https://shopplugins.com
 Tags: woocommerce, pushover, ecommerce, notification, integration, ios, android, store manager
 Requires at least: 3.5
-Tested up to: 6.0
+Tested up to: 6.6
 Stable tag: 1.0.19
-WC tested up to: 6
+WC tested up to: 9.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 

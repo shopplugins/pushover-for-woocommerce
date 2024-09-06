@@ -430,10 +430,19 @@ class WC_Pushover extends WC_Integration {
 	 * @return void
 	 */
 	public function notify_new_order( $order_id ) {
-
-		$order = new WC_Order( $order_id );
-		$sent  = get_post_meta( $order_id, '_pushover_new_order', true );
-
+		if ( empty( $order_id ) || ! is_numeric( $order_id ) ) {
+			return;
+		}
+		
+		$order = wc_get_order( $order_id );
+		
+		if ( ! $order ) {
+			return;
+		}
+		
+		// Check if notification has already been sent
+		$sent = $order->get_meta( '_pushover_new_order', true );
+		
 		if ( ! $sent ) {
 
 			$order_total = $order->get_total();
@@ -465,8 +474,9 @@ class WC_Pushover extends WC_Integration {
 				} else {
 					$this->send_notification( apply_filters( 'wc_pushover_notify_new_order', $args ) );
 				}
-
-				add_post_meta( $order_id, '_pushover_new_order', true );
+				
+				$order->update_meta_data( '_pushover_new_order', true );
+				$order->save_meta_data();
 			}
 		}
 
@@ -480,14 +490,19 @@ class WC_Pushover extends WC_Integration {
 	 * @return void
 	 */
 	public function notify_backorder( $args ) {
+		$product  = isset( $args['product'] ) ? $args['product'] : null;
+		$order_id = isset( $args['order_id'] ) ? $args['order_id'] : 0;
+		
+		if ( empty( $product ) || empty( $order_id ) ) {
+			return;
+		}
+		
+		$order   = wc_get_order( $order_id );
 
-		$product  = $args['product'];
-		$order_id = $args['order_id'];
+		$title   = ! empty( $this->settings['title_backorder'] ) ? $this->replace_fields_custom_message( $this->settings['title_backorder'], $order, $product ) : sprintf( __( 'Product Backorder', 'wc_pushover' ), $order_id );
+		$message = ! empty( $this->settings['message_backorder'] ) ? $this->replace_fields_custom_message( $this->settings['message_backorder'], $order, $product ) : sprintf( __( 'Product (#%1$d %2$s) is on backorder.', 'wc_pushover' ), $product->get_id(), $product->get_title() );
 
-		$title   = ! empty( $this->settings['title_backorder'] ) ? $this->replace_fields_custom_message( $this->settings['title_backorder'], new WC_Order( $args['order_id'] ), $product ) : sprintf( __( 'Product Backorder', 'wc_pushover' ), $order_id );
-		$message = ! empty( $this->settings['message_backorder'] ) ? $this->replace_fields_custom_message( $this->settings['message_backorder'], new WC_Order( $args['order_id'] ), $product ) : sprintf( __( 'Product (#%1$d %2$s) is on backorder.', 'wc_pushover' ), $product->get_id(), $product->get_title() );
-
-		$url = get_admin_url();
+		$url     = get_admin_url();
 
 		$this->send_notification(
 			apply_filters(
@@ -509,10 +524,10 @@ class WC_Pushover extends WC_Integration {
 	 * Send notification when product has no stock.
 	 *
 	 * @access public
-	 * @param WC_Product $product
+	 * @param \WC_Product $product
 	 * @return void
 	 */
-	public function notify_no_stock( WC_Product $product ) {
+	public function notify_no_stock( \WC_Product $product ) {
 
 		$title   = ! empty( $this->settings['title_no_stock'] ) ? $this->replace_fields_custom_message( $this->settings['title_no_stock'], null, $product ) : __( 'Product Out of Stock', 'wc_pushover' );
 		$message = ! empty( $this->settings['message_no_stock'] ) ? $this->replace_fields_custom_message( $this->settings['message_no_stock'], null, $product ) : sprintf( __( 'Product (#%1$d %2$s) is now out of stock.', 'wc_pushover' ), $product->get_id(), $product->get_title() );
@@ -537,10 +552,10 @@ class WC_Pushover extends WC_Integration {
 	 * Send notification when product has low stock.
 	 *
 	 * @access public
-	 * @param WC_Product $product
+	 * @param \WC_Product $product
 	 * @return void
 	 */
-	public function notify_low_stock( WC_Product $product ) {
+	public function notify_low_stock( \WC_Product $product ) {
 
 		// get order details
 		$title   = ! empty( $this->settings['title_low_stock'] ) ? $this->replace_fields_custom_message( $this->settings['title_low_stock'], null, $product ) : __( 'Product Low Stock', 'wc_pushover' );
@@ -564,8 +579,8 @@ class WC_Pushover extends WC_Integration {
 	 * Replaces the fields for custom messages and titles
 	 *
 	 * @param string $custom_string
-	 * @param WC_Order $order
-	 * @param WC_Product $product
+	 * @param \WC_Order|null $order
+	 * @param \WC_Product|null $product
 	 *
 	 * @return mixed|string
 	 */
@@ -624,7 +639,7 @@ class WC_Pushover extends WC_Integration {
 	/**
 	 * Get ordered products in string
 	 *
-	 * @param WC_Order $order
+	 * @param \WC_Order $order
 	 *
 	 * @return string of products
 	 */

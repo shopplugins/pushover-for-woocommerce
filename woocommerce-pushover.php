@@ -1,13 +1,13 @@
 <?php
 /**
- * Plugin Name: WooCommerce Pushover Integration
- * Plugin URI: https://shopplugins.com/
- * Description: Integrates <a href="https://woocommerce.com" target="_blank" >WooCommerce</a> with the <a href="https://pushover.net/" target="_blank">Pushover</a> notifications app for Android and iOS.
- * Version: 1.0.20
- * Author: Shop Plugins
- * Author URI: https://shopplugins.com/
+ * Plugin Name:          Pushover Integration for WooCommerce
+ * Plugin URI:           https://shopplugins.com/
+ * Description:          Integrates <a href="https://woocommerce.com" target="_blank" >WooCommerce</a> with the <a href="https://pushover.net/" target="_blank">Pushover</a> notifications app for Android and iOS.
+ * Version:              1.0.20
+ * Author:               Shop Plugins
+ * Author URI:           https://shopplugins.com/
  * WC requires at least: 3.0
- * WC tested up to: 6
+ * WC tested up to:      9.2
 */
 /**
  * This program is free software; you can redistribute it and/or modify
@@ -85,6 +85,18 @@ function add_pushover_integration( $integrations ) {
 	return $integrations;
 }
 add_filter( 'woocommerce_integrations', 'add_pushover_integration' );
+
+/**
+ * Declares WooCommerce HPOS compatibility.
+ *
+ * @return void
+ */
+function wc_pushover_hpos_compatible(): void {
+	if ( class_exists( '\Automattic\WooCommerce\Utilities\FeaturesUtil' ) ) {
+		\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+	}
+}
+add_action( 'before_woocommerce_init', 'wc_pushover_hpos_compatible' );
 
 /**
  * Plugin page links
