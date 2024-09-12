@@ -1,7 +1,7 @@
 === Pushover Integration for WooCommerce ===
 Contributors: growdev, shopplugins, poglaa, alexmigf
 Donate link: https://shopplugins.com
-Tags: woocommerce, pushover, ecommerce, notification, integration, ios, android, desktop
+Tags: woocommerce, pushover, ios, android, desktop
 Requires at least: 3.5
 Tested up to: 6.6
 Requires PHP: 7.2
