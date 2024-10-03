@@ -32,7 +32,7 @@ define( 'WC_PUSHOVER_DIR', plugin_dir_path( __FILE__ ) );
 function wc_pushover_localization() {
 	load_plugin_textdomain( 'wc_pushover', false, basename( dirname( __FILE__ ) ) . '/languages' );
 }
-add_action( 'plugins_loaded', 'wc_pushover_localization' );
+add_action( 'init', 'wc_pushover_localization' );
 
 /**
  * Plugin activation check
